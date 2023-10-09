@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
+import 'package:rizz/features/auth/screens/create_username.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/common/utils.dart';
 
 class SignInPage extends StatefulWidget {
+  static const routeName = 'SignInPage';
   const SignInPage({super.key});
 
   @override
@@ -15,7 +18,7 @@ class _SignInPageState extends State<SignInPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: HexColor("eb6d2e"),
+        backgroundColor: GlobalVariables.themeColor,
         body: Column(
           children: [
             Container(
@@ -33,6 +36,7 @@ class _SignInPageState extends State<SignInPage> {
               text: "Start the fun!",
               onTap: () {
                 debugPrint("print button");
+                context.goNamed(UserNameScreen.routeName);
               },
             ),
             InkWell(
