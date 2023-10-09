@@ -24,7 +24,7 @@ class _UserNameScreenState extends State<UserNameScreen> {
             Container(
                 margin:
                     EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.20),
-                child: Text(
+                child: const Text(
                   "What's your first name?",
                   style: TextStyle(
                       fontSize: 30,
