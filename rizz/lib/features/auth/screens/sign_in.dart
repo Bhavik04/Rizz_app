@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
-import 'package:rizz/utils.dart';
+import 'package:rizz/common/utils.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -19,14 +20,14 @@ class _SignInPageState extends State<SignInPage> {
           children: [
             Container(
               alignment: Alignment.topCenter,
-              margin: const EdgeInsets.only(top: 250),
+              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.33),
               child: Image.asset(
                 'assets/images/rizz_text.png',
                 height: 100,
               ),
             ),
-            const SizedBox(
-              height: 150,
+            SizedBox(
+              height: GlobalVariables.deviceHeight * 0.20,
             ),
             CustomButton(
               text: "Start the fun!",
@@ -40,7 +41,7 @@ class _SignInPageState extends State<SignInPage> {
               },
               child: Container(
                 margin: const EdgeInsets.only(top: 20),
-                width: 250,
+                width: GlobalVariables.deviceWidth * 0.75,
                 alignment: Alignment.center,
                 child: const Text(
                   "By continuing, you agree to our terms and privacy policies.",
