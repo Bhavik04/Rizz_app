@@ -45,7 +45,7 @@ class _SignInPageState extends State<SignInPage> {
               },
               child: Container(
                 margin: const EdgeInsets.only(top: 20),
-                width: GlobalVariables.deviceWidth * 0.75,
+                width: GlobalVariables.deviceWidth * 0.65,
                 alignment: Alignment.center,
                 child: const Text(
                   "By continuing, you agree to our terms and privacy policies.",
