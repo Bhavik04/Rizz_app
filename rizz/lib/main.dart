@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rizz/features/auth/screens/sign_in.dart';
 import 'package:rizz/router.dart';
 
 void main() {

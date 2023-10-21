@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/features/auth/screens/create_username.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
-import 'package:rizz/common/utils.dart';
 
 class SignInPage extends StatefulWidget {
   static const routeName = 'SignInPage';
@@ -51,7 +50,7 @@ class _SignInPageState extends State<SignInPage> {
                   "By continuing, you agree to our terms and privacy policies.",
                   textAlign: TextAlign.center,
                   maxLines: 2,
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.white70),
                 ),
               ),
             ),
