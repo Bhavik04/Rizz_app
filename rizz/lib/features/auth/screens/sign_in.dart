@@ -29,21 +29,23 @@ class _SignInPageState extends State<SignInPage> {
               ),
             ),
             SizedBox(
-              height: GlobalVariables.deviceHeight * 0.20,
+              height: GlobalVariables.deviceHeight * 0.25,
             ),
             CustomButton(
-              text: "Start the fun!",
+              text: "Signup with Google",
               onTap: () {
                 debugPrint("print button");
                 context.goNamed(UserNameScreen.routeName);
               },
+              buttonColor: Colors.white,
+              textColor: Colors.black,
             ),
             InkWell(
               onTap: () {
                 debugPrint('button Tapped');
               },
               child: Container(
-                margin: const EdgeInsets.only(top: 20),
+                margin: const EdgeInsets.only(top: 10),
                 width: GlobalVariables.deviceWidth * 0.65,
                 alignment: Alignment.center,
                 child: const Text(

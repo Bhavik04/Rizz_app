@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
+
 class HexColor extends Color {
   static int _getcolorFromHex(String hexColor) {
     hexColor = hexColor.toUpperCase().replaceAll("#", "");
