@@ -21,9 +21,7 @@ class _InboxScreenState extends State<InboxScreen> {
           backgroundColor: HexColor("141414"),
           appBar: CustomAppBar(
             onLeftIconTap: () {},
-            onRightIconTap: () {
-              showCustomBottomSheet(context);
-            },
+            onRightIconTap: () {},
           ),
           body: Container(
             alignment: Alignment.center,

@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "616555807283",
+    "project_id": "rizz-dev-ccb51",
+    "storage_bucket": "rizz-dev-ccb51.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:616555807283:android:04249dc8d1478da9d3d946",
+        "android_client_info": {
+          "package_name": "com.example.rizz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "616555807283-ftd37ki2muqfnpg46nnh1f0qjuik1617.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rizz",
+            "certificate_hash": "e143f598a145df4d6983f0ebb38ef9f01274ef71"
+          }
+        },
+        {
+          "client_id": "616555807283-aiuvs3982q48lhdg85869eova8mv2u97.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0TA_5Tlq_LfidBDKouL2CdYEJoOehPxQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "616555807283-2ibe0eg02iuquigfv4la9gkn509qdm1t.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "616555807283-rj9n78cjept6e25jet9jgm3bmfdccuu2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.rizz"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

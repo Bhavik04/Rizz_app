@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rizz/common/utils.dart';
 import 'package:rizz/features/auth/widgets/custom_bottomsheet.dart';
+import 'package:rizz/features/auth/widgets/custom_popup.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback onLeftIconTap;
@@ -21,7 +22,18 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           InkWell(
-            onTap: () {},
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return CustomDialog(
+                    onButtonTap: (buttonText) {
+                      debugPrint('$buttonText button tapped');
+                    },
+                  );
+                },
+              );
+            },
             child: Image.asset(
               'assets/images/blast.png',
               width: 40.0,

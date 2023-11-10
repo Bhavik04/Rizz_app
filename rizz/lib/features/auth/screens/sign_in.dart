@@ -3,16 +3,20 @@ import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/features/auth/screens/create_username.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
+import 'package:rizz/services/auth_service.dart';
 
 class SignInPage extends StatefulWidget {
   static const routeName = 'SignInPage';
-  const SignInPage({super.key});
+  const SignInPage({Key? key}) : super(key: key);
 
   @override
   State<SignInPage> createState() => _SignInPageState();
 }
 
 class _SignInPageState extends State<SignInPage> {
+  // Add a variable to track the sign-in result
+  bool signInSuccess = false;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -33,9 +37,26 @@ class _SignInPageState extends State<SignInPage> {
             ),
             CustomButton(
               text: "Signup with Google",
-              onTap: () {
+              onTap: () async {
+                // Use the callback to update signInSuccess
+                await AuthService().signInWithGoogle(
+                  onSignInComplete: (bool success) {
+                    setState(() {
+                      signInSuccess = success;
+                    });
+                  },
+                );
+
                 debugPrint("print button");
-                context.goNamed(UserNameScreen.routeName);
+
+                // Check signInSuccess before navigating
+                if (signInSuccess) {
+                  context.goNamed(UserNameScreen.routeName);
+                } else {
+                  // Handle the case where sign-in was not successful
+                  // Add appropriate feedback to the user if needed
+                  print('Sign-in not successful');
+                }
               },
               buttonColor: Colors.white,
               textColor: Colors.black,
