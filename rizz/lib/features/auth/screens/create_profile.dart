@@ -1,8 +1,8 @@
+// CreateProfileScreen.dart
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/features/auth/screens/create_photo.dart';
-import 'package:rizz/features/auth/widgets/custom_backarrow.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
 import 'package:rizz/features/home/screens/play.dart';
@@ -10,7 +10,7 @@ import 'package:rizz/features/home/screens/play.dart';
 class CreateProfileScreen extends StatefulWidget {
   static const routeName = 'CreateProfileScreen';
 
-  const CreateProfileScreen({super.key});
+  const CreateProfileScreen({Key? key}) : super(key: key);
 
   @override
   State<CreateProfileScreen> createState() => _CreateProfileScreenState();
@@ -22,30 +22,31 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: GlobalVariables.themeColor,
-        appBar: ArrowAppBar(
-          onBack: () {
-            context.goNamed(PhotoScreen.routeName);
-          },
-          title: '',
-        ),
         body: Container(
           alignment: Alignment.center,
           child: Column(
             children: [
               Container(
                   margin:
-                      EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
-                  width: GlobalVariables.deviceWidth * 0.70,
-                  child:
-                      const CustomText(text: "Damn! you looking hot as hell")),
+                      EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.10),
+                  width: GlobalVariables.deviceWidth * 0.80,
+                  child: const CustomText(
+                      text: "Damn! you're looking hot as hell")),
               Container(
                 margin:
                     EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
                 height: GlobalVariables.deviceHeight * 0.520,
                 width: GlobalVariables.deviceWidth * 0.590,
                 decoration: BoxDecoration(
-                    color: Colors.amber,
-                    borderRadius: BorderRadius.circular(20)),
+                  color: Colors.amber,
+                  borderRadius: BorderRadius.circular(20),
+                  image: PhotoScreen.selectedImage != null
+                      ? DecorationImage(
+                          image: FileImage(PhotoScreen.selectedImage!),
+                          fit: BoxFit.cover,
+                        )
+                      : null,
+                ),
               ),
               Container(
                 margin:
