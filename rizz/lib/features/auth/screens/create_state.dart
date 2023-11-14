@@ -30,40 +30,46 @@ class _StateScreenState extends State<StateScreen> {
           },
           title: '',
         ),
-        body: ListView(
+        body: SingleChildScrollView(
           padding: EdgeInsets.symmetric(
               horizontal: GlobalVariables.deviceWidth * 0.1),
-          children: [
-            Container(
-              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
-              width: GlobalVariables.deviceWidth * 0.72,
-              child: const CustomText(text: "Which state are you from?"),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
-              width: GlobalVariables.deviceWidth * 0.75,
-              height: 60,
-              child: const CustomTextField(),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.01),
-              width: GlobalVariables.deviceWidth * 0.55,
-              child: const CustomSmallText(
-                  text: 'This info cannot be changed later'),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.04),
-              child: CustomButton(
-                text: 'Next',
-                onTap: () {
-                  debugPrint('print button');
-                  context.goNamed(PhotoScreen.routeName);
-                },
-                buttonColor: Colors.white,
-                textColor: Colors.black,
+          child: Column(
+            children: [
+              Container(
+                margin:
+                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
+                width: GlobalVariables.deviceWidth * 0.72,
+                child: const CustomText(text: "Which state are you from?"),
               ),
-            ),
-          ],
+              Container(
+                margin:
+                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
+                width: GlobalVariables.deviceWidth * 0.75,
+                height: 60,
+                child: const CustomTextField(),
+              ),
+              Container(
+                margin:
+                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.01),
+                width: GlobalVariables.deviceWidth * 0.55,
+                child: const CustomSmallText(
+                    text: 'This info cannot be changed later'),
+              ),
+              Container(
+                margin:
+                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.04),
+                child: CustomButton(
+                  text: 'Next',
+                  onTap: () {
+                    debugPrint('print button');
+                    context.goNamed(PhotoScreen.routeName);
+                  },
+                  buttonColor: Colors.white,
+                  textColor: Colors.black,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -29,54 +29,59 @@ class _ReferralScreenState extends State<ReferralScreen> {
           },
           title: '',
         ),
-        body: ListView(
+        body: SingleChildScrollView(
           padding: EdgeInsets.symmetric(
               horizontal: GlobalVariables.deviceWidth * 0.1),
-          children: [
-            Container(
-              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.05),
-              width: GlobalVariables.deviceWidth * 0.72,
-              child: const CustomText(text: "Any Referral Code?"),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.04),
-              width: GlobalVariables.deviceWidth * 0.75,
-              height: 60,
-              child: const CustomTextField(),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.04),
-              child: CustomButton(
-                text: 'Next',
+          child: Column(
+            children: [
+              Container(
+                margin:
+                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.05),
+                width: GlobalVariables.deviceWidth * 0.72,
+                child: const CustomText(text: "Any Referral Code?"),
+              ),
+              Container(
+                margin:
+                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.04),
+                width: GlobalVariables.deviceWidth * 0.75,
+                height: 60,
+                child: const CustomTextField(),
+              ),
+              Container(
+                margin:
+                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.04),
+                child: CustomButton(
+                  text: 'Next',
+                  onTap: () {
+                    debugPrint('print button');
+                    context.goNamed(AgeScreen.routeName);
+                  },
+                  buttonColor: Colors.white,
+                  textColor: Colors.black,
+                ),
+              ),
+              InkWell(
                 onTap: () {
-                  debugPrint('print button');
+                  debugPrint('button Tapped');
                   context.goNamed(AgeScreen.routeName);
                 },
-                buttonColor: Colors.white,
-                textColor: Colors.black,
-              ),
-            ),
-            InkWell(
-              onTap: () {
-                debugPrint('button Tapped');
-                context.goNamed(AgeScreen.routeName);
-              },
-              child: Container(
-                margin:
-                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.02),
-                width: GlobalVariables.deviceWidth * 0.55,
-                child: const Text(
-                  'Skip',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                child: Container(
+                  margin:
+                      EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.02),
+                  width: GlobalVariables.deviceWidth * 0.55,
+                  child: const Text(
+                    'Skip',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

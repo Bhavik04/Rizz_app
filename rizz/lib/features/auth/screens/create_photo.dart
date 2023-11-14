@@ -51,42 +51,44 @@ class _PhotoScreenState extends State<PhotoScreen> {
           },
           title: '',
         ),
-        body: Container(
-          alignment: Alignment.center,
-          child: Column(
-            children: [
-              Container(
-                margin:
-                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
-                width: GlobalVariables.deviceWidth * 0.55,
-                child: const CustomText(text: "Upload a photo of you!"),
-              ),
-              Container(
-                margin:
-                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
-                alignment: Alignment.center,
-                width: GlobalVariables.deviceWidth * 0.500,
-                height: GlobalVariables.deviceHeight * 0.500,
-                child: Image.asset(
-                  'assets/images/Rectangle.png',
-                  height: GlobalVariables.deviceHeight * 0.500,
+        body: SingleChildScrollView(
+          child: Container(
+            alignment: Alignment.center,
+            child: Column(
+              children: [
+                Container(
+                  margin:
+                      EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
+                  width: GlobalVariables.deviceWidth * 0.55,
+                  child: const CustomText(text: "Upload a photo of you!"),
+                ),
+                Container(
+                  margin:
+                      EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
+                  alignment: Alignment.center,
                   width: GlobalVariables.deviceWidth * 0.500,
+                  height: GlobalVariables.deviceHeight * 0.500,
+                  child: Image.asset(
+                    'assets/images/Rectangle.png',
+                    height: GlobalVariables.deviceHeight * 0.500,
+                    width: GlobalVariables.deviceWidth * 0.500,
+                  ),
                 ),
-              ),
-              Container(
-                margin:
-                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.06),
-                child: CustomButton(
-                  text: 'Pick your fav pic',
-                  onTap: () {
-                    debugPrint('print button');
-                    _pickImage();
-                  },
-                  buttonColor: Colors.white,
-                  textColor: Colors.black,
-                ),
-              )
-            ],
+                Container(
+                  margin:
+                      EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.06),
+                  child: CustomButton(
+                    text: 'Pick your fav pic',
+                    onTap: () {
+                      debugPrint('print button');
+                      _pickImage();
+                    },
+                    buttonColor: Colors.white,
+                    textColor: Colors.black,
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

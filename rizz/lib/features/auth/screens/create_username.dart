@@ -29,40 +29,46 @@ class _UserNameScreenState extends State<UserNameScreen> {
           },
           title: '',
         ),
-        body: ListView(
+        body: SingleChildScrollView(
           padding: EdgeInsets.symmetric(
               horizontal: GlobalVariables.deviceWidth * 0.1),
-          children: [
-            Container(
-              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.1),
-              width: GlobalVariables.deviceWidth * 0.50,
-              child: const CustomText(text: "What's your first name?"),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
-              width: GlobalVariables.deviceWidth * 0.75,
-              height: 60,
-              child: const CustomTextField(),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.01),
-              width: GlobalVariables.deviceWidth * 0.55,
-              child: const CustomSmallText(
-                  text: 'This info cannot be changed later'),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.04),
-              child: CustomButton(
-                text: 'Next',
-                onTap: () {
-                  debugPrint('print button');
-                  context.goNamed(SnapchatScreen.routeName);
-                },
-                buttonColor: Colors.white,
-                textColor: Colors.black,
+          child: Column(
+            children: [
+              Container(
+                margin:
+                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.01),
+                width: GlobalVariables.deviceWidth * 0.50,
+                child: const CustomText(text: "What's your first name?"),
               ),
-            ),
-          ],
+              Container(
+                margin:
+                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
+                width: GlobalVariables.deviceWidth * 0.75,
+                height: 60,
+                child: const CustomTextField(),
+              ),
+              Container(
+                margin:
+                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.01),
+                width: GlobalVariables.deviceWidth * 0.55,
+                child: const CustomSmallText(
+                    text: 'This info cannot be changed later'),
+              ),
+              Container(
+                margin:
+                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.04),
+                child: CustomButton(
+                  text: 'Next',
+                  onTap: () {
+                    debugPrint('print button');
+                    context.goNamed(SnapchatScreen.routeName);
+                  },
+                  buttonColor: Colors.white,
+                  textColor: Colors.black,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

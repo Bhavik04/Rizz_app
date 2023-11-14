@@ -32,82 +32,88 @@ class _AgeScreenState extends State<AgeScreen> {
           },
           title: '',
         ),
-        body: ListView(
+        body: SingleChildScrollView(
           padding: EdgeInsets.symmetric(
               horizontal: GlobalVariables.deviceWidth * 0.1),
-          children: [
-            Container(
-              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
-              width: GlobalVariables.deviceWidth * 0.55,
-              child: const CustomText(
-                text: "How old are you?",
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
-              width: GlobalVariables.deviceWidth * 0.75,
-              height: 60,
-              child: TextField(
-                controller: _ageController,
-                keyboardType: TextInputType.number,
-                inputFormatters: [LengthLimitingTextInputFormatter(2)],
-                style: const TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-                textAlign: TextAlign.center,
-                maxLength: 10,
-                maxLengthEnforcement: MaxLengthEnforcement.enforced,
-                cursorColor: Colors.black12,
-                decoration: InputDecoration(
-                  counterText: "",
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(40),
-                    borderSide: BorderSide.none,
-                  ),
-                  fillColor: Colors.white.withOpacity(0.5),
-                  filled: true,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(40),
-                    borderSide: BorderSide.none,
-                  ),
+          child: Column(
+            children: [
+              Container(
+                margin:
+                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
+                width: GlobalVariables.deviceWidth * 0.50,
+                child: const CustomText(
+                  text: "How old are you?",
                 ),
               ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.01),
-              width: GlobalVariables.deviceWidth * 0.55,
-              child: const CustomSmallText(
-                text: 'This info cannot be changed later',
+              Container(
+                margin:
+                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
+                width: GlobalVariables.deviceWidth * 0.75,
+                height: 60,
+                child: TextField(
+                  controller: _ageController,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [LengthLimitingTextInputFormatter(2)],
+                  style: const TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                  textAlign: TextAlign.center,
+                  maxLength: 10,
+                  maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                  cursorColor: Colors.black12,
+                  decoration: InputDecoration(
+                    counterText: "",
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(40),
+                      borderSide: BorderSide.none,
+                    ),
+                    fillColor: Colors.white.withOpacity(0.5),
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(40),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
+                ),
               ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.04),
-              child: CustomButton(
-                text: 'Next',
-                onTap: () {
-                  final enteredAge = int.tryParse(_ageController.text) ?? 0;
+              Container(
+                margin:
+                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.01),
+                width: GlobalVariables.deviceWidth * 0.55,
+                child: const CustomSmallText(
+                  text: 'This info cannot be changed later',
+                ),
+              ),
+              Container(
+                margin:
+                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.04),
+                child: CustomButton(
+                  text: 'Next',
+                  onTap: () {
+                    final enteredAge = int.tryParse(_ageController.text) ?? 0;
 
-                  if (enteredAge >= 18) {
-                    debugPrint('Navigate to GenderScreen');
-                    context.goNamed(GenderScreen.routeName);
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text(
-                          'Age must be at least 18',
-                          textAlign: TextAlign.center,
+                    if (enteredAge >= 18) {
+                      debugPrint('Navigate to GenderScreen');
+                      context.goNamed(GenderScreen.routeName);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            'Age must be at least 18',
+                            textAlign: TextAlign.center,
+                          ),
                         ),
-                      ),
-                    );
-                  }
-                },
-                buttonColor: Colors.white,
-                textColor: Colors.black,
+                      );
+                    }
+                  },
+                  buttonColor: Colors.white,
+                  textColor: Colors.black,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
