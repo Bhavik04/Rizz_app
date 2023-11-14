@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/features/auth/screens/create_referral.dart';
@@ -7,7 +8,6 @@ import 'package:rizz/features/auth/widgets/custom_backarrow.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
 import 'package:rizz/features/auth/widgets/custom_text2.dart';
-import 'package:rizz/features/auth/widgets/custom_textfield.dart';
 
 class SnapchatScreen extends StatefulWidget {
   static const routeName = 'SnapchatScreen';
@@ -19,6 +19,14 @@ class SnapchatScreen extends StatefulWidget {
 }
 
 class _SnapchatScreenState extends State<SnapchatScreen> {
+  final _snapchatController = TextEditingController();
+
+  @override
+  void dispose() {
+    _snapchatController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -46,7 +54,31 @@ class _SnapchatScreenState extends State<SnapchatScreen> {
                     EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
                 width: GlobalVariables.deviceWidth * 0.75,
                 height: 60,
-                child: const CustomTextField(),
+                child: TextField(
+                  controller: _snapchatController,
+                  style: const TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                  textAlign: TextAlign.center,
+                  maxLength: 10,
+                  maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                  cursorColor: Colors.black12,
+                  decoration: InputDecoration(
+                    counterText: "",
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(40),
+                      borderSide: BorderSide.none,
+                    ),
+                    fillColor: Colors.white.withOpacity(0.5),
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(40),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
+                ),
               ),
               Container(
                 margin:
