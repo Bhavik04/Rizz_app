@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/features/auth/screens/create_age.dart';
@@ -18,6 +19,8 @@ class ReferralScreen extends StatefulWidget {
 }
 
 class _ReferralScreenState extends State<ReferralScreen> {
+  final _referController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -41,12 +44,12 @@ class _ReferralScreenState extends State<ReferralScreen> {
                 child: const CustomText(text: "Any Referral Code?"),
               ),
               Container(
-                margin:
-                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.04),
-                width: GlobalVariables.deviceWidth * 0.75,
-                height: 60,
-                child: const CustomTextField(),
-              ),
+                  margin:
+                      EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.04),
+                  width: GlobalVariables.deviceWidth * 0.75,
+                  height: 60,
+                  child: CustomTextField(
+                      controller: _referController, saveKey: 'refer')),
               Container(
                 margin:
                     EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.04),

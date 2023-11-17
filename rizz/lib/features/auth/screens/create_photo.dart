@@ -1,4 +1,3 @@
-// PhotoScreen.dart
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -10,6 +9,9 @@ import 'package:rizz/features/auth/widgets/custom_backarrow.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:rizz/services/auth_service.dart';
+import 'package:rizz/services/firestore_service.dart';
+import 'package:rizz/services/storage_service.dart';
 
 class PhotoScreen extends StatefulWidget {
   static const routeName = 'PhotoScreen';
@@ -35,8 +37,23 @@ class _PhotoScreenState extends State<PhotoScreen> {
       // Store the selected image in the static variable
       PhotoScreen.selectedImage = _pickedImage;
 
-      // Navigate to the next screen (CreateProfileScreen)
-      context.goNamed(CreateProfileScreen.routeName);
+      try {
+        // Upload the image to Firebase Storage
+        final downloadURL = await StorageService().uploadImage(_pickedImage!);
+
+        await FirestoreService().createUserData(
+          AuthService().currentUser!.uid,
+          null,
+          null,
+          0,
+          gender: '',
+          photoURL: downloadURL,
+        );
+
+        context.goNamed(CreateProfileScreen.routeName);
+      } catch (e) {
+        print('Error uploading image: $e');
+      }
     }
   }
 

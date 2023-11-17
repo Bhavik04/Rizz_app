@@ -1,6 +1,6 @@
+// AgeScreen
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/features/auth/screens/create_gender.dart';
 import 'package:rizz/features/auth/screens/create_referral.dart';
@@ -8,11 +8,14 @@ import 'package:rizz/features/auth/widgets/custom_backarrow.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
 import 'package:rizz/features/auth/widgets/custom_text2.dart';
+import 'package:rizz/services/auth_service.dart'; // Import your AuthService
+import 'package:rizz/services/firestore_service.dart'; // Import your FirestoreService
+import 'package:go_router/go_router.dart';
 
 class AgeScreen extends StatefulWidget {
   static const routeName = 'AgeScreen';
 
-  const AgeScreen({super.key});
+  const AgeScreen({Key? key}) : super(key: key);
 
   @override
   State<AgeScreen> createState() => _AgeScreenState();
@@ -20,6 +23,16 @@ class AgeScreen extends StatefulWidget {
 
 class _AgeScreenState extends State<AgeScreen> {
   final TextEditingController _ageController = TextEditingController();
+  final AuthService _authService =
+      AuthService(); // Create an instance of your AuthService
+  final FirestoreService _firestoreService =
+      FirestoreService(); // Create an instance of your FirestoreService
+
+  @override
+  void dispose() {
+    _ageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +47,8 @@ class _AgeScreenState extends State<AgeScreen> {
         ),
         body: SingleChildScrollView(
           padding: EdgeInsets.symmetric(
-              horizontal: GlobalVariables.deviceWidth * 0.1),
+            horizontal: GlobalVariables.deviceWidth * 0.1,
+          ),
           child: Column(
             children: [
               Container(
@@ -91,11 +105,20 @@ class _AgeScreenState extends State<AgeScreen> {
                     EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.04),
                 child: CustomButton(
                   text: 'Next',
-                  onTap: () {
+                  onTap: () async {
                     final enteredAge = int.tryParse(_ageController.text) ?? 0;
 
                     if (enteredAge >= 18) {
-                      debugPrint('Navigate to GenderScreen');
+                      // Call the FirestoreService to update user data
+                      await _firestoreService.createUserData(
+                        _authService.currentUser?.uid ??
+                            '', // Use the dynamic user ID or an empty string
+                        null, // Do not update username
+                        '', // Do not update snapchat
+                        enteredAge, // Pass the entered age to the FirestoreService if greater than or equal to 18
+                      );
+
+                      // Navigate to the next screen
                       context.goNamed(GenderScreen.routeName);
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(

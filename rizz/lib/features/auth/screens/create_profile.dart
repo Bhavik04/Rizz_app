@@ -39,7 +39,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                   height: GlobalVariables.deviceHeight * 0.520,
                   width: GlobalVariables.deviceWidth * 0.590,
                   decoration: BoxDecoration(
-                    color: Colors.amber,
+                    color: GlobalVariables.themeColor,
                     borderRadius: BorderRadius.circular(20),
                     image: PhotoScreen.selectedImage != null
                         ? DecorationImage(

@@ -2,28 +2,38 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class CustomTextField extends StatefulWidget {
-  const CustomTextField({super.key});
+  final TextEditingController controller;
+  final String saveKey;
+
+  const CustomTextField({
+    Key? key,
+    required this.controller,
+    required this.saveKey,
+  }) : super(key: key);
 
   @override
   _CustomTextFieldState createState() => _CustomTextFieldState();
 }
 
 class _CustomTextFieldState extends State<CustomTextField> {
-  final TextEditingController _controller = TextEditingController();
+  @override
+  void dispose() {
+    widget.controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Opacity(
-      opacity: 0.5,
+    return SizedBox(
       child: TextField(
-        controller: _controller,
+        controller: widget.controller,
         style: const TextStyle(
           fontSize: 25,
           fontWeight: FontWeight.bold,
           color: Colors.black,
         ),
         textAlign: TextAlign.center,
-        maxLength: 10,
+        maxLength: 20,
         maxLengthEnforcement: MaxLengthEnforcement.enforced,
         cursorColor: Colors.black12,
         decoration: InputDecoration(
@@ -32,7 +42,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             borderRadius: BorderRadius.circular(40),
             borderSide: BorderSide.none,
           ),
-          fillColor: Colors.white,
+          fillColor: Colors.white.withOpacity(0.5),
           filled: true,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(40),
@@ -41,11 +51,5 @@ class _CustomTextFieldState extends State<CustomTextField> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 }

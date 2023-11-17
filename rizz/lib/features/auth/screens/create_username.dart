@@ -1,17 +1,20 @@
+// UserNameScreen
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:go_router/go_router.dart';
-import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/features/auth/screens/create_snapchat.dart';
 import 'package:rizz/features/auth/widgets/custom_backarrow.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
+import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/features/auth/widgets/custom_text2.dart';
+import 'package:rizz/features/auth/widgets/custom_textfield.dart';
+import 'package:rizz/services/auth_service.dart'; // Import your AuthService
+import 'package:rizz/services/firestore_service.dart'; // Import your FirestoreService
+import 'package:go_router/go_router.dart';
 
 class UserNameScreen extends StatefulWidget {
   static const routeName = 'UserNameScreen';
 
-  const UserNameScreen({super.key});
+  const UserNameScreen({Key? key}) : super(key: key);
 
   @override
   State<UserNameScreen> createState() => _UserNameScreenState();
@@ -19,12 +22,10 @@ class UserNameScreen extends StatefulWidget {
 
 class _UserNameScreenState extends State<UserNameScreen> {
   final _usernameController = TextEditingController();
-
-  @override
-  void dispose() {
-    _usernameController.dispose();
-    super.dispose();
-  }
+  final AuthService _authService =
+      AuthService(); // Create an instance of your AuthService
+  final FirestoreService _firestoreService =
+      FirestoreService(); // Create an instance of your FirestoreService
 
   @override
   Widget build(BuildContext context) {
@@ -39,60 +40,55 @@ class _UserNameScreenState extends State<UserNameScreen> {
         ),
         body: SingleChildScrollView(
           padding: EdgeInsets.symmetric(
-              horizontal: GlobalVariables.deviceWidth * 0.1),
+            horizontal: GlobalVariables.deviceWidth * 0.1,
+          ),
           child: Column(
             children: [
               Container(
-                margin:
-                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.01),
+                margin: EdgeInsets.only(
+                  top: GlobalVariables.deviceHeight * 0.01,
+                ),
                 width: GlobalVariables.deviceWidth * 0.50,
                 child: const CustomText(text: "What's your first name?"),
               ),
               Container(
-                margin:
-                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
-                width: GlobalVariables.deviceWidth * 0.75,
-                height: 60,
-                child: TextField(
-                  controller: _usernameController,
-                  style: const TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
+                  margin: EdgeInsets.only(
+                    top: GlobalVariables.deviceHeight * 0.03,
                   ),
-                  textAlign: TextAlign.center,
-                  maxLength: 10,
-                  maxLengthEnforcement: MaxLengthEnforcement.enforced,
-                  cursorColor: Colors.black12,
-                  decoration: InputDecoration(
-                    counterText: "",
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(40),
-                      borderSide: BorderSide.none,
-                    ),
-                    fillColor: Colors.white.withOpacity(0.5),
-                    filled: true,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(40),
-                      borderSide: BorderSide.none,
-                    ),
-                  ),
-                ),
-              ),
+                  width: GlobalVariables.deviceWidth * 0.75,
+                  height: 60,
+                  child: CustomTextField(
+                      controller: _usernameController, saveKey: 'username')),
               Container(
-                margin:
-                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.01),
+                margin: EdgeInsets.only(
+                  top: GlobalVariables.deviceHeight * 0.01,
+                ),
                 width: GlobalVariables.deviceWidth * 0.55,
                 child: const CustomSmallText(
                     text: 'This info cannot be changed later'),
               ),
               Container(
-                margin:
-                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.04),
+                margin: EdgeInsets.only(
+                  top: GlobalVariables.deviceHeight * 0.04,
+                ),
                 child: CustomButton(
                   text: 'Next',
-                  onTap: () {
-                    debugPrint('print button');
+                  onTap: () async {
+                    // Get the username from the text field
+                    String username = _usernameController.text;
+
+                    // Call the FirestoreService to update user data
+                    await _firestoreService.createUserData(
+                      _authService.currentUser?.uid ??
+                          '', // Use the dynamic user ID or an empty string
+                      username.isNotEmpty
+                          ? username
+                          : null, // Pass the entered username to the FirestoreService if not empty
+                      '', // Update snapchat as needed
+                      0, // Update age as needed
+                    );
+
+                    // Navigate to the next screen
                     context.goNamed(SnapchatScreen.routeName);
                   },
                   buttonColor: Colors.white,

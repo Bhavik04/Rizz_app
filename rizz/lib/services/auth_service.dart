@@ -1,9 +1,13 @@
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
-  final _auth = FirebaseAuth.instance;
-  final _gUser = GoogleSignIn();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _gUser = GoogleSignIn();
+
+  User? get currentUser => _auth.currentUser;
+
+  bool get isUserLoggedIn => currentUser != null;
 
   Future<void> signInWithGoogle(
       {required Function(bool) onSignInComplete}) async {

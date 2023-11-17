@@ -19,6 +19,8 @@ class StateScreen extends StatefulWidget {
 }
 
 class _StateScreenState extends State<StateScreen> {
+  final _stateController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -38,16 +40,16 @@ class _StateScreenState extends State<StateScreen> {
               Container(
                 margin:
                     EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
-                width: GlobalVariables.deviceWidth * 0.72,
+                width: GlobalVariables.deviceWidth * 0.60,
                 child: const CustomText(text: "Which state are you from?"),
               ),
               Container(
-                margin:
-                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
-                width: GlobalVariables.deviceWidth * 0.75,
-                height: 60,
-                child: const CustomTextField(),
-              ),
+                  margin:
+                      EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
+                  width: GlobalVariables.deviceWidth * 0.75,
+                  height: 60,
+                  child: CustomTextField(
+                      controller: _stateController, saveKey: 'state')),
               Container(
                 margin:
                     EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.01),
