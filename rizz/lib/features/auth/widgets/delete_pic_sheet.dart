@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
-void showDeleteBottomSheet(BuildContext context) {
+void showDeleteBottomSheet(
+    BuildContext context, int imageIndex, Function onDelete) {
   showModalBottomSheet(
     context: context,
     isDismissible: true,
     builder: (BuildContext context) {
-      return _buildDeleteBottomSheet(context);
+      return _buildDeleteBottomSheet(context, imageIndex, onDelete);
     },
   );
 }
 
-Widget _buildDeleteBottomSheet(BuildContext context) {
+Widget _buildDeleteBottomSheet(
+    BuildContext context, int imageIndex, Function onDelete) {
   return Container(
     color: Colors.transparent,
     child: Column(
@@ -23,7 +25,10 @@ Widget _buildDeleteBottomSheet(BuildContext context) {
           Colors.red,
           18,
           FontWeight.normal,
-          () {},
+          () {
+            onDelete(imageIndex);
+            Navigator.pop(context);
+          },
         ),
         const Divider(
           height: 2,
@@ -34,7 +39,9 @@ Widget _buildDeleteBottomSheet(BuildContext context) {
           Colors.black,
           18,
           FontWeight.normal,
-          () {},
+          () {
+            Navigator.pop(context);
+          },
         ),
         const SizedBox(height: 8),
       ],
@@ -51,10 +58,7 @@ Widget _buildBottomSheetItem(
   Function onTap,
 ) {
   return InkWell(
-    onTap: () {
-      onTap();
-      Navigator.pop(context);
-    },
+    onTap: onTap as void Function()?,
     child: ListTile(
       title: Center(
         child: Text(
