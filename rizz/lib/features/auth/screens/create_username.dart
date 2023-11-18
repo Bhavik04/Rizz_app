@@ -1,4 +1,3 @@
-// UserNameScreen
 import 'package:flutter/material.dart';
 import 'package:rizz/features/auth/screens/create_snapchat.dart';
 import 'package:rizz/features/auth/widgets/custom_backarrow.dart';
@@ -7,8 +6,8 @@ import 'package:rizz/features/auth/widgets/custom_text.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/features/auth/widgets/custom_text2.dart';
 import 'package:rizz/features/auth/widgets/custom_textfield.dart';
-import 'package:rizz/services/auth_service.dart'; // Import your AuthService
-import 'package:rizz/services/firestore_service.dart'; // Import your FirestoreService
+import 'package:rizz/services/auth_service.dart';
+import 'package:rizz/services/firestore_service.dart';
 import 'package:go_router/go_router.dart';
 
 class UserNameScreen extends StatefulWidget {
@@ -22,10 +21,8 @@ class UserNameScreen extends StatefulWidget {
 
 class _UserNameScreenState extends State<UserNameScreen> {
   final _usernameController = TextEditingController();
-  final AuthService _authService =
-      AuthService(); // Create an instance of your AuthService
-  final FirestoreService _firestoreService =
-      FirestoreService(); // Create an instance of your FirestoreService
+  final AuthService _authService = AuthService();
+  final FirestoreService _firestoreService = FirestoreService();
 
   @override
   Widget build(BuildContext context) {
@@ -74,21 +71,17 @@ class _UserNameScreenState extends State<UserNameScreen> {
                 child: CustomButton(
                   text: 'Next',
                   onTap: () async {
-                    // Get the username from the text field
                     String username = _usernameController.text;
 
                     // Call the FirestoreService to update user data
                     await _firestoreService.createUserData(
                       _authService.currentUser?.uid ??
                           '', // Use the dynamic user ID or an empty string
-                      username.isNotEmpty
-                          ? username
-                          : null, // Pass the entered username to the FirestoreService if not empty
-                      '', // Update snapchat as needed
-                      0, // Update age as needed
+                      username.isNotEmpty ? username : null,
+                      '',
+                      0,
                     );
 
-                    // Navigate to the next screen
                     context.goNamed(SnapchatScreen.routeName);
                   },
                   buttonColor: Colors.white,

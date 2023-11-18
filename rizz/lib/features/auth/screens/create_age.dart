@@ -8,8 +8,8 @@ import 'package:rizz/features/auth/widgets/custom_backarrow.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
 import 'package:rizz/features/auth/widgets/custom_text2.dart';
-import 'package:rizz/services/auth_service.dart'; // Import your AuthService
-import 'package:rizz/services/firestore_service.dart'; // Import your FirestoreService
+import 'package:rizz/services/auth_service.dart';
+import 'package:rizz/services/firestore_service.dart';
 import 'package:go_router/go_router.dart';
 
 class AgeScreen extends StatefulWidget {
@@ -23,10 +23,8 @@ class AgeScreen extends StatefulWidget {
 
 class _AgeScreenState extends State<AgeScreen> {
   final TextEditingController _ageController = TextEditingController();
-  final AuthService _authService =
-      AuthService(); // Create an instance of your AuthService
-  final FirestoreService _firestoreService =
-      FirestoreService(); // Create an instance of your FirestoreService
+  final AuthService _authService = AuthService();
+  final FirestoreService _firestoreService = FirestoreService();
 
   @override
   void dispose() {
@@ -109,16 +107,13 @@ class _AgeScreenState extends State<AgeScreen> {
                     final enteredAge = int.tryParse(_ageController.text) ?? 0;
 
                     if (enteredAge >= 18) {
-                      // Call the FirestoreService to update user data
                       await _firestoreService.createUserData(
-                        _authService.currentUser?.uid ??
-                            '', // Use the dynamic user ID or an empty string
-                        null, // Do not update username
-                        '', // Do not update snapchat
-                        enteredAge, // Pass the entered age to the FirestoreService if greater than or equal to 18
+                        _authService.currentUser?.uid ?? '',
+                        null,
+                        '',
+                        enteredAge,
                       );
 
-                      // Navigate to the next screen
                       context.goNamed(GenderScreen.routeName);
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(

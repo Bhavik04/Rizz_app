@@ -96,16 +96,13 @@ class _GenderScreenState extends State<GenderScreen> {
                 child: CustomButton(
                   text: 'Next',
                   onTap: () async {
-                    // Call the FirestoreService to update user data with the selected gender
                     await _firestoreService.createUserData(
                       _authService.currentUser?.uid ?? '',
-                      null, // Do not update username
-                      null, // Do not update snapchat
-                      0, // Do not update age
+                      null,
+                      null,
+                      0,
                       gender: selectedGender,
                     );
-
-                    // Navigate to the next screen
                     context.goNamed(StateScreen.routeName);
                   },
                   buttonColor: Colors.white,

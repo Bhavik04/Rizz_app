@@ -1,4 +1,3 @@
-// SnapchatScreen
 import 'package:flutter/material.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/features/auth/screens/create_referral.dart';
@@ -9,8 +8,8 @@ import 'package:rizz/features/auth/widgets/custom_text.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/features/auth/widgets/custom_text2.dart';
 import 'package:rizz/features/auth/widgets/custom_textfield.dart';
-import 'package:rizz/services/auth_service.dart'; // Import your AuthService
-import 'package:rizz/services/firestore_service.dart'; // Import your FirestoreService
+import 'package:rizz/services/auth_service.dart';
+import 'package:rizz/services/firestore_service.dart';
 
 class SnapchatScreen extends StatefulWidget {
   static const routeName = 'SnapchatScreen';
@@ -23,10 +22,8 @@ class SnapchatScreen extends StatefulWidget {
 
 class _SnapchatScreenState extends State<SnapchatScreen> {
   final _snapchatController = TextEditingController();
-  final AuthService _authService =
-      AuthService(); // Create an instance of your AuthService
-  final FirestoreService _firestoreService =
-      FirestoreService(); // Create an instance of your FirestoreService
+  final AuthService _authService = AuthService();
+  final FirestoreService _firestoreService = FirestoreService();
 
   @override
   Widget build(BuildContext context) {
@@ -70,14 +67,13 @@ class _SnapchatScreenState extends State<SnapchatScreen> {
                 child: CustomButton(
                   text: 'Next',
                   onTap: () async {
-                    // Call the FirestoreService to update user data
                     await _firestoreService.createUserData(
                       _authService.currentUser?.uid ?? '',
-                      null, // Do not update username
+                      null,
                       _snapchatController.text.isNotEmpty
                           ? _snapchatController.text
-                          : null, // Pass the entered snapchat to the FirestoreService if not empty
-                      0, // Do not update age
+                          : null,
+                      0,
                     );
 
                     debugPrint('print button');
