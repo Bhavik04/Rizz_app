@@ -55,4 +55,8 @@ class AuthService {
     await _gUser.signOut();
     await _auth.signOut();
   }
+
+  Future<void> deleteUser() async {
+    await _auth.currentUser?.delete();
+  }
 }

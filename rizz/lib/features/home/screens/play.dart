@@ -6,6 +6,9 @@ import 'package:rizz/features/auth/widgets/custom_bottomsheet.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/snapchat_bottom.dart';
 import 'package:rizz/features/home/screens/chat.dart';
+import 'package:rizz/services/auth_service.dart';
+import 'package:rizz/services/firestore_service.dart';
+import 'package:flutter/services.dart';
 
 class PlayScreen extends StatefulWidget {
   static const routeName = 'PlayScreen';
@@ -17,6 +20,26 @@ class PlayScreen extends StatefulWidget {
 }
 
 class _PlayScreenState extends State<PlayScreen> {
+  String? referralCode;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadReferralCode();
+  }
+
+  Future<void> _loadReferralCode() async {
+    // Fetch user data from Firestore
+    final userData = await FirestoreService().getUserData(
+      AuthService().currentUser?.uid ?? '',
+    );
+
+    // Extract referral code
+    setState(() {
+      referralCode = userData?['referralCode'];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -196,7 +219,7 @@ class _PlayScreenState extends State<PlayScreen> {
                               SizedBox(
                                 width: GlobalVariables.deviceWidth * 0.70,
                                 child: Text(
-                                  'Invite friends to get a free boost',
+                                  'Invite friend to get a free boost',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       fontSize: 16,
@@ -210,14 +233,47 @@ class _PlayScreenState extends State<PlayScreen> {
                                 alignment: Alignment.center,
                                 child: Image.asset('assets/images/boost.png'),
                               ),
-
-                              // refferal code which can be copied
-
+                              Container(
+                                margin: EdgeInsets.only(
+                                    top: GlobalVariables.deviceHeight * 0.02),
+                                height: GlobalVariables.deviceHeight * 0.05,
+                                width: GlobalVariables.deviceWidth * 0.35,
+                                decoration: BoxDecoration(
+                                  color: HexColor('626262'),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      '$referralCode',
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w900,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 10),
+                                    GestureDetector(
+                                      onTap: () async {
+                                        await Clipboard.setData(ClipboardData(
+                                            text: "$referralCode"));
+                                      },
+                                      child: const Icon(
+                                        Icons.copy,
+                                        color: Colors.white,
+                                        size: 20,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                               Container(
                                 margin: EdgeInsets.only(
                                     top: GlobalVariables.deviceHeight * 0.03),
                                 child: CustomButton(
-                                    text: 'Invite 0/2',
+                                    text: 'Invite friend',
                                     onTap: () {
                                       debugPrint('Print button tapped');
                                       // context.goNamed(ChatScreen.routeName);

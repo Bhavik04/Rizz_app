@@ -23,4 +23,9 @@ class StorageService {
       throw Exception('Image upload failed');
     }
   }
+
+  Future<void> deleteProfileImage(String uid) async {
+    final String fileName = 'profile_images/$uid.png';
+    await _storage.ref().child(fileName).delete();
+  }
 }
