@@ -17,7 +17,23 @@ class CustomTextField extends StatefulWidget {
 
 class _CustomTextFieldState extends State<CustomTextField> {
   @override
+  void initState() {
+    super.initState();
+    widget.controller.addListener(_filterSpaces);
+  }
+
+  void _filterSpaces() {
+    if (widget.controller.text.contains(' ')) {
+      widget.controller.text = widget.controller.text.replaceAll(' ', '');
+      widget.controller.selection = TextSelection.fromPosition(
+        TextPosition(offset: widget.controller.text.length),
+      );
+    }
+  }
+
+  @override
   void dispose() {
+    widget.controller.removeListener(_filterSpaces);
     widget.controller.dispose();
     super.dispose();
   }
@@ -36,6 +52,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
         maxLength: 20,
         maxLengthEnforcement: MaxLengthEnforcement.enforced,
         cursorColor: Colors.black12,
+        inputFormatters: [
+          FilteringTextInputFormatter.deny(' ')
+        ], // Added input formatter
         decoration: InputDecoration(
           counterText: "",
           focusedBorder: OutlineInputBorder(

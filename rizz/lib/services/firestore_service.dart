@@ -1,7 +1,17 @@
+import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirestoreService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  String _generateReferralCode() {
+    const String alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    final Random random = Random();
+    final String code =
+        List.generate(6, (index) => alphabet[random.nextInt(alphabet.length)])
+            .join();
+    return code;
+  }
 
   Future<void> createUserData(
     String uid,
@@ -28,6 +38,10 @@ class FirestoreService {
     if (photoURL != null && photoURL.isNotEmpty) {
       dataToUpdate['photoURL'] = photoURL;
     }
+
+    // Generate and store referral code
+    final String referralCode = _generateReferralCode();
+    dataToUpdate['referralCode'] = referralCode;
 
     if (dataToUpdate.isNotEmpty) {
       await _firestore

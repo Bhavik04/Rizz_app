@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
+import 'package:rizz/features/auth/screens/create_username.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
-import 'package:rizz/features/home/screens/play.dart';
 import 'package:rizz/services/auth_service.dart';
 
 class SignInPage extends StatefulWidget {
@@ -52,7 +52,7 @@ class _SignInPageState extends State<SignInPage> {
 
                   // Check signInSuccess before navigating
                   if (signInSuccess) {
-                    context.goNamed(PlayScreen.routeName);
+                    context.goNamed(UserNameScreen.routeName);
                   } else {
                     // Handle the case where sign-in was not successful
                     // Add appropriate feedback to the user if needed
