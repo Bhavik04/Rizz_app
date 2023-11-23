@@ -8,7 +8,8 @@ class StorageService {
   Future<String> uploadImage(File imageFile) async {
     try {
       final String uid = AuthService().currentUser!.uid;
-      final String fileName = 'profile_images/$uid.png';
+      const String folderName = 'profile_images';
+      final String fileName = '$folderName/$uid.png';
 
       final Reference storageReference = _storage.ref().child(fileName);
 

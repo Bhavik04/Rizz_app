@@ -25,7 +25,7 @@ class _InboxScreenState extends State<InboxScreen> {
           ),
           body: Container(
             alignment: Alignment.center,
-            child: Column(
+            child: const Column(
               children: [],
             ),
           )),
