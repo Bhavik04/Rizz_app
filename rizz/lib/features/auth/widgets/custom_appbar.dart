@@ -34,10 +34,18 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 },
               );
             },
-            child: Image.asset(
-              'assets/images/blast.png',
-              width: 40.0,
-              height: 40.0,
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: HexColor('141414'),
+                  width: 2.0,
+                ),
+              ),
+              child: Image.asset(
+                'assets/images/blast.png',
+                width: 35.0,
+                height: 35.0,
+              ),
             ),
           ),
           const Text(''),
@@ -45,10 +53,18 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             onTap: () {
               showCustomBottomSheet(context);
             },
-            child: Image.asset(
-              'assets/images/settings.png',
-              width: 40.0,
-              height: 40.0,
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: HexColor('141414'),
+                  width: 2.0,
+                ),
+              ),
+              child: Image.asset(
+                'assets/images/settings.png',
+                width: 35.0,
+                height: 35.0,
+              ),
             ),
           ),
         ],

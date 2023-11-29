@@ -47,7 +47,7 @@ class _PlayScreenState extends State<PlayScreen> {
         backgroundColor: HexColor("141414"),
         appBar: AppBar(
           backgroundColor: HexColor('141414'),
-          toolbarHeight: 80,
+          toolbarHeight: 60,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -55,10 +55,18 @@ class _PlayScreenState extends State<PlayScreen> {
                 onTap: () {
                   context.goNamed('ProfileScreen');
                 },
-                child: Image.asset(
-                  'assets/images/boy.png',
-                  width: 40.0,
-                  height: 40.0,
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: HexColor('141414'),
+                      width: 2.0,
+                    ),
+                  ),
+                  child: Image.asset(
+                    'assets/images/boy.png',
+                    width: 35.0,
+                    height: 35.0,
+                  ),
                 ),
               ),
               InkWell(
@@ -177,10 +185,18 @@ class _PlayScreenState extends State<PlayScreen> {
                     },
                   );
                 },
-                child: Image.asset(
-                  'assets/images/boost_icon.png',
-                  width: 40.0,
-                  height: 40.0,
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: HexColor('141414'),
+                      width: 2.0,
+                    ),
+                  ),
+                  child: Image.asset(
+                    'assets/images/boost_icon.png',
+                    width: 35.0,
+                    height: 35.0,
+                  ),
                 ),
               ),
               InkWell(
@@ -288,10 +304,18 @@ class _PlayScreenState extends State<PlayScreen> {
                     },
                   );
                 },
-                child: Image.asset(
-                  'assets/images/freeboost.png',
-                  width: 40.0,
-                  height: 40.0,
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: HexColor('141414'),
+                      width: 2.0,
+                    ),
+                  ),
+                  child: Image.asset(
+                    'assets/images/freeboost.png',
+                    width: 35.0,
+                    height: 35.0,
+                  ),
                 ),
               ),
               const Text(''),
@@ -303,20 +327,36 @@ class _PlayScreenState extends State<PlayScreen> {
                 onTap: () {
                   showSnapchatBottom(context);
                 },
-                child: Image.asset(
-                  'assets/images/instagram.png',
-                  width: 45.0,
-                  height: 45.0,
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: HexColor('141414'),
+                      width: 2.0,
+                    ),
+                  ),
+                  child: Image.asset(
+                    'assets/images/instagram.png',
+                    width: 35.0,
+                    height: 35.0,
+                  ),
                 ),
               ),
               InkWell(
                 onTap: () {
                   showCustomBottomSheet(context);
                 },
-                child: Image.asset(
-                  'assets/images/settings.png',
-                  width: 40.0,
-                  height: 40.0,
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: HexColor('141414'),
+                      width: 2.0,
+                    ),
+                  ),
+                  child: Image.asset(
+                    'assets/images/settings.png',
+                    width: 35.0,
+                    height: 35.0,
+                  ),
                 ),
               ),
             ],
