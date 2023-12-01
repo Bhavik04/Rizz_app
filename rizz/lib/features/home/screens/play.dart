@@ -150,34 +150,6 @@ class _PlayScreenState extends State<PlayScreen> {
                                     buttonColor: HexColor('F24139'),
                                     textColor: Colors.white),
                               ),
-                              //              Container(
-                              //              margin: EdgeInsets.only(
-                              //                top: GlobalVariables.deviceHeight * 0.03),
-                              //          child: ElevatedButton(
-                              //          style: ElevatedButton.styleFrom(
-                              //          elevation: 5,
-                              //        backgroundColor: HexColor('F24139'),
-                              //      shadowColor: Colors.black,
-                              //    minimumSize: const Size(300, 60),
-                              //  shape: const RoundedRectangleBorder(
-                              //  borderRadius:
-                              //    BorderRadius.all(Radius.circular(40)),
-                              //                    ),
-                              //                ),
-                              //              onPressed: () {
-                              //              Navigator.pop(context);
-                              //            Navigator.pushNamed(context, ChatScreen.routeName)
-                              //        },
-                              //      child: const Text(
-                              //      'Boost',
-                              //    style: TextStyle(
-                              //    fontSize: 20,
-                              //  fontWeight: FontWeight.w800,
-                              //color: Colors.white,
-                              //                 ),
-                              //             ),
-                              //         ),
-                              //      ),
                             ],
                           ),
                         ),
