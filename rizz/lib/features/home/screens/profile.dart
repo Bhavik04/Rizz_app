@@ -290,7 +290,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 margin:
                     EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
                 child: CustomButton(
-                  text: 'Send Feedback',
+                  text: 'Invite Friend',
                   onTap: () async {
                     await AuthService().signOut();
                     debugPrint('Print button tapped');
