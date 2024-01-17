@@ -23,7 +23,7 @@ class _CustomDialogState extends State<CustomDialog> {
     'assets/images/sub_boost.png',
     'assets/images/sub_swipe.png',
     'assets/images/sub_reveal.png',
-    'assets/images/sub_chat.png',
+    //'assets/images/sub_chat.png',
     'assets/images/sub_snap.png',
     'assets/images/sub_ads.png',
     'assets/images/sub_access.png',
@@ -122,7 +122,7 @@ class _CustomDialogState extends State<CustomDialog> {
                 top: GlobalVariables.deviceHeight * 0.04,
               ),
               child: CustomButton(
-                text: 'Rizz God',
+                text: 'Slay God',
                 onTap: () {},
                 buttonColor: HexColor('F24139'),
                 textColor: Colors.white,
@@ -166,7 +166,7 @@ class _CustomDialogState extends State<CustomDialog> {
                 top: GlobalVariables.deviceHeight * 0.02,
               ),
               child: CustomButton(
-                text: 'Rizz God +',
+                text: 'Slay God +',
                 onTap: () {},
                 buttonColor: Colors.black,
                 textColor: Colors.white,

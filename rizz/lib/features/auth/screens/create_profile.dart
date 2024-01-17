@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/features/auth/screens/create_photo.dart';
+import 'package:rizz/features/auth/screens/onboardig.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
-import 'package:rizz/features/home/screens/play.dart';
 
 class CreateProfileScreen extends StatefulWidget {
   static const routeName = 'CreateProfileScreen';
@@ -53,10 +53,10 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                   margin:
                       EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.04),
                   child: CustomButton(
-                    text: 'Go Rizz',
+                    text: 'Next',
                     onTap: () {
                       debugPrint('print button');
-                      context.goNamed(PlayScreen.routeName);
+                      context.goNamed(OnboardScreen.routeName);
                     },
                     buttonColor: Colors.white,
                     textColor: Colors.black,

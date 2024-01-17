@@ -162,24 +162,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
             },
           ),
           automaticallyImplyLeading: false,
+          title: Text(
+            'Slay',
+            textAlign: TextAlign.center,
+            maxLines: 2,
+            style: TextStyle(
+              color: GlobalVariables.themeColor,
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
         body: Container(
           alignment: Alignment.center,
           child: Column(
             children: [
-              SizedBox(
-                width: GlobalVariables.deviceWidth * 0.60,
-                child: Text(
-                  'One shot to be hot',
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                  style: TextStyle(
-                    color: GlobalVariables.themeColor,
-                    fontSize: 25,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ),
+              // SizedBox(
+              //   width: GlobalVariables.deviceWidth * 0.60,
+              //   child: Text(
+              //     'Slay as you Play',
+              //     textAlign: TextAlign.center,
+              //     maxLines: 2,
+              //     style: TextStyle(
+              //       color: GlobalVariables.themeColor,
+              //       fontSize: 25,
+              //       fontWeight: FontWeight.w700,
+              //     ),
+              //   ),
+              // ),
               const SizedBox(
                 height: 20,
               ),
@@ -197,8 +207,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         decoration: BoxDecoration(
                           color: Colors.black,
                           borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                              color: GlobalVariables.themeColor, width: 2),
+                          border:
+                              Border.all(color: Colors.transparent, width: 2),
                           image: profileImageURL != null
                               ? DecorationImage(
                                   image: NetworkImage(profileImageURL!),
@@ -290,7 +300,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 margin:
                     EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
                 child: CustomButton(
-                  text: 'Invite Friend',
+                  text: 'delete',
                   onTap: () async {
                     await AuthService().signOut();
                     debugPrint('Print button tapped');

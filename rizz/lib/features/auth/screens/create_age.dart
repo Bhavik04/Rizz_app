@@ -106,7 +106,7 @@ class _AgeScreenState extends State<AgeScreen> {
                   onTap: () async {
                     final enteredAge = int.tryParse(_ageController.text) ?? 0;
 
-                    if (enteredAge >= 18) {
+                    if (enteredAge >= 13) {
                       await _firestoreService.createUserData(
                         _authService.currentUser?.uid ?? '',
                         null,

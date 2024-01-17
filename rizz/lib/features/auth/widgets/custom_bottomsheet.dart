@@ -40,9 +40,9 @@ Widget _buildCustomBottomSheet(
             children: [
               _buildBottomSheetItem(
                 context,
-                'Follow us on Instagram',
-                Colors.red,
-                20,
+                'Preference',
+                Colors.deepPurple,
+                null,
                 FontWeight.bold,
                 () {},
               ),

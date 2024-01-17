@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/features/auth/screens/create_age.dart';
 import 'package:rizz/features/auth/screens/create_gender.dart';
 import 'package:rizz/features/auth/screens/create_photo.dart';
 import 'package:rizz/features/auth/screens/create_profile.dart';
 import 'package:rizz/features/auth/screens/create_referral.dart';
-import 'package:rizz/features/auth/screens/create_state.dart';
 import 'package:rizz/features/auth/screens/create_username.dart';
 import 'package:rizz/features/auth/screens/create_snapchat.dart';
+import 'package:rizz/features/auth/screens/onboardig.dart';
 import 'package:rizz/features/auth/screens/sign_in.dart';
 import 'package:rizz/features/bottom_bar.dart';
-import 'package:rizz/features/home/screens/chat.dart';
+import 'package:rizz/features/home/screens/ad_swipe.dart';
 import 'package:rizz/features/home/screens/inbox.dart';
 import 'package:rizz/features/home/screens/play.dart';
 import 'package:rizz/features/home/screens/profile.dart';
@@ -77,23 +76,24 @@ class AppRouter {
                                         const GenderScreen(),
                                     routes: [
                                       GoRoute(
-                                          path: 'StateScreen',
-                                          name: StateScreen.routeName,
+                                          path: 'PhotoScreen',
+                                          name: PhotoScreen.routeName,
                                           builder: (context, state) =>
-                                              const StateScreen(),
+                                              const PhotoScreen(),
                                           routes: [
                                             GoRoute(
-                                                path: 'PhotoScreen',
-                                                name: PhotoScreen.routeName,
+                                                path: 'CreateProfileScreen',
+                                                name: CreateProfileScreen
+                                                    .routeName,
                                                 builder: (context, state) =>
-                                                    const PhotoScreen(),
+                                                    const CreateProfileScreen(),
                                                 routes: [
                                                   GoRoute(
-                                                    path: 'CreateProfileScreen',
-                                                    name: CreateProfileScreen
-                                                        .routeName,
+                                                    path: 'OnboardScreen',
+                                                    name:
+                                                        OnboardScreen.routeName,
                                                     builder: (context, state) =>
-                                                        const CreateProfileScreen(),
+                                                        const OnboardScreen(),
                                                   ),
                                                 ]),
                                           ]),
@@ -119,6 +119,11 @@ class AppRouter {
                       name: ProfileScreen.routeName,
                       builder: (context, state) => const ProfileScreen(),
                     ),
+                    GoRoute(
+                      path: 'AdswipeScreen',
+                      name: AdswipeScreen.routeName,
+                      builder: (context, state) => const AdswipeScreen(),
+                    ),
                   ],
                   // routes: [
 
@@ -140,13 +145,13 @@ class AppRouter {
                 builder: (context, state) => const InboxScreen(),
               ),
             ]),
-            StatefulShellBranch(navigatorKey: shellNavigatorKeyC, routes: [
-              GoRoute(
-                path: "ChatScreen",
-                name: ChatScreen.routeName,
-                builder: (context, state) => const ChatScreen(),
-              ),
-            ])
+            // StatefulShellBranch(navigatorKey: shellNavigatorKeyC, routes: [
+            //   GoRoute(
+            //     path: "ChatScreen",
+            //     name: ChatScreen.routeName,
+            //     builder: (context, state) => const ChatScreen(),
+            //   ),
+            // ])
           ],
           builder: (context, state, navigationShell) => BottomNavigationPage(
             child: navigationShell,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/features/auth/screens/create_age.dart';
-import 'package:rizz/features/auth/screens/create_state.dart';
+import 'package:rizz/features/auth/screens/create_photo.dart';
 import 'package:rizz/features/auth/widgets/custom_backarrow.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
@@ -103,7 +103,7 @@ class _GenderScreenState extends State<GenderScreen> {
                       0,
                       gender: selectedGender,
                     );
-                    context.goNamed(StateScreen.routeName);
+                    context.goNamed(PhotoScreen.routeName);
                   },
                   buttonColor: Colors.white,
                   textColor: Colors.black,

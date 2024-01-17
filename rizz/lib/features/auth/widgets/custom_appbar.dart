@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:rizz/common/utils.dart';
-import 'package:rizz/features/auth/widgets/custom_bottomsheet.dart';
 import 'package:rizz/features/auth/widgets/custom_popup.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -50,9 +49,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           const Text(''),
           InkWell(
-            onTap: () {
-              showCustomBottomSheet(context);
-            },
+            onTap: () {},
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(
@@ -61,7 +58,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
               ),
               child: Image.asset(
-                'assets/images/settings.png',
+                'assets/images/instagram.png',
                 width: 35.0,
                 height: 35.0,
               ),

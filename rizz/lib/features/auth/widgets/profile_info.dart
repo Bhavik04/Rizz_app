@@ -20,8 +20,8 @@ class ProfileInfoTile extends StatelessWidget {
         color: Colors.black,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: GlobalVariables.themeColor,
-          width: 2.0,
+          color: Colors.transparent,
+          width: 0,
         ),
       ),
       child: FutureBuilder<Map<String, dynamic>?>(

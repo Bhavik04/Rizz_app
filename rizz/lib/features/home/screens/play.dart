@@ -4,8 +4,7 @@ import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
 import 'package:rizz/features/auth/widgets/custom_bottomsheet.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
-import 'package:rizz/features/auth/widgets/snapchat_bottom.dart';
-import 'package:rizz/features/home/screens/chat.dart';
+import 'package:rizz/features/auth/widgets/custom_popup.dart';
 import 'package:rizz/services/auth_service.dart';
 import 'package:rizz/services/firestore_service.dart';
 import 'package:flutter/services.dart';
@@ -47,7 +46,7 @@ class _PlayScreenState extends State<PlayScreen> {
         backgroundColor: HexColor("141414"),
         appBar: AppBar(
           backgroundColor: HexColor('141414'),
-          toolbarHeight: 60,
+          toolbarHeight: 80,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -144,8 +143,18 @@ class _PlayScreenState extends State<PlayScreen> {
                                 child: CustomButton(
                                     text: 'Boost',
                                     onTap: () {
-                                      debugPrint('Print button tapped');
-                                      context.goNamed(ChatScreen.routeName);
+                                      Navigator.pop(context);
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return CustomDialog(
+                                            onButtonTap: (buttonText) {
+                                              debugPrint(
+                                                  '$buttonText button tapped');
+                                            },
+                                          );
+                                        },
+                                      );
                                     },
                                     buttonColor: HexColor('F24139'),
                                     textColor: Colors.white),
@@ -297,7 +306,7 @@ class _PlayScreenState extends State<PlayScreen> {
               ),
               InkWell(
                 onTap: () {
-                  showSnapchatBottom(context);
+                  context.goNamed('AdswipeScreen');
                 },
                 child: Container(
                   decoration: BoxDecoration(

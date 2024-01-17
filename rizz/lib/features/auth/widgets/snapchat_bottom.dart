@@ -58,7 +58,7 @@ Widget _buildSnapchatBottomSheet(BuildContext context) {
               child: CustomButton(
                   onTap: () {},
                   text: 'See Username',
-                  buttonColor: HexColor('FFE500'),
+                  buttonColor: HexColor('FFEB3B'),
                   textColor: HexColor('FFFFFF')),
             ),
             const SizedBox(
