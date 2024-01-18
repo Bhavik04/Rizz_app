@@ -119,7 +119,7 @@ class _AgeScreenState extends State<AgeScreen> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text(
-                            'Age must be at least 18',
+                            'Age must be at least 13',
                             textAlign: TextAlign.center,
                           ),
                         ),
