@@ -16,7 +16,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: HexColor('141414'),
-      toolbarHeight: 80,
+      toolbarHeight: 60,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

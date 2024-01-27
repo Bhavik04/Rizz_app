@@ -67,6 +67,40 @@ class FirestoreService {
     }
   }
 
+  Future<Map<String, dynamic>?> getUserDataForImage(String imageURL) async {
+    try {
+      final QuerySnapshot<Map<String, dynamic>> querySnapshot = await _firestore
+          .collection('users')
+          .where('photoURL', isEqualTo: imageURL)
+          .get();
+
+      if (querySnapshot.docs.isNotEmpty) {
+        return querySnapshot.docs.first.data() as Map<String, dynamic>;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print('Error getting user data for image: $e');
+      return null;
+    }
+  }
+
+  Future<List<String>> getAllUserImages(String currentUserUid) async {
+    try {
+      final QuerySnapshot<Map<String, dynamic>> querySnapshot =
+          await _firestore.collection('users').get();
+
+      return querySnapshot.docs
+          .where((document) =>
+              document['photoURL'] != null && document.id != currentUserUid)
+          .map((document) => document['photoURL'] as String)
+          .toList();
+    } catch (e) {
+      print('Error getting user images: $e');
+      return [];
+    }
+  }
+
   Future<void> deleteUserData(String uid) async {
     await _firestore.collection('users').doc(uid).delete();
   }

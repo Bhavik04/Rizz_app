@@ -4,13 +4,15 @@ import 'package:rizz/common/global_variables.dart';
 class ArrowAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final Function()? onBack;
+  final Color? backgroundColor; // Optional parameter for background color
 
-  const ArrowAppBar({super.key, required this.title, this.onBack});
+  const ArrowAppBar(
+      {Key? key, required this.title, this.onBack, this.backgroundColor});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: GlobalVariables.themeColor,
+      backgroundColor: backgroundColor ?? GlobalVariables.themeColor,
       leading: IconButton(
         icon: const Icon(
           Icons.arrow_back,

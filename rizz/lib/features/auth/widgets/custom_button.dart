@@ -22,7 +22,7 @@ class CustomButton extends StatelessWidget {
         elevation: 5,
         backgroundColor: buttonColor,
         shadowColor: Colors.black,
-        minimumSize: const Size(300, 60),
+        minimumSize: const Size(320, 60),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(40)),
         ),

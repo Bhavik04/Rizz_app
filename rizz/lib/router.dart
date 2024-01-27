@@ -11,9 +11,11 @@ import 'package:rizz/features/auth/screens/onboardig.dart';
 import 'package:rizz/features/auth/screens/sign_in.dart';
 import 'package:rizz/features/bottom_bar.dart';
 import 'package:rizz/features/home/screens/ad_swipe.dart';
+import 'package:rizz/features/home/screens/blurred_screen.dart';
 import 'package:rizz/features/home/screens/inbox.dart';
 import 'package:rizz/features/home/screens/play.dart';
 import 'package:rizz/features/home/screens/profile.dart';
+import 'package:rizz/features/home/screens/revealed_screen.dart';
 
 class CustomNavigationHelper {
   static final CustomNavigationHelper _instance =
@@ -39,8 +41,8 @@ class AppRouter {
   static final GlobalKey<NavigatorState> shellNavigatorKeyB =
       GlobalKey<NavigatorState>();
 
-  static final GlobalKey<NavigatorState> shellNavigatorKeyC =
-      GlobalKey<NavigatorState>();
+  // static final GlobalKey<NavigatorState> shellNavigatorKeyC =
+  //     GlobalKey<NavigatorState>();
 
   static final GoRouter router =
       GoRouter(navigatorKey: rootNavigatorKey, initialLocation: '/', routes: [
@@ -140,10 +142,21 @@ class AppRouter {
             ),
             StatefulShellBranch(navigatorKey: shellNavigatorKeyB, routes: [
               GoRoute(
-                path: "InboxScreen",
-                name: InboxScreen.routeName,
-                builder: (context, state) => const InboxScreen(),
-              ),
+                  path: "InboxScreen",
+                  name: InboxScreen.routeName,
+                  builder: (context, state) => const InboxScreen(),
+                  routes: [
+                    GoRoute(
+                      path: 'BlurredScreen',
+                      name: BlurredScreen.routeName,
+                      builder: (context, state) => const BlurredScreen(),
+                    ),
+                    GoRoute(
+                      path: 'RevealedScreen',
+                      name: RevealedScreen.routeName,
+                      builder: (context, state) => const RevealedScreen(),
+                    )
+                  ]),
             ]),
             // StatefulShellBranch(navigatorKey: shellNavigatorKeyC, routes: [
             //   GoRoute(

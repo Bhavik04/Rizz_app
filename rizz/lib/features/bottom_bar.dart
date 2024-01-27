@@ -40,7 +40,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                     ? HexColor('FD630F')
                     : Colors.white,
                 fontWeight: FontWeight.bold,
-                fontSize: 22.0,
+                fontSize: 20.0,
               ),
             ),
             label: '',
@@ -53,7 +53,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                     ? HexColor('FD630F')
                     : Colors.white,
                 fontWeight: FontWeight.bold,
-                fontSize: 22.0,
+                fontSize: 20.0,
               ),
             ),
             label: '',
