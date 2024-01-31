@@ -42,7 +42,7 @@ class _BlurredScreenState extends State<BlurredScreen> {
                       ),
                     ),
                     BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
+                      filter: ImageFilter.blur(sigmaX: 6.0, sigmaY: 6.0),
                       child: Container(
                         color: Colors.transparent,
                       ),

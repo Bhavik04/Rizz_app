@@ -54,7 +54,7 @@ class _RevealedScreenState extends State<RevealedScreen> {
                                   TextSpan(
                                     text: 'Ankush',
                                     style: TextStyle(
-                                      fontSize: 18.0,
+                                      fontSize: 22.0,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -62,7 +62,7 @@ class _RevealedScreenState extends State<RevealedScreen> {
                                   TextSpan(
                                     text: '\n19, New Delhi',
                                     style: TextStyle(
-                                      fontSize: 16.0,
+                                      fontSize: 20.0,
                                       color: Colors.white,
                                       fontWeight: FontWeight.normal,
                                     ),
@@ -82,7 +82,7 @@ class _RevealedScreenState extends State<RevealedScreen> {
                         children: [
                           CustomButton(
                             onTap: () {},
-                            text: 'Reveal Snapchat',
+                            text: 'Reveal Snapchat 0/3',
                             buttonColor: HexColor('FFE500'),
                             textColor: Colors.white,
                           ),
