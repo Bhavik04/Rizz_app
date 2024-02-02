@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
+import 'package:rizz/features/auth/widgets/custom_popup.dart';
 
 void showSnapchatBottom(BuildContext context) {
   showModalBottomSheet(
@@ -19,10 +20,10 @@ Widget _buildSnapchatBottomSheet(BuildContext context) {
     child: Container(
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-        color: HexColor('282828'),
+        color: HexColor('fefefe'),
         borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(16.0),
-          topRight: Radius.circular(16.0),
+          topLeft: Radius.circular(20.0),
+          topRight: Radius.circular(20.0),
         ),
       ),
       child: Padding(
@@ -31,35 +32,120 @@ Widget _buildSnapchatBottomSheet(BuildContext context) {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.02),
-              child: const Text(
+              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.01),
+              child: Text(
                 'Reveal Snapchat Username',
                 style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold),
+                    color: HexColor('FF8A00'),
+                    fontSize: 24,
+                    fontWeight: FontWeight.w800),
               ),
             ),
             Container(
               margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.02),
               width: GlobalVariables.deviceWidth * 0.70,
-              child: Text(
-                'Rizz God users can reveal snapchat username of all profiles',
+              child: const Text(
+                '3 daily reveals left',
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 style: TextStyle(
-                    color: HexColor('C0C0C0'),
+                    color: Colors.black54,
                     fontSize: 15,
-                    fontWeight: FontWeight.normal),
+                    fontWeight: FontWeight.bold),
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
+              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.02),
               child: CustomButton(
-                  onTap: () {},
-                  text: 'See Username',
-                  buttonColor: HexColor('FFE500'),
-                  textColor: HexColor('FFFFFF')),
+                onTap: () {},
+                text: 'Reveal',
+                buttonColor: Colors.black,
+                textColor: HexColor('FFFFFF'),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Container(
+                      margin: EdgeInsets.only(
+                        top: GlobalVariables.deviceHeight * 0.03,
+                      ),
+                      alignment: Alignment.center,
+                      child: const Divider(
+                        color: Colors.grey,
+                        height: 1,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(
+                      top: GlobalVariables.deviceHeight * 0.03,
+                      left: 20,
+                      right: 20,
+                    ),
+                    child: const Text(
+                      'OR',
+                      textAlign: TextAlign.center,
+                      maxLines: 1,
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      margin: EdgeInsets.only(
+                        top: GlobalVariables.deviceHeight * 0.03,
+                      ),
+                      alignment: Alignment.center,
+                      child: const Divider(
+                        color: Colors.grey,
+                        height: 1,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.02),
+              child: CustomButton(
+                onTap: () {
+                  Navigator.pop(context);
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return CustomDialog(
+                        onButtonTap: (buttonText) {
+                          debugPrint('$buttonText button tapped');
+                        },
+                      );
+                    },
+                  );
+                },
+                text: 'God Mode',
+                buttonColor: HexColor('F24139'),
+                textColor: HexColor('FFFFFF'),
+                image: Image.asset('assets/images/thunder.png'),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.01),
+              width: GlobalVariables.deviceWidth * 0.70,
+              child: const Text(
+                'Get weekly unlimited snapchat reveals',
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                style: TextStyle(
+                    color: Colors.black54,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold),
+              ),
             ),
             const SizedBox(
               height: 20,

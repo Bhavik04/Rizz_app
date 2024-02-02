@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/features/auth/screens/create_gender.dart';
 import 'package:rizz/features/auth/screens/create_referral.dart';
-import 'package:rizz/features/auth/widgets/custom_backarrow.dart';
+import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
 import 'package:rizz/features/auth/widgets/custom_text2.dart';
@@ -37,11 +37,13 @@ class _AgeScreenState extends State<AgeScreen> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: GlobalVariables.themeColor,
-        appBar: ArrowAppBar(
+        appBar: ArrowBar(
+          title: '',
+          backgroundColor: GlobalVariables.themeColor,
           onBack: () {
             context.goNamed(ReferralScreen.routeName);
           },
-          title: '',
+          showReportButton: false,
         ),
         body: SingleChildScrollView(
           padding: EdgeInsets.symmetric(

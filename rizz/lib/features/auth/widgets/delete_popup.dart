@@ -24,7 +24,7 @@ class CustomPopup extends StatelessWidget {
         child: Column(
           children: [
             const Text(
-              'If you delete your account, you will loose all your chats and data.',
+              'If you delete your account, you will loose all your data and inbox ratings..',
               style: TextStyle(color: Colors.white),
             ),
             const SizedBox(height: 20),

@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:rizz/features/auth/widgets/delete_popup.dart';
 
-void showSimpleBottomSheet(BuildContext context) {
+void showDeleteSheet(BuildContext context) {
   showModalBottomSheet(
     context: context,
     isDismissible: true,
     builder: (BuildContext context) {
-      return _buildSimpleBottomSheet(context);
+      return _buildDeleteSheet(context);
     },
   );
 }
 
-Widget _buildSimpleBottomSheet(BuildContext context) {
+Widget _buildDeleteSheet(BuildContext context) {
   return Container(
     color: Colors.transparent,
     child: Column(
@@ -19,8 +20,8 @@ Widget _buildSimpleBottomSheet(BuildContext context) {
         const SizedBox(height: 8),
         _buildBottomSheetItem(
           context,
-          'Report',
-          Colors.red,
+          'Privacy policy',
+          Colors.black,
           18,
           FontWeight.normal,
           () {},
@@ -30,11 +31,30 @@ Widget _buildSimpleBottomSheet(BuildContext context) {
         ),
         _buildBottomSheetItem(
           context,
-          'Block User',
+          'Terms of use',
           Colors.black,
           18,
           FontWeight.normal,
           () {},
+        ),
+        const Divider(
+          height: 2,
+        ),
+        _buildBottomSheetItem(
+          context,
+          'Delete account',
+          Colors.red,
+          18,
+          FontWeight.normal,
+          () {
+            Navigator.pop(context);
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return const CustomPopup();
+              },
+            );
+          },
         ),
         const SizedBox(height: 8),
       ],

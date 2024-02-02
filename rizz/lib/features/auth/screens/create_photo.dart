@@ -3,8 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
+import 'package:rizz/features/auth/screens/create_gender.dart';
 import 'package:rizz/features/auth/screens/create_profile.dart';
-import 'package:rizz/features/auth/widgets/custom_backarrow.dart';
+import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
 import 'package:image_picker/image_picker.dart';
@@ -61,11 +62,13 @@ class _PhotoScreenState extends State<PhotoScreen> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: GlobalVariables.themeColor,
-        appBar: ArrowAppBar(
-          onBack: () {
-            context.goNamed(CreateProfileScreen.routeName);
-          },
+        appBar: ArrowBar(
           title: '',
+          backgroundColor: GlobalVariables.themeColor,
+          onBack: () {
+            context.goNamed(GenderScreen.routeName);
+          },
+          showReportButton: false,
         ),
         body: SingleChildScrollView(
           child: Container(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/features/auth/screens/create_referral.dart';
 import 'package:rizz/features/auth/screens/create_username.dart';
-import 'package:rizz/features/auth/widgets/custom_backarrow.dart';
+import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
 import 'package:go_router/go_router.dart';
@@ -30,11 +30,13 @@ class _SnapchatScreenState extends State<SnapchatScreen> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: GlobalVariables.themeColor,
-        appBar: ArrowAppBar(
+        appBar: ArrowBar(
+          title: '',
+          backgroundColor: GlobalVariables.themeColor,
           onBack: () {
             context.goNamed(UserNameScreen.routeName);
           },
-          title: '',
+          showReportButton: false,
         ),
         body: SingleChildScrollView(
           padding: EdgeInsets.symmetric(

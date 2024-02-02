@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
-import 'package:rizz/features/auth/widgets/custom_backarrow.dart';
+import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
+import 'package:rizz/features/auth/widgets/snapchat_bottom.dart';
 
 class RevealedScreen extends StatefulWidget {
   static const routeName = 'RevealedScreen';
 
-  const RevealedScreen({super.key});
+  const RevealedScreen({Key? key}) : super(key: key);
 
   @override
   State<RevealedScreen> createState() => _RevealedScreenState();
@@ -81,9 +82,12 @@ class _RevealedScreenState extends State<RevealedScreen> {
                       child: Column(
                         children: [
                           CustomButton(
-                            onTap: () {},
-                            text: 'Reveal Snapchat 0/3',
-                            buttonColor: HexColor('FFE500'),
+                            onTap: () {
+                              showSnapchatBottom(context);
+                            },
+                            text: 'Snapchat ',
+                            image: Image.asset('assets/images/Snapchat.png'),
+                            buttonColor: HexColor('000000'),
                             textColor: Colors.white,
                           ),
                         ],
@@ -97,12 +101,13 @@ class _RevealedScreenState extends State<RevealedScreen> {
               top: 0,
               left: 0,
               right: 0,
-              child: ArrowAppBar(
+              child: ArrowBar(
                 title: '',
                 backgroundColor: Colors.transparent,
                 onBack: () {
                   Navigator.pop(context);
                 },
+                showReportButton: true,
               ),
             ),
           ],

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
+import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_popup.dart';
 import 'package:rizz/features/auth/widgets/profile_info.dart';
@@ -149,29 +150,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: HexColor('141414'),
-        appBar: AppBar(
+        appBar: ArrowBar(
+          title: 'Slay',
           backgroundColor: HexColor('141414'),
-          leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back,
-              color: HexColor('FFFFFF'),
-              size: 30,
-            ),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-          automaticallyImplyLeading: false,
-          title: Text(
-            'Slay',
-            textAlign: TextAlign.center,
-            maxLines: 2,
-            style: TextStyle(
-              color: GlobalVariables.themeColor,
-              fontSize: 25,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          onBack: () {
+            Navigator.pop(context);
+          },
+          showReportButton: false,
         ),
         body: Container(
           alignment: Alignment.center,

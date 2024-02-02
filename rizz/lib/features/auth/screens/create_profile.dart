@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/features/auth/screens/create_photo.dart';
 import 'package:rizz/features/auth/screens/onboardig.dart';
+import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
 
@@ -21,6 +22,14 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: GlobalVariables.themeColor,
+        appBar: ArrowBar(
+          title: '',
+          backgroundColor: GlobalVariables.themeColor,
+          onBack: () {
+            context.goNamed(PhotoScreen.routeName);
+          },
+          showReportButton: false,
+        ),
         body: SingleChildScrollView(
           child: Container(
             alignment: Alignment.center,
@@ -28,7 +37,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
               children: [
                 Container(
                   margin:
-                      EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.10),
+                      EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.05),
                   width: GlobalVariables.deviceWidth * 0.80,
                   child: const CustomText(
                       text: "Damn! you're looking hot as hell"),

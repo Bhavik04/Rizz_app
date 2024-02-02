@@ -3,7 +3,7 @@ import 'package:rizz/common/global_variables.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/features/auth/screens/create_age.dart';
 import 'package:rizz/features/auth/screens/create_snapchat.dart';
-import 'package:rizz/features/auth/widgets/custom_backarrow.dart';
+import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
 import 'package:rizz/features/auth/widgets/custom_textfield.dart';
@@ -25,11 +25,13 @@ class _ReferralScreenState extends State<ReferralScreen> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: GlobalVariables.themeColor,
-        appBar: ArrowAppBar(
+        appBar: ArrowBar(
+          title: '',
+          backgroundColor: GlobalVariables.themeColor,
           onBack: () {
             context.goNamed(SnapchatScreen.routeName);
           },
-          title: '',
+          showReportButton: false,
         ),
         body: SingleChildScrollView(
           padding: EdgeInsets.symmetric(

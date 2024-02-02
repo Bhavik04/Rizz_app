@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
-import 'package:rizz/features/auth/widgets/custom_backarrow.dart';
+import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 
 class BlurredScreen extends StatefulWidget {
@@ -94,7 +94,8 @@ class _BlurredScreenState extends State<BlurredScreen> {
                           CustomButton(
                             onTap: () {},
                             text: 'Answer',
-                            buttonColor: Colors.deepOrangeAccent,
+                            image: Image.asset('assets/images/instagram.png'),
+                            buttonColor: HexColor('F24139'),
                             textColor: Colors.white,
                           ),
                         ],
@@ -125,12 +126,13 @@ class _BlurredScreenState extends State<BlurredScreen> {
               top: 0,
               left: 0,
               right: 0,
-              child: ArrowAppBar(
+              child: ArrowBar(
                 title: '',
                 backgroundColor: Colors.transparent,
                 onBack: () {
                   Navigator.pop(context);
                 },
+                showReportButton: true,
               ),
             ),
           ],

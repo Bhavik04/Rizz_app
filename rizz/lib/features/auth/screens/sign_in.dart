@@ -38,6 +38,7 @@ class _SignInPageState extends State<SignInPage> {
               ),
               CustomButton(
                 text: "Signup with Google",
+                image: Image.asset('assets/images/google.png'),
                 onTap: () async {
                   // Use the callback to update signInSuccess
                   await AuthService().signInWithGoogle(

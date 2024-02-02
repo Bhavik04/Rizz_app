@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rizz/common/utils.dart';
-import 'package:rizz/features/auth/widgets/custom_popup.dart';
+import 'package:rizz/features/auth/widgets/custom_boost_popup.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback onLeftIconTap;
@@ -25,43 +25,27 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return CustomDialog(
-                    onButtonTap: (buttonText) {
-                      debugPrint('$buttonText button tapped');
+                  return CustomBoostPopup(
+                    onButtonTap: () {
+                      debugPrint('Button tapped');
                     },
                   );
                 },
               );
             },
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: HexColor('141414'),
-                  width: 2.0,
-                ),
-              ),
-              child: Image.asset(
-                'assets/images/blast.png',
-                width: 35.0,
-                height: 35.0,
-              ),
+            child: Image.asset(
+              'assets/images/boost_icon.png',
+              width: 35.0,
+              height: 35.0,
             ),
           ),
           const Text(''),
           InkWell(
             onTap: () {},
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: HexColor('141414'),
-                  width: 2.0,
-                ),
-              ),
-              child: Image.asset(
-                'assets/images/instagram.png',
-                width: 35.0,
-                height: 35.0,
-              ),
+            child: Image.asset(
+              'assets/images/instagram.png',
+              width: 35.0,
+              height: 35.0,
             ),
           ),
         ],

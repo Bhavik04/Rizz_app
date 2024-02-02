@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rizz/features/auth/screens/create_snapchat.dart';
-import 'package:rizz/features/auth/widgets/custom_backarrow.dart';
+import 'package:rizz/features/auth/screens/sign_in.dart';
+import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
 import 'package:rizz/common/global_variables.dart';
@@ -29,11 +30,13 @@ class _UserNameScreenState extends State<UserNameScreen> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: GlobalVariables.themeColor,
-        appBar: ArrowAppBar(
-          onBack: () {
-            context.goNamed('SignInPage');
-          },
+        appBar: ArrowBar(
           title: '',
+          backgroundColor: GlobalVariables.themeColor,
+          onBack: () {
+            context.goNamed(SignInPage.routeName);
+          },
+          showReportButton: false,
         ),
         body: SingleChildScrollView(
           padding: EdgeInsets.symmetric(

@@ -137,7 +137,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                   OnboardPage(
                     mainText: "Get tons of ratings!",
                     smallText:
-                        'Lets give and get some good validation and make new ',
+                        'Get some good validation and \nboost your confidence',
                     imagePath: 'assets/images/rating.png',
                     onNext: () {
                       _pageController.nextPage(
@@ -148,7 +148,8 @@ class _OnboardScreenState extends State<OnboardScreen> {
                   ),
                   OnboardPage(
                     mainText: "See who likes you",
-                    smallText: 'Reveal who rated you and share your response',
+                    smallText:
+                        'Reveal who rated you and share your response on your socials',
                     imagePath: 'assets/images/reveal1.png',
                     onNext: () {
                       _pageController.nextPage(

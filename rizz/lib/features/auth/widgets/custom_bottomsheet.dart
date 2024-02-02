@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rizz/features/auth/widgets/delete_popup.dart';
+import 'package:rizz/features/auth/widgets/delete_sheet.dart';
 
 void showCustomBottomSheet(BuildContext context) {
   showModalBottomSheet(
@@ -62,18 +62,13 @@ Widget _buildCustomBottomSheet(
               ),
               _buildBottomSheetItem(
                 context,
-                'Delete account',
+                'Settings',
                 Colors.deepPurple,
                 null,
                 FontWeight.bold,
                 () {
                   Navigator.pop(context);
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return const CustomPopup();
-                    },
-                  );
+                  showDeleteSheet(context);
                 },
               ),
               const Divider(
