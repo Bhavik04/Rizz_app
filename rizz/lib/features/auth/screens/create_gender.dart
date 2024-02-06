@@ -7,6 +7,7 @@ import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
 import 'package:rizz/features/auth/widgets/custom_text2.dart';
+import 'package:rizz/features/auth/widgets/gender_container.dart';
 import 'package:rizz/services/auth_service.dart';
 import 'package:rizz/services/firestore_service.dart';
 
@@ -55,32 +56,46 @@ class _GenderScreenState extends State<GenderScreen> {
               const SizedBox(
                 height: 5,
               ),
-              InkWell(
+              GenderContainer(
+                text: 'Boy',
+                imagePath: 'assets/images/boy.png',
+                containerWidth: 300,
+                containerHeight: 60,
+                backgroundColor: Colors.black,
+                isSelected: selectedGender == 'Boy',
                 onTap: () {
                   setState(() {
                     selectedGender = 'Boy';
                   });
                   debugPrint('button Tapped: Boy');
                 },
-                child: genderContainer('Boy', 'assets/images/boy.png'),
               ),
-              InkWell(
+              GenderContainer(
+                text: 'Girl',
+                imagePath: 'assets/images/girl.png',
+                containerWidth: 300,
+                containerHeight: 60,
+                backgroundColor: Colors.black,
+                isSelected: selectedGender == 'Girl',
                 onTap: () {
                   setState(() {
                     selectedGender = 'Girl';
                   });
                   debugPrint('button Tapped: Girl');
                 },
-                child: genderContainer('Girl', 'assets/images/girl.png'),
               ),
-              InkWell(
+              GenderContainer(
+                text: 'Other',
+                containerWidth: 300,
+                containerHeight: 60,
+                backgroundColor: Colors.black,
+                isSelected: selectedGender == 'Other',
                 onTap: () {
                   setState(() {
                     selectedGender = 'Other';
                   });
                   debugPrint('button Tapped: Other');
                 },
-                child: genderContainer('Other', null),
               ),
               Container(
                 margin: EdgeInsets.only(
@@ -114,41 +129,6 @@ class _GenderScreenState extends State<GenderScreen> {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget genderContainer(String text, String? imagePath) {
-    return Container(
-      margin: EdgeInsets.only(
-        top: GlobalVariables.deviceHeight * 0.01,
-      ),
-      width: GlobalVariables.deviceWidth * 0.75,
-      height: 60,
-      decoration: BoxDecoration(
-        color: selectedGender == text ? Colors.black : Colors.white38,
-        borderRadius: BorderRadius.circular(40),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            text,
-            style: const TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
-          if (imagePath != null) ...[
-            const SizedBox(width: 10),
-            Image.asset(
-              imagePath,
-              height: 30,
-              width: 30,
-            ),
-          ],
-        ],
       ),
     );
   }
