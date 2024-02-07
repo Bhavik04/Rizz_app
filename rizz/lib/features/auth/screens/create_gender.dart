@@ -7,7 +7,7 @@ import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
 import 'package:rizz/features/auth/widgets/custom_text2.dart';
-import 'package:rizz/features/auth/widgets/gender_container.dart';
+import 'package:rizz/features/auth/widgets/user_gender.dart';
 import 'package:rizz/services/auth_service.dart';
 import 'package:rizz/services/firestore_service.dart';
 
@@ -23,7 +23,7 @@ class GenderScreen extends StatefulWidget {
 class _GenderScreenState extends State<GenderScreen> {
   final AuthService _authService = AuthService();
   final FirestoreService _firestoreService = FirestoreService();
-  String? selectedGender;
+  String? usergender;
 
   @override
   Widget build(BuildContext context) {
@@ -62,10 +62,10 @@ class _GenderScreenState extends State<GenderScreen> {
                 containerWidth: 300,
                 containerHeight: 60,
                 backgroundColor: Colors.black,
-                isSelected: selectedGender == 'Boy',
+                isSelected: usergender == 'Boy',
                 onTap: () {
                   setState(() {
-                    selectedGender = 'Boy';
+                    usergender = 'Boy';
                   });
                   debugPrint('button Tapped: Boy');
                 },
@@ -76,10 +76,10 @@ class _GenderScreenState extends State<GenderScreen> {
                 containerWidth: 300,
                 containerHeight: 60,
                 backgroundColor: Colors.black,
-                isSelected: selectedGender == 'Girl',
+                isSelected: usergender == 'Girl',
                 onTap: () {
                   setState(() {
-                    selectedGender = 'Girl';
+                    usergender = 'Girl';
                   });
                   debugPrint('button Tapped: Girl');
                 },
@@ -89,10 +89,10 @@ class _GenderScreenState extends State<GenderScreen> {
                 containerWidth: 300,
                 containerHeight: 60,
                 backgroundColor: Colors.black,
-                isSelected: selectedGender == 'Other',
+                isSelected: usergender == 'Other',
                 onTap: () {
                   setState(() {
-                    selectedGender = 'Other';
+                    usergender = 'Other';
                   });
                   debugPrint('button Tapped: Other');
                 },
@@ -118,7 +118,7 @@ class _GenderScreenState extends State<GenderScreen> {
                       null,
                       null,
                       0,
-                      gender: selectedGender,
+                      gender: usergender,
                     );
                     context.goNamed(PhotoScreen.routeName);
                   },
