@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:rizz/common/global_variables.dart';
-import 'package:rizz/features/auth/widgets/filter.dart';
 import 'package:rizz/features/auth/widgets/user_gender.dart';
 
 class PreferenceSheet extends StatefulWidget {
