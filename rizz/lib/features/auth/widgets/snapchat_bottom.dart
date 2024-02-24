@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
+import 'package:rizz/features/auth/widgets/custom_divider.dart';
 import 'package:rizz/features/auth/widgets/custom_popup.dart';
 
 void showSnapchatBottom(BuildContext context) {
@@ -64,54 +65,8 @@ Widget _buildSnapchatBottomSheet(BuildContext context) {
               ),
             ),
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: Container(
-                      margin: EdgeInsets.only(
-                        top: GlobalVariables.deviceHeight * 0.03,
-                      ),
-                      alignment: Alignment.center,
-                      child: const Divider(
-                        color: Colors.grey,
-                        height: 1,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(
-                      top: GlobalVariables.deviceHeight * 0.03,
-                      left: 20,
-                      right: 20,
-                    ),
-                    child: const Text(
-                      'OR',
-                      textAlign: TextAlign.center,
-                      maxLines: 1,
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      margin: EdgeInsets.only(
-                        top: GlobalVariables.deviceHeight * 0.03,
-                      ),
-                      alignment: Alignment.center,
-                      child: const Divider(
-                        color: Colors.grey,
-                        height: 1,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: CustomDividerRow()),
             Container(
               margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.02),
               child: CustomButton(
@@ -143,7 +98,7 @@ Widget _buildSnapchatBottomSheet(BuildContext context) {
                 maxLines: 2,
                 style: TextStyle(
                     color: Colors.black54,
-                    fontSize: 15,
+                    fontSize: 12,
                     fontWeight: FontWeight.bold),
               ),
             ),

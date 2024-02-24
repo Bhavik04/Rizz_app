@@ -52,6 +52,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
         maxLength: 20,
         maxLengthEnforcement: MaxLengthEnforcement.enforced,
         cursorColor: Colors.black12,
+        showCursor: true,
+        autofocus: true,
         inputFormatters: [
           FilteringTextInputFormatter.deny(' ')
         ], // Added input formatter
@@ -61,7 +63,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             borderRadius: BorderRadius.circular(40),
             borderSide: BorderSide.none,
           ),
-          fillColor: Colors.white.withOpacity(0.5),
+          fillColor: Colors.white.withOpacity(0.3),
           filled: true,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(40),

@@ -7,5 +7,5 @@ class GlobalVariables {
       window.physicalSize.width / window.devicePixelRatio;
   static double deviceHeight =
       window.physicalSize.height / window.devicePixelRatio;
-  static Color themeColor = HexColor("eb6d2e");
+  static Color themeColor = HexColor("FD630F");
 }

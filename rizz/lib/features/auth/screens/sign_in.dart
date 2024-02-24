@@ -20,21 +20,31 @@ class _SignInPageState extends State<SignInPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: GlobalVariables.themeColor,
+        backgroundColor: Colors.black,
         body: SingleChildScrollView(
           child: Column(
             children: [
               Container(
+                alignment: Alignment.center,
+                margin:
+                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.28),
+                child: const Text('Welcome to the hottest app',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white)),
+              ),
+              Container(
                 alignment: Alignment.topCenter,
                 margin:
-                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.33),
+                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.02),
                 child: Image.asset(
                   'assets/images/slay.png',
                   height: 110,
                 ),
               ),
               SizedBox(
-                height: GlobalVariables.deviceHeight * 0.25,
+                height: GlobalVariables.deviceHeight * 0.28,
               ),
               CustomButton(
                 text: "Signup with Google",
@@ -63,7 +73,7 @@ class _SignInPageState extends State<SignInPage> {
                 buttonColor: Colors.white,
                 textColor: Colors.black,
               ),
-              InkWell(
+              GestureDetector(
                 onTap: () {
                   debugPrint('button Tapped');
                 },
@@ -71,11 +81,35 @@ class _SignInPageState extends State<SignInPage> {
                   margin: const EdgeInsets.only(top: 10),
                   width: GlobalVariables.deviceWidth * 0.65,
                   alignment: Alignment.center,
-                  child: const Text(
-                    "By continuing, you agree to our terms and privacy policies.",
+                  child: RichText(
                     textAlign: TextAlign.center,
                     maxLines: 2,
-                    style: TextStyle(color: Colors.white70),
+                    text: const TextSpan(
+                      style: TextStyle(color: Colors.white70),
+                      children: [
+                        TextSpan(
+                          text: "By continuing, you agree to our ",
+                        ),
+                        TextSpan(
+                          text: "terms",
+                          style: TextStyle(
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                        TextSpan(
+                          text: " and ",
+                        ),
+                        TextSpan(
+                          text: "privacy policies",
+                          style: TextStyle(
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                        TextSpan(
+                          text: ".",
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

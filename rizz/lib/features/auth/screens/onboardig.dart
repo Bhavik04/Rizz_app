@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
+import 'package:rizz/common/utils.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
 import 'package:rizz/features/home/screens/play.dart';
@@ -66,7 +67,7 @@ class OnboardPage extends StatelessWidget {
           child: CustomButton(
             text: isLastPage ? 'Go Slay' : 'Next',
             onTap: onNext,
-            buttonColor: GlobalVariables.themeColor,
+            buttonColor: HexColor('FF8A41'),
             textColor: Colors.white,
           ),
         ),
@@ -107,7 +108,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
         margin: const EdgeInsets.symmetric(horizontal: 4.0),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: _currentPage == i ? GlobalVariables.themeColor : Colors.white,
+          color: _currentPage == i ? HexColor('FF8A41') : Colors.white,
         ),
       ));
     }

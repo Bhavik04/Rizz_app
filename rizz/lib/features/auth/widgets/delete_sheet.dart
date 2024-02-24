@@ -47,7 +47,6 @@ Widget _buildDeleteSheet(BuildContext context) {
           18,
           FontWeight.normal,
           () {
-            Navigator.pop(context);
             showDialog(
               context: context,
               builder: (BuildContext context) {
@@ -71,6 +70,7 @@ Widget _buildBottomSheetItem(
   Function onTap,
 ) {
   return InkWell(
+    enableFeedback: false,
     onTap: () {
       onTap();
       Navigator.pop(context);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rizz/features/auth/screens/access.dart';
 import 'package:rizz/features/auth/screens/create_age.dart';
 import 'package:rizz/features/auth/screens/create_gender.dart';
 import 'package:rizz/features/auth/screens/create_photo.dart';
@@ -12,10 +13,12 @@ import 'package:rizz/features/auth/screens/sign_in.dart';
 import 'package:rizz/features/bottom_bar.dart';
 import 'package:rizz/features/home/screens/ad_swipe.dart';
 import 'package:rizz/features/home/screens/blurred_screen.dart';
+import 'package:rizz/features/home/screens/chat.dart';
 import 'package:rizz/features/home/screens/inbox.dart';
 import 'package:rizz/features/home/screens/play.dart';
 import 'package:rizz/features/home/screens/profile.dart';
 import 'package:rizz/features/home/screens/revealed_screen.dart';
+import 'package:rizz/features/home/screens/revealed_snapchat.dart';
 
 class CustomNavigationHelper {
   static final CustomNavigationHelper _instance =
@@ -41,17 +44,19 @@ class AppRouter {
   static final GlobalKey<NavigatorState> shellNavigatorKeyB =
       GlobalKey<NavigatorState>();
 
-  // static final GlobalKey<NavigatorState> shellNavigatorKeyC =
-  //     GlobalKey<NavigatorState>();
+  static final GlobalKey<NavigatorState> shellNavigatorKeyC =
+      GlobalKey<NavigatorState>();
 
-  static final GoRouter router =
-      GoRouter(navigatorKey: rootNavigatorKey, initialLocation: '/', routes: [
-    GoRoute(
-      path: '/',
-      name: SignInPage.routeName,
-      builder: (context, state) => const SignInPage(),
-      routes: [
-        GoRoute(
+  static final GoRouter router = GoRouter(
+    navigatorKey: rootNavigatorKey,
+    initialLocation: '/',
+    routes: [
+      GoRoute(
+        path: '/',
+        name: SignInPage.routeName,
+        builder: (context, state) => const SignInPage(),
+        routes: [
+          GoRoute(
             path: 'UserNameScreen',
             name: UserNameScreen.routeName,
             builder: (context, state) => const UserNameScreen(),
@@ -78,101 +83,126 @@ class AppRouter {
                                         const GenderScreen(),
                                     routes: [
                                       GoRoute(
-                                          path: 'PhotoScreen',
-                                          name: PhotoScreen.routeName,
+                                          path: 'AcessScreen',
+                                          name: AcessScreen.routeName,
                                           builder: (context, state) =>
-                                              const PhotoScreen(),
+                                              const AcessScreen(),
                                           routes: [
                                             GoRoute(
-                                                path: 'CreateProfileScreen',
-                                                name: CreateProfileScreen
-                                                    .routeName,
+                                                path: 'PhotoScreen',
+                                                name: PhotoScreen.routeName,
                                                 builder: (context, state) =>
-                                                    const CreateProfileScreen(),
+                                                    const PhotoScreen(),
                                                 routes: [
                                                   GoRoute(
-                                                    path: 'OnboardScreen',
-                                                    name:
-                                                        OnboardScreen.routeName,
-                                                    builder: (context, state) =>
-                                                        const OnboardScreen(),
-                                                  ),
+                                                      path:
+                                                          'CreateProfileScreen',
+                                                      name: CreateProfileScreen
+                                                          .routeName,
+                                                      builder: (context,
+                                                              state) =>
+                                                          const CreateProfileScreen(),
+                                                      routes: [
+                                                        GoRoute(
+                                                          path: 'OnboardScreen',
+                                                          name: OnboardScreen
+                                                              .routeName,
+                                                          builder: (context,
+                                                                  state) =>
+                                                              const OnboardScreen(),
+                                                        ),
+                                                      ]),
                                                 ]),
                                           ]),
                                     ]),
                               ]),
                         ]),
                   ]),
-            ]),
-        StatefulShellRoute.indexedStack(
-          parentNavigatorKey: rootNavigatorKey,
-          branches: [
-            // Branches defined here...
-            StatefulShellBranch(
-              navigatorKey: shellNavigatorKeyA,
-              routes: [
-                GoRoute(
-                  path: "PlayScreen",
-                  name: PlayScreen.routeName,
-                  builder: (context, state) => const PlayScreen(),
-                  routes: [
-                    GoRoute(
-                      path: 'ProfileScreen',
-                      name: ProfileScreen.routeName,
-                      builder: (context, state) => const ProfileScreen(),
-                    ),
-                    GoRoute(
-                      path: 'AdswipeScreen',
-                      name: AdswipeScreen.routeName,
-                      builder: (context, state) => const AdswipeScreen(),
-                    ),
-                  ],
-                  // routes: [
+              StatefulShellRoute.indexedStack(
+                parentNavigatorKey: rootNavigatorKey,
+                branches: [
+                  // Branches defined here...
+                  StatefulShellBranch(
+                    navigatorKey: shellNavigatorKeyA,
+                    routes: [
+                      GoRoute(
+                        path: "PlayScreen",
+                        name: PlayScreen.routeName,
+                        builder: (context, state) => const PlayScreen(),
+                        routes: [
+                          GoRoute(
+                            path: 'ProfileScreen',
+                            name: ProfileScreen.routeName,
+                            builder: (context, state) => const ProfileScreen(),
+                          ),
+                          GoRoute(
+                            path: 'AdswipeScreen',
+                            name: AdswipeScreen.routeName,
+                            builder: (context, state) => const AdswipeScreen(),
+                          ),
+                        ],
+                        // routes: [
 
-                  //],
+                        //],
 
-                  // pageBuilder: (context, GoRouterState state) {
-                  //   return getPage(
-                  //     child: const PlayScreen(),
-                  //     state: state,
-                  //   );
-                  // },
+                        // pageBuilder: (context, GoRouterState state) {
+                        //   return getPage(
+                        //     child: const PlayScreen(),
+                        //     state: state,
+                        //   );
+                        // },
+                      ),
+                    ],
+                  ),
+                  StatefulShellBranch(
+                      navigatorKey: shellNavigatorKeyB,
+                      routes: [
+                        GoRoute(
+                            path: "InboxScreen",
+                            name: InboxScreen.routeName,
+                            builder: (context, state) => const InboxScreen(),
+                            routes: [
+                              GoRoute(
+                                path: 'BlurredScreen',
+                                name: BlurredScreen.routeName,
+                                builder: (context, state) =>
+                                    const BlurredScreen(),
+                              ),
+                              GoRoute(
+                                path: 'RevealedScreen',
+                                name: RevealedScreen.routeName,
+                                builder: (context, state) =>
+                                    const RevealedScreen(),
+                              ),
+                              GoRoute(
+                                path: 'SnapRevealedScreen',
+                                name: SnapRevealedScreen.routeName,
+                                builder: (context, state) =>
+                                    const SnapRevealedScreen(),
+                              )
+                            ]),
+                      ]),
+                  StatefulShellBranch(
+                      navigatorKey: shellNavigatorKeyC,
+                      routes: [
+                        GoRoute(
+                          path: "ChatScreen",
+                          name: ChatScreen.routeName,
+                          builder: (context, state) => const ChatScreen(),
+                        ),
+                      ])
+                ],
+                builder: (context, state, navigationShell) =>
+                    BottomNavigationPage(
+                  child: navigationShell,
                 ),
-              ],
-            ),
-            StatefulShellBranch(navigatorKey: shellNavigatorKeyB, routes: [
-              GoRoute(
-                  path: "InboxScreen",
-                  name: InboxScreen.routeName,
-                  builder: (context, state) => const InboxScreen(),
-                  routes: [
-                    GoRoute(
-                      path: 'BlurredScreen',
-                      name: BlurredScreen.routeName,
-                      builder: (context, state) => const BlurredScreen(),
-                    ),
-                    GoRoute(
-                      path: 'RevealedScreen',
-                      name: RevealedScreen.routeName,
-                      builder: (context, state) => const RevealedScreen(),
-                    )
-                  ]),
-            ]),
-            // StatefulShellBranch(navigatorKey: shellNavigatorKeyC, routes: [
-            //   GoRoute(
-            //     path: "ChatScreen",
-            //     name: ChatScreen.routeName,
-            //     builder: (context, state) => const ChatScreen(),
-            //   ),
-            // ])
-          ],
-          builder: (context, state, navigationShell) => BottomNavigationPage(
-            child: navigationShell,
+              )
+            ],
           ),
-        )
-      ],
-    ),
-  ]);
+        ],
+      ),
+    ],
+  );
 
   // static Page getPage({
   //   required Widget child,

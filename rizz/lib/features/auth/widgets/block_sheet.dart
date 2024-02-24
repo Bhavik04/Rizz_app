@@ -1,22 +1,35 @@
 import 'package:flutter/material.dart';
 
-void showSimpleBottomSheet(BuildContext context) {
+void showSkipSheet(BuildContext context, {bool includeSkipUser = true}) {
   showModalBottomSheet(
     context: context,
     isDismissible: true,
     builder: (BuildContext context) {
-      return _buildSimpleBottomSheet(context);
+      return _buildSkipSheet(context, includeSkipUser);
     },
   );
 }
 
-Widget _buildSimpleBottomSheet(BuildContext context) {
+Widget _buildSkipSheet(BuildContext context, bool includeSkipUser) {
   return Container(
     color: Colors.transparent,
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         const SizedBox(height: 8),
+        if (includeSkipUser)
+          _buildBottomSheetItem(
+            context,
+            'Skip User',
+            Colors.lightBlue,
+            18,
+            FontWeight.normal,
+            () {},
+          ),
+        if (includeSkipUser)
+          const Divider(
+            height: 2,
+          ),
         _buildBottomSheetItem(
           context,
           'Report',
@@ -51,6 +64,7 @@ Widget _buildBottomSheetItem(
   Function onTap,
 ) {
   return InkWell(
+    enableFeedback: false,
     onTap: () {
       onTap();
       Navigator.pop(context);

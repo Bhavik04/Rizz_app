@@ -45,7 +45,7 @@ class _PreferenceSheetState extends State<PreferenceSheet> {
                     child: const Text(
                       'Done',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Colors.white54,
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
                       ),
@@ -74,7 +74,7 @@ class _PreferenceSheetState extends State<PreferenceSheet> {
                 ),
                 Container(
                   margin:
-                      EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.02),
+                      EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.01),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -107,7 +107,7 @@ class _PreferenceSheetState extends State<PreferenceSheet> {
                         },
                       ),
                       GenderContainer(
-                        text: 'Other',
+                        text: 'Both',
                         containerWidth: 120,
                         containerHeight: 40,
                         backgroundColor: Colors.black,

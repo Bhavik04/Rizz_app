@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/features/auth/screens/sign_in.dart';
 import 'package:rizz/services/auth_service.dart';
 import 'package:rizz/services/firestore_service.dart';
@@ -13,10 +12,10 @@ class CustomPopup extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       contentPadding: const EdgeInsets.all(16.0),
-      backgroundColor: GlobalVariables.themeColor,
+      backgroundColor: Colors.deepPurpleAccent,
       title: const Text(
         'Are you sure?',
-        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
       ),
       content: SizedBox(
         height: 120,
@@ -24,7 +23,7 @@ class CustomPopup extends StatelessWidget {
         child: Column(
           children: [
             const Text(
-              'If you delete your account, you will loose all your data and inbox ratings..',
+              'If you will delete your account, you will loose all your data and inbox ratings..',
               style: TextStyle(color: Colors.white),
             ),
             const SizedBox(height: 20),
@@ -35,14 +34,26 @@ class CustomPopup extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: const Text('Cancel'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black,
+                  ),
+                  child: const Text(
+                    'Cancel',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
                 const SizedBox(width: 20),
                 ElevatedButton(
                   onPressed: () async {
                     await onDelete(context);
                   },
-                  child: const Text('Delete'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white24,
+                  ),
+                  child: const Text(
+                    'Delete',
+                    style: TextStyle(color: Colors.white54),
+                  ),
                 ),
               ],
             ),

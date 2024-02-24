@@ -33,7 +33,9 @@ class _GenderContainerState extends State<GenderContainer> {
         width: widget.containerWidth,
         height: widget.containerHeight,
         decoration: BoxDecoration(
-          color: widget.isSelected ? widget.backgroundColor : Colors.white38,
+          color: widget.isSelected
+              ? widget.backgroundColor
+              : Colors.white.withOpacity(0.1),
           borderRadius: BorderRadius.circular(40),
         ),
         child: Row(

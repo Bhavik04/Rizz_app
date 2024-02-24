@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
 
 class BottomNavigationPage extends StatefulWidget {
@@ -15,6 +16,36 @@ class BottomNavigationPage extends StatefulWidget {
 }
 
 class _BottomNavigationPageState extends State<BottomNavigationPage> {
+  void handleNavigation(int index) {
+    widget.child.goBranch(
+      index,
+      initialLocation: index == widget.child.currentIndex,
+    );
+    setState(() {});
+  }
+
+  BottomNavigationBarItem buildNavItem(int index, String title) {
+    return BottomNavigationBarItem(
+      icon: InkWell(
+        onTap: () => handleNavigation(index),
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        enableFeedback: false,
+        child: Text(
+          title,
+          style: TextStyle(
+            color: widget.child.currentIndex == index
+                ? GlobalVariables.themeColor
+                : Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 20.0,
+          ),
+        ),
+      ),
+      label: '',
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,55 +53,11 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
         child: widget.child,
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: HexColor('141414'),
-        currentIndex: widget.child.currentIndex,
-        onTap: (index) {
-          widget.child.goBranch(
-            index,
-            initialLocation: index == widget.child.currentIndex,
-          );
-          setState(() {});
-        },
+        backgroundColor: HexColor('0F0F0F'),
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Text(
-              'Play',
-              style: TextStyle(
-                color: widget.child.currentIndex == 0
-                    ? HexColor('FD630F')
-                    : Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 20.0,
-              ),
-            ),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Text(
-              'Inbox',
-              style: TextStyle(
-                color: widget.child.currentIndex == 1
-                    ? HexColor('FD630F')
-                    : Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 20.0,
-              ),
-            ),
-            label: '',
-          ),
-          //  BottomNavigationBarItem(
-          //  icon: Text(
-          //  'Chat',
-          //style: TextStyle(
-          //color: widget.child.currentIndex == 2
-          //  ? HexColor('FD630F')
-          //: Colors.white,
-          //fontWeight: FontWeight.bold,
-          //fontSize: 20.0,
-          //),
-          // ),
-          //label: '',
-          //),
+          buildNavItem(0, 'Play'),
+          buildNavItem(1, 'Inbox'),
+          buildNavItem(2, 'Chat'),
         ],
       ),
     );

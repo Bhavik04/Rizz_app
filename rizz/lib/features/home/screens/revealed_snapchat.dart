@@ -3,18 +3,17 @@ import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
 import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
-import 'package:rizz/features/auth/widgets/snapchat_bottom.dart';
 
-class RevealedScreen extends StatefulWidget {
-  static const routeName = 'RevealedScreen';
+class SnapRevealedScreen extends StatefulWidget {
+  static const routeName = 'SnapRevealedScreen';
 
-  const RevealedScreen({Key? key}) : super(key: key);
+  const SnapRevealedScreen({Key? key}) : super(key: key);
 
   @override
-  State<RevealedScreen> createState() => _RevealedScreenState();
+  State<SnapRevealedScreen> createState() => _SnapRevealedScreenState();
 }
 
-class _RevealedScreenState extends State<RevealedScreen> {
+class _SnapRevealedScreenState extends State<SnapRevealedScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -82,10 +81,8 @@ class _RevealedScreenState extends State<RevealedScreen> {
                       child: Column(
                         children: [
                           CustomButton(
-                            onTap: () {
-                              showSnapchatBottom(context);
-                            },
-                            text: 'Snapchat ',
+                            onTap: () {},
+                            text: 'Snap user id',
                             image: Image.asset('assets/images/Snapchat.png'),
                             buttonColor: HexColor('000000'),
                             textColor: Colors.white,

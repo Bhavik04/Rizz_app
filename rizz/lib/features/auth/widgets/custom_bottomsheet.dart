@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rizz/features/auth/widgets/delete_sheet.dart';
+import 'package:rizz/features/auth/widgets/preference_sheet.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void showCustomBottomSheet(BuildContext context) {
   showModalBottomSheet(
@@ -43,8 +45,11 @@ Widget _buildCustomBottomSheet(
                 'Preference',
                 Colors.deepPurple,
                 null,
-                FontWeight.bold,
-                () {},
+                FontWeight.normal,
+                () {
+                  Navigator.pop(context);
+                  showPreferenceSheet(context);
+                },
               ),
               const Divider(
                 height: 2,
@@ -54,8 +59,12 @@ Widget _buildCustomBottomSheet(
                 'I need help',
                 Colors.deepPurple,
                 null,
-                FontWeight.bold,
-                () {},
+                FontWeight.normal,
+                () {
+                  const String instagramLink =
+                      'https://www.instagram.com/kash_2709';
+                  launch(instagramLink);
+                },
               ),
               const Divider(
                 height: 2,
@@ -65,7 +74,7 @@ Widget _buildCustomBottomSheet(
                 'Settings',
                 Colors.deepPurple,
                 null,
-                FontWeight.bold,
+                FontWeight.normal,
                 () {
                   Navigator.pop(context);
                   showDeleteSheet(context);
@@ -79,7 +88,7 @@ Widget _buildCustomBottomSheet(
                 'Restore purchases',
                 Colors.deepPurple,
                 null,
-                FontWeight.bold,
+                FontWeight.normal,
                 () {},
               ),
               const Divider(
@@ -89,7 +98,7 @@ Widget _buildCustomBottomSheet(
                 context,
                 'Close',
                 null,
-                20,
+                18,
                 FontWeight.bold,
                 () {
                   Navigator.pop(context);
@@ -112,6 +121,7 @@ Widget _buildBottomSheetItem(
   Function onTap,
 ) {
   return InkWell(
+    enableFeedback: false,
     onTap: () {
       onTap();
     },

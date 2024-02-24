@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
+import 'package:rizz/features/auth/widgets/custom_divider.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
 
 class AdswipeScreen extends StatefulWidget {
@@ -18,9 +19,9 @@ class _AdswipeScreenState extends State<AdswipeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: HexColor("141414"),
+        backgroundColor: HexColor("0F0F0F"),
         appBar: AppBar(
-          backgroundColor: HexColor('141414'),
+          backgroundColor: HexColor('0F0F0F'),
           leading: IconButton(
             icon: Icon(
               Icons.arrow_back,
@@ -59,62 +60,16 @@ class _AdswipeScreenState extends State<AdswipeScreen> {
                 child: const CustomText(text: "2:59:59"),
               ),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Container(
-                        margin: EdgeInsets.only(
-                          top: GlobalVariables.deviceHeight * 0.07,
-                        ),
-                        alignment: Alignment.center,
-                        child: const Divider(
-                          color: Colors.white,
-                          height: 1,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(
-                        top: GlobalVariables.deviceHeight * 0.07,
-                        left: 20,
-                        right: 20,
-                      ),
-                      child: const Text(
-                        'OR',
-                        textAlign: TextAlign.center,
-                        maxLines: 1,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Container(
-                        margin: EdgeInsets.only(
-                          top: GlobalVariables.deviceHeight * 0.07,
-                        ),
-                        alignment: Alignment.center,
-                        child: const Divider(
-                          color: Colors.white,
-                          height: 1,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: CustomDividerRow()),
               Container(
                   margin: EdgeInsets.only(
-                    top: GlobalVariables.deviceHeight * 0.07,
+                    top: GlobalVariables.deviceHeight * 0.05,
                   ),
                   width: GlobalVariables.deviceWidth * 0.70,
                   alignment: Alignment.center,
                   child: const Text(
-                    'Skip waiting time',
+                    'watch an ad to skip waiting time',
                     textAlign: TextAlign.center,
                     maxLines: 1,
                     style: TextStyle(
@@ -127,7 +82,7 @@ class _AdswipeScreenState extends State<AdswipeScreen> {
                 margin:
                     EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.02),
                 child: CustomButton(
-                  text: 'Watch Ads 0/2',
+                  text: 'Watch',
                   //play two ads
                   onTap: () {},
                   buttonColor: HexColor('F24139'),

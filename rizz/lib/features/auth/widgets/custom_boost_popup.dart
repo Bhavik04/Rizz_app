@@ -73,7 +73,7 @@ class _CustomBoostPopupState extends State<CustomBoostPopup> {
               margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
               width: GlobalVariables.deviceWidth * 0.70,
               child: Text(
-                'Get unlimited boosts & 10x messages',
+                'Get super boosts & 10x messages',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 14,

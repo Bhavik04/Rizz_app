@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
+import 'package:rizz/features/auth/screens/sign_in.dart';
 import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_popup.dart';
-import 'package:rizz/features/auth/widgets/profile_info.dart';
-import 'package:rizz/features/home/screens/play.dart';
+import 'package:rizz/features/auth/widgets/photos_sheet.dart';
 import 'package:rizz/services/auth_service.dart';
 import 'package:rizz/services/firestore_service.dart';
 import 'package:rizz/services/storage_service.dart';
@@ -149,10 +149,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: HexColor('141414'),
+        backgroundColor: HexColor('0F0F0F'),
         appBar: ArrowBar(
-          title: 'Slay',
-          backgroundColor: HexColor('141414'),
+          title: 'Profile',
+          textPadding:
+              EdgeInsets.only(right: GlobalVariables.deviceWidth * 0.09),
+          backgroundColor: HexColor('0F0F0F'),
           onBack: () {
             Navigator.pop(context);
           },
@@ -162,105 +164,82 @@ class _ProfileScreenState extends State<ProfileScreen> {
           alignment: Alignment.center,
           child: Column(
             children: [
-              // SizedBox(
-              //   width: GlobalVariables.deviceWidth * 0.60,
-              //   child: Text(
-              //     'Slay as you Play',
-              //     textAlign: TextAlign.center,
-              //     maxLines: 2,
-              //     style: TextStyle(
-              //       color: GlobalVariables.themeColor,
-              //       fontSize: 25,
-              //       fontWeight: FontWeight.w700,
-              //     ),
-              //   ),
-              // ),
               const SizedBox(
                 height: 20,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(
-                          top: GlobalVariables.deviceHeight * 0.01,
-                        ),
-                        height: GlobalVariables.deviceHeight * 0.280,
-                        width: GlobalVariables.deviceWidth * 0.370,
-                        decoration: BoxDecoration(
-                          color: Colors.black,
-                          borderRadius: BorderRadius.circular(12),
-                          border:
-                              Border.all(color: Colors.transparent, width: 2),
-                          image: profileImageURL != null
-                              ? DecorationImage(
-                                  image: NetworkImage(profileImageURL!),
-                                  fit: BoxFit.cover,
-                                )
-                              : null,
-                        ),
-                        child: Stack(
-                          children: [
-                            // Profile Image
-                            if (profileImageURL != null)
-                              Positioned.fill(
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(12),
-                                  child: Image.network(
-                                    profileImageURL!,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            // Edit Icon
-                            Positioned(
-                              bottom: 8,
-                              right: 8,
-                              child: GestureDetector(
-                                onTap: () {
-                                  showPicUpdateSheet(context);
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.all(8),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white.withOpacity(0.2),
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Icon(
-                                    Icons.edit,
-                                    color: Colors.white.withOpacity(0.7),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
+              Container(
+                alignment: Alignment.center,
+                margin: EdgeInsets.fromLTRB(
+                    0,
+                    GlobalVariables.deviceHeight * 0.01,
+                    0,
+                    GlobalVariables.deviceHeight * 0.01),
+                height: GlobalVariables.deviceWidth * 0.360,
+                width: GlobalVariables.deviceWidth * 0.360,
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  shape: BoxShape.circle,
+                  image: profileImageURL != null
+                      ? DecorationImage(
+                          image: NetworkImage(profileImageURL!),
+                          fit: BoxFit.cover,
+                        )
+                      : null,
+                ),
+                child: Stack(
+                  children: [
+                    // Profile Image
+                    if (profileImageURL != null)
+                      Positioned.fill(
+                        child: ClipOval(
+                          child: Image.network(
+                            profileImageURL!,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
-                    ],
-                  ),
-                  const SizedBox(width: 16),
-                  const Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ProfileInfoTile(
-                        label: 'Name',
-                        field: 'username',
+                    // Edit Icon
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: GestureDetector(
+                        onTap: () {
+                          showPhotoSheet(context);
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: GlobalVariables.themeColor,
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(Icons.edit, color: Colors.white),
+                        ),
                       ),
-                      ProfileInfoTile(label: 'Snap', field: 'snapchat'),
-                      ProfileInfoTile(label: 'Age', field: 'age'),
-                      ProfileInfoTile(label: 'Gender', field: 'gender'),
-                    ],
-                  ),
-                ],
+                    ),
+                  ],
+                ),
+              ),
+              const Text(
+                '@jaat_boyhukka',
+                style: TextStyle(
+                  fontSize: 22,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const Text(
+                'shobhit, 99',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
+                  fontWeight: FontWeight.normal,
+                ),
               ),
               Container(
                 margin:
                     EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
                 alignment: Alignment.center,
-                child: InkWell(
+                child: GestureDetector(
                   onTap: () {
                     showDialog(
                       context: context,
@@ -285,11 +264,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 margin:
                     EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
                 child: CustomButton(
-                  text: 'delete',
+                  text: 'Sign Out',
                   onTap: () async {
                     await AuthService().signOut();
                     debugPrint('Print button tapped');
-                    context.goNamed(PlayScreen.routeName);
+                    context.goNamed(SignInPage.routeName);
                   },
                   buttonColor: HexColor('693DE7'),
                   textColor: Colors.white,

@@ -21,7 +21,7 @@ class _BlurredScreenState extends State<BlurredScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: HexColor('141414'),
+        backgroundColor: HexColor('0f0f0f'),
         body: Stack(
           children: [
             Center(
@@ -94,9 +94,13 @@ class _BlurredScreenState extends State<BlurredScreen> {
                           CustomButton(
                             onTap: () {},
                             text: 'Answer',
-                            image: Image.asset('assets/images/instagram.png'),
-                            buttonColor: HexColor('F24139'),
+                            image: Image.asset('assets/images/snap.png'),
+                            buttonColor: HexColor('FFE500'),
                             textColor: Colors.white,
+                            // text: 'Answer',
+                            // image: Image.asset('assets/images/instagram.png'),
+                            // buttonColor: HexColor('F24139'),
+                            // textColor: Colors.white,
                           ),
                         ],
                       ),
@@ -132,7 +136,7 @@ class _BlurredScreenState extends State<BlurredScreen> {
                 onBack: () {
                   Navigator.pop(context);
                 },
-                showReportButton: true,
+                showReportButton: false,
               ),
             ),
           ],

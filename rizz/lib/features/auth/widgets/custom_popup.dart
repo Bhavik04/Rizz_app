@@ -21,10 +21,10 @@ class _CustomDialogState extends State<CustomDialog> {
 
   List<String> imageList = [
     'assets/images/sub_boost.png',
-    'assets/images/sub_swipe.png',
     'assets/images/sub_reveal.png',
     //'assets/images/sub_chat.png',
     'assets/images/sub_snap.png',
+    'assets/images/sub_swipe.png',
     'assets/images/sub_ads.png',
     'assets/images/sub_access.png',
   ];
@@ -111,7 +111,9 @@ class _CustomDialogState extends State<CustomDialog> {
                     height: 8.0,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: index == currentPage ? Colors.white : Colors.grey,
+                      color: index == currentPage
+                          ? HexColor('F9551F')
+                          : Colors.white,
                     ),
                   ),
                 ),
@@ -145,7 +147,7 @@ class _CustomDialogState extends State<CustomDialog> {
                     ),
                   ),
                   const SizedBox(width: 5),
-                  InkWell(
+                  GestureDetector(
                     onTap: () {},
                     child: Text(
                       'Terms',
@@ -189,7 +191,7 @@ class _CustomDialogState extends State<CustomDialog> {
                     ),
                   ),
                   const SizedBox(width: 5),
-                  InkWell(
+                  GestureDetector(
                     onTap: () {},
                     child: Text(
                       'Terms',
