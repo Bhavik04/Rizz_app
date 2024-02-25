@@ -111,19 +111,6 @@ class _PhotoScreenState extends State<PhotoScreen> {
                       buttonColor: Colors.white,
                       textColor: Colors.black,
                     ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(
-                        top: GlobalVariables.deviceHeight * 0.06),
-                    child: CustomButton(
-                      text: 'Pick your fav pic',
-                      onTap: () {
-                        debugPrint('print button');
-                        _pickImage();
-                      },
-                      buttonColor: Colors.white,
-                      textColor: Colors.black,
-                    ),
                   )
                 ],
               ),
