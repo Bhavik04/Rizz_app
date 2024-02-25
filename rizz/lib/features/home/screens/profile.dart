@@ -39,7 +39,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     if (userData != null && userData.containsKey('photoURL')) {
       setState(() {
-        profileImageURL = userData['photoURL'];
+        profileImageURL = userData['photoURL'][0];
       });
     }
   }
