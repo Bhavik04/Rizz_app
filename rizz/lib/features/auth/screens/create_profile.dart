@@ -8,6 +8,9 @@ import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
 
+import '../../../services/auth_service.dart';
+import '../../../services/firestore_service.dart';
+
 class CreateProfileScreen extends StatefulWidget {
   static const routeName = 'CreateProfileScreen';
 
@@ -80,6 +83,14 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                       text: 'Next',
                       onTap: () {
                         debugPrint('print button');
+                          FirestoreService().createUserData(
+                            AuthService().currentUser!.uid,
+                            GlobalVariables.username,
+                            GlobalVariables.snapchat,
+                            GlobalVariables.age,
+                            gender: GlobalVariables.gender,
+                            photoURL: GlobalVariables.photoURL,
+                          );
                         context.goNamed(OnboardScreen.routeName);
                       },
                       buttonColor: Colors.white,

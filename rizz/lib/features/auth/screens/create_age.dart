@@ -141,12 +141,13 @@ class _AgeScreenState extends State<AgeScreen> {
                             int.tryParse(_ageController.text) ?? 0;
 
                         if (enteredAge >= 13) {
-                          await _firestoreService.createUserData(
-                            _authService.currentUser?.uid ?? '',
-                            null,
-                            '',
-                            enteredAge,
-                          );
+                          // await _firestoreService.createUserData(
+                          //   _authService.currentUser?.uid ?? '',
+                          //   null,
+                          //   '',
+                          //   enteredAge,
+                          // );
+                          GlobalVariables.age=enteredAge;
 
                           context.goNamed(GenderScreen.routeName);
                         } else {

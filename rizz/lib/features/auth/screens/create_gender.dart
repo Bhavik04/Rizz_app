@@ -134,13 +134,14 @@ class _GenderScreenState extends State<GenderScreen> {
                     text: 'Next',
                     onTap: () async {
                       if (_isGenderSelected) {
-                        await _firestoreService.createUserData(
-                          _authService.currentUser?.uid ?? '',
-                          null,
-                          null,
-                          0,
-                          gender: usergender,
-                        );
+                        // await _firestoreService.createUserData(
+                        //   _authService.currentUser?.uid ?? '',
+                        //   null,
+                        //   null,
+                        //   0,
+                        //   gender: usergender,
+                        // );
+                        GlobalVariables.gender=usergender;
                         context.goNamed(AcessScreen.routeName);
                       }
                     },

@@ -40,14 +40,15 @@ class _PhotoScreenState extends State<PhotoScreen> {
         // Upload the image to Firebase Storage
         final downloadURL = await StorageService().uploadImage(_pickedImage!);
 
-        await FirestoreService().createUserData(
-          AuthService().currentUser!.uid,
-          null,
-          null,
-          0,
-          gender: '',
-          photoURL: downloadURL,
-        );
+        // await FirestoreService().createUserData(
+        //   AuthService().currentUser!.uid,
+        //   null,
+        //   null,
+        //   0,
+        //   gender: '',
+        //   photoURL: downloadURL,
+        // );
+        GlobalVariables.photoURL=downloadURL;
 
         context.goNamed(CreateProfileScreen.routeName);
       } catch (e) {

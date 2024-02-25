@@ -115,12 +115,13 @@ class _UserNameScreenState extends State<UserNameScreen> {
                         String username = _usernameController.text;
 
                         // Call the FirestoreService to update user data
-                        await _firestoreService.createUserData(
-                          _authService.currentUser?.uid ?? '',
-                          username.isNotEmpty ? username : null,
-                          '',
-                          0,
-                        );
+                        // await _firestoreService.createUserData(
+                        //   _authService.currentUser?.uid ?? '',
+                        //   username.isNotEmpty ? username : null,
+                        //   '',
+                        //   0,
+                        // );
+                        GlobalVariables.username=username;
 
                         context.goNamed(SnapchatScreen.routeName);
                       }

@@ -105,14 +105,15 @@ class _SnapchatScreenState extends State<SnapchatScreen> {
                     text: 'Next',
                     onTap: () async {
                       if (_isSnapchatValid) {
-                        await _firestoreService.createUserData(
-                          _authService.currentUser?.uid ?? '',
-                          null,
-                          _snapchatController.text.isNotEmpty
-                              ? _snapchatController.text
-                              : null,
-                          0,
-                        );
+                        // await _firestoreService.createUserData(
+                        //   _authService.currentUser?.uid ?? '',
+                        //   null,
+                        //   _snapchatController.text.isNotEmpty
+                        //       ? _snapchatController.text
+                        //       : null,
+                        //   0,
+                        // );
+                        GlobalVariables.snapchat=_snapchatController.text;
 
                         debugPrint('print button');
                         context.goNamed(ReferralScreen.routeName);
