@@ -89,7 +89,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                             GlobalVariables.snapchat,
                             GlobalVariables.age,
                             gender: GlobalVariables.gender,
-                            photoURL: GlobalVariables.photoURL,
+                            photoURLs: GlobalVariables.photoURLs,
                           );
                         context.goNamed(OnboardScreen.routeName);
                       },

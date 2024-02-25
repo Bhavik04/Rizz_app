@@ -49,6 +49,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     // Upload the new photo to Firebase Storage
     final downloadURL = await StorageService().uploadImage(newPhoto);
+    GlobalVariables.photoURLs[0]=downloadURL;
 
     // Update the photoURL in Firestore
     await FirestoreService().createUserData(
@@ -57,7 +58,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       null,
       0,
       gender: '',
-      photoURL: downloadURL,
+      photoURLs: GlobalVariables.photoURLs,
     );
 
     // Fetch and update the profile image

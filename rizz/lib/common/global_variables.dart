@@ -14,5 +14,5 @@ class GlobalVariables {
    static String? snapchat;
    static int? age;
    static String? gender = '';
-   static String? photoURL;
+   static List<String> photoURLs=[];
 }

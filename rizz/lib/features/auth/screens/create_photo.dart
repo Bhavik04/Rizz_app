@@ -48,7 +48,7 @@ class _PhotoScreenState extends State<PhotoScreen> {
         //   gender: '',
         //   photoURL: downloadURL,
         // );
-        GlobalVariables.photoURL=downloadURL;
+        GlobalVariables.photoURLs.add(downloadURL);
 
         context.goNamed(CreateProfileScreen.routeName);
       } catch (e) {
@@ -97,6 +97,19 @@ class _PhotoScreenState extends State<PhotoScreen> {
                       'assets/images/Rectangle.png',
                       height: GlobalVariables.deviceHeight * 0.500,
                       width: GlobalVariables.deviceWidth * 0.500,
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(
+                        top: GlobalVariables.deviceHeight * 0.06),
+                    child: CustomButton(
+                      text: 'Pick your fav pic',
+                      onTap: () {
+                        debugPrint('print button');
+                        _pickImage();
+                      },
+                      buttonColor: Colors.white,
+                      textColor: Colors.black,
                     ),
                   ),
                   Container(

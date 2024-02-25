@@ -19,7 +19,7 @@ class FirestoreService {
     String? snapchat,
     int? age, {
     String? gender = '',
-    String? photoURL,
+    required List<String> photoURLs,
   }) async {
     final Map<String, dynamic> dataToUpdate = {};
 
@@ -35,8 +35,8 @@ class FirestoreService {
     if (gender != null && gender.isNotEmpty) {
       dataToUpdate['gender'] = gender;
     }
-    if (photoURL != null && photoURL.isNotEmpty) {
-      dataToUpdate['photoURL'] = photoURL;
+    if (photoURLs != null && photoURLs.isNotEmpty) {
+      dataToUpdate['photoURL'] = photoURLs;
     }
 
     // Generate and store referral code
