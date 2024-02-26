@@ -9,8 +9,6 @@ import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
 import 'package:rizz/features/auth/widgets/custom_text2.dart';
-import 'package:rizz/services/auth_service.dart';
-import 'package:rizz/services/firestore_service.dart';
 import 'package:go_router/go_router.dart';
 
 class AgeScreen extends StatefulWidget {
@@ -24,8 +22,6 @@ class AgeScreen extends StatefulWidget {
 
 class _AgeScreenState extends State<AgeScreen> {
   final TextEditingController _ageController = TextEditingController();
-  final AuthService _authService = AuthService();
-  final FirestoreService _firestoreService = FirestoreService();
   bool _isAgeValid = false; // New variable to track validity
 
   @override
@@ -147,7 +143,7 @@ class _AgeScreenState extends State<AgeScreen> {
                           //   '',
                           //   enteredAge,
                           // );
-                          GlobalVariables.age=enteredAge;
+                          GlobalVariables.age = enteredAge;
 
                           context.goNamed(GenderScreen.routeName);
                         } else {

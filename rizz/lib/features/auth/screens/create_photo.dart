@@ -8,8 +8,6 @@ import 'package:rizz/features/auth/screens/create_profile.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:rizz/services/auth_service.dart';
-import 'package:rizz/services/firestore_service.dart';
 import 'package:rizz/services/storage_service.dart';
 
 class PhotoScreen extends StatefulWidget {

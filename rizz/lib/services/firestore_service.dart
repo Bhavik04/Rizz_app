@@ -35,7 +35,7 @@ class FirestoreService {
     if (gender != null && gender.isNotEmpty) {
       dataToUpdate['gender'] = gender;
     }
-    if (photoURLs != null && photoURLs.isNotEmpty) {
+    if (photoURLs.isNotEmpty) {
       dataToUpdate['photoURL'] = photoURLs;
     }
 

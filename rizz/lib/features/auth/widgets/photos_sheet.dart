@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rizz/common/global_variables.dart';
+import 'package:rizz/features/auth/widgets/add_photo.dart';
 
 class PhotoSheet extends StatefulWidget {
   @override
@@ -67,6 +68,68 @@ class _PhotoSheetState extends State<PhotoSheet> {
               ],
             ),
           ),
+          SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              buildPhotoContainer('assets/images/image1.png'),
+              buildPhotoContainer(''),
+              buildPhotoContainer(''),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildPhotoContainer(String imagePath) {
+    bool hasImage = imagePath.isNotEmpty; // Check if the container has an image
+
+    return GestureDetector(
+      onTap: () {
+        showPicUpdateSheet(context);
+      },
+      child: Stack(
+        children: [
+          Container(
+            width: 110,
+            height: 160,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: hasImage
+                ? Image.asset(
+                    imagePath,
+                    fit: BoxFit.cover,
+                  )
+                : Center(
+                    child: Icon(
+                      Icons.add,
+                      size: 40,
+                      color: GlobalVariables.themeColor,
+                    ),
+                  ),
+          ),
+          Positioned(
+            top: 5,
+            right: 5,
+            child: Transform.translate(
+              offset: Offset(15, -15),
+              child: Container(
+                width: 30,
+                height: 30,
+                decoration: BoxDecoration(
+                  color: GlobalVariables.themeColor,
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Icon(
+                  hasImage ? Icons.remove : Icons.add,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -80,7 +143,7 @@ void showPhotoSheet(BuildContext context) {
     backgroundColor: const Color.fromARGB(255, 15, 15, 15),
     builder: (BuildContext context) {
       return DraggableScrollableSheet(
-        initialChildSize: 0.8, //adjust sheet height
+        initialChildSize: 0.8,
         expand: false,
         builder: (BuildContext context, ScrollController scrollController) {
           return PhotoSheet();

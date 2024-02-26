@@ -8,8 +8,6 @@ import 'package:rizz/features/auth/widgets/custom_text.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/features/auth/widgets/custom_text2.dart';
 import 'package:rizz/features/auth/widgets/custom_textfield.dart';
-import 'package:rizz/services/auth_service.dart';
-import 'package:rizz/services/firestore_service.dart';
 import 'package:go_router/go_router.dart';
 
 class UserNameScreen extends StatefulWidget {
@@ -23,8 +21,6 @@ class UserNameScreen extends StatefulWidget {
 
 class _UserNameScreenState extends State<UserNameScreen> {
   final _usernameController = TextEditingController();
-  final AuthService _authService = AuthService();
-  final FirestoreService _firestoreService = FirestoreService();
   bool _isUsernameValid = false;
 
   @override
@@ -121,7 +117,7 @@ class _UserNameScreenState extends State<UserNameScreen> {
                         //   '',
                         //   0,
                         // );
-                        GlobalVariables.username=username;
+                        GlobalVariables.username = username;
 
                         context.goNamed(SnapchatScreen.routeName);
                       }

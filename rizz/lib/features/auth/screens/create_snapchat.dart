@@ -9,8 +9,6 @@ import 'package:rizz/features/auth/widgets/custom_text.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/features/auth/widgets/custom_text2.dart';
 import 'package:rizz/features/auth/widgets/custom_textfield.dart';
-import 'package:rizz/services/auth_service.dart';
-import 'package:rizz/services/firestore_service.dart';
 
 class SnapchatScreen extends StatefulWidget {
   static const routeName = 'SnapchatScreen';
@@ -23,8 +21,6 @@ class SnapchatScreen extends StatefulWidget {
 
 class _SnapchatScreenState extends State<SnapchatScreen> {
   final _snapchatController = TextEditingController();
-  final AuthService _authService = AuthService();
-  final FirestoreService _firestoreService = FirestoreService();
   bool _isSnapchatValid = false; // New variable to track validity
 
   @override
@@ -113,7 +109,7 @@ class _SnapchatScreenState extends State<SnapchatScreen> {
                         //       : null,
                         //   0,
                         // );
-                        GlobalVariables.snapchat=_snapchatController.text;
+                        GlobalVariables.snapchat = _snapchatController.text;
 
                         debugPrint('print button');
                         context.goNamed(ReferralScreen.routeName);

@@ -10,8 +10,6 @@ import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
 import 'package:rizz/features/auth/widgets/custom_text2.dart';
 import 'package:rizz/features/auth/widgets/user_gender.dart';
-import 'package:rizz/services/auth_service.dart';
-import 'package:rizz/services/firestore_service.dart';
 
 class GenderScreen extends StatefulWidget {
   static const routeName = 'GenderScreen';
@@ -23,8 +21,6 @@ class GenderScreen extends StatefulWidget {
 }
 
 class _GenderScreenState extends State<GenderScreen> {
-  final AuthService _authService = AuthService();
-  final FirestoreService _firestoreService = FirestoreService();
   String? usergender;
   bool _isGenderSelected = false; // New variable to track selection
 
@@ -141,7 +137,7 @@ class _GenderScreenState extends State<GenderScreen> {
                         //   0,
                         //   gender: usergender,
                         // );
-                        GlobalVariables.gender=usergender;
+                        GlobalVariables.gender = usergender;
                         context.goNamed(AcessScreen.routeName);
                       }
                     },
