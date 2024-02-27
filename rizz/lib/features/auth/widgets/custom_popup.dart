@@ -22,7 +22,7 @@ class _CustomDialogState extends State<CustomDialog> {
   List<String> imageList = [
     'assets/images/sub_boost.png',
     'assets/images/sub_reveal.png',
-    //'assets/images/sub_chat.png',
+    'assets/images/sub_chat.png',
     'assets/images/sub_snap.png',
     'assets/images/sub_swipe.png',
     'assets/images/sub_ads.png',

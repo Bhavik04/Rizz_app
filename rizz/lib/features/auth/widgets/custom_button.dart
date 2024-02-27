@@ -6,6 +6,7 @@ class CustomButton extends StatelessWidget {
   final Color buttonColor;
   final Color textColor;
   final Image? image;
+  final double borderRadius;
 
   const CustomButton({
     this.onTap,
@@ -13,6 +14,7 @@ class CustomButton extends StatelessWidget {
     required this.buttonColor,
     required this.textColor,
     this.image,
+    this.borderRadius = 40, // Default value for borderRadius
     Key? key,
   }) : super(key: key);
 
@@ -26,11 +28,11 @@ class CustomButton extends StatelessWidget {
         child: InkWell(
           onTap: onTap,
           enableFeedback: false,
-          borderRadius: BorderRadius.circular(40),
+          borderRadius: BorderRadius.circular(borderRadius),
           child: Ink(
             decoration: BoxDecoration(
               color: buttonColor,
-              borderRadius: BorderRadius.circular(40),
+              borderRadius: BorderRadius.circular(borderRadius),
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),

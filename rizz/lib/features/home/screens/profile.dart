@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
+import 'package:rizz/features/auth/screens/sign_in.dart';
 import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
-import 'package:rizz/features/auth/widgets/custom_popup.dart';
+import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/photos_sheet.dart';
 import 'package:rizz/services/auth_service.dart';
 import 'package:rizz/services/firestore_service.dart';
@@ -151,42 +153,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Container(
                 margin:
                     EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
-                alignment: Alignment.center,
-                child: GestureDetector(
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return CustomDialog(
-                          onButtonTap: (buttonText) {
-                            debugPrint('$buttonText button tapped');
-                          },
-                        );
-                      },
-                    );
+                child: CustomButton(
+                  text: 'Send Feedback',
+                  onTap: () async {
+                    await AuthService().signOut();
+                    debugPrint('Print button tapped');
+                    context.goNamed(SignInPage.routeName);
                   },
-                  child: Image.asset(
-                    'assets/images/subscription.png',
-                    fit: BoxFit.contain,
-                    height: GlobalVariables.deviceHeight * 0.2,
-                    width: GlobalVariables.deviceWidth * 0.90,
-                  ),
+                  buttonColor: HexColor('693DE7'),
+                  textColor: Colors.white,
+                  borderRadius: 10,
                 ),
               ),
-              // Container(
-              //   margin:
-              //       EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
-              //   child: CustomButton(
-              //     text: 'Sign Out',
-              //     onTap: () async {
-              //       await AuthService().signOut();
-              //       debugPrint('Print button tapped');
-              //       context.goNamed(SignInPage.routeName);
-              //     },
-              //     buttonColor: HexColor('693DE7'),
-              //     textColor: Colors.white,
-              //   ),
-              // ),
             ],
           ),
         ),
