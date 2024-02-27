@@ -46,7 +46,7 @@ class ArrowBar extends StatelessWidget implements PreferredSizeWidget {
                     title,
                     style: TextStyle(
                       color: titleColor ?? GlobalVariables.themeColor,
-                      fontSize: 20.0,
+                      fontSize: 25.0,
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,

@@ -1,12 +1,9 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
-import 'package:rizz/features/auth/screens/sign_in.dart';
 import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
-import 'package:rizz/features/auth/widgets/custom_button.dart';
+import 'package:rizz/features/auth/widgets/free_powers.dart';
 import 'package:rizz/features/auth/widgets/photos_sheet.dart';
 import 'package:rizz/services/auth_service.dart';
 import 'package:rizz/services/firestore_service.dart';
@@ -150,21 +147,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   fontWeight: FontWeight.normal,
                 ),
               ),
-              Container(
-                margin:
-                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
-                child: CustomButton(
-                  text: 'Send Feedback',
-                  onTap: () async {
-                    await AuthService().signOut();
-                    debugPrint('Print button tapped');
-                    context.goNamed(SignInPage.routeName);
-                  },
-                  buttonColor: HexColor('693DE7'),
-                  textColor: Colors.white,
-                  borderRadius: 10,
-                ),
-              ),
+              const Powers()
             ],
           ),
         ),

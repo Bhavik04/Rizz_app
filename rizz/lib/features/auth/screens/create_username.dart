@@ -6,7 +6,6 @@ import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
 import 'package:rizz/common/global_variables.dart';
-import 'package:rizz/features/auth/widgets/custom_text2.dart';
 import 'package:rizz/features/auth/widgets/custom_textfield.dart';
 import 'package:go_router/go_router.dart';
 
@@ -96,8 +95,11 @@ class _UserNameScreenState extends State<UserNameScreen> {
                     top: GlobalVariables.deviceHeight * 0.01,
                   ),
                   width: GlobalVariables.deviceWidth * 0.55,
-                  child: const CustomSmallText(
+                  child: const CustomText(
                     text: 'This info cannot be changed later',
+                    textColor: Colors.white70,
+                    fontSize: 14,
+                    fontWeight: FontWeight.normal,
                   ),
                 ),
                 Container(

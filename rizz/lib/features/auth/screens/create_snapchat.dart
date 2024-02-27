@@ -7,7 +7,6 @@ import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
 import 'package:go_router/go_router.dart';
-import 'package:rizz/features/auth/widgets/custom_text2.dart';
 import 'package:rizz/features/auth/widgets/custom_textfield.dart';
 
 class SnapchatScreen extends StatefulWidget {
@@ -91,8 +90,12 @@ class _SnapchatScreenState extends State<SnapchatScreen> {
                   margin:
                       EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.01),
                   width: GlobalVariables.deviceWidth * 0.55,
-                  child: const CustomSmallText(
-                      text: 'This info cannot be changed later'),
+                  child: const CustomText(
+                    text: 'This info cannot be changed later',
+                    textColor: Colors.white70,
+                    fontSize: 14,
+                    fontWeight: FontWeight.normal,
+                  ),
                 ),
                 Container(
                   margin:

@@ -55,7 +55,7 @@ class _PlayScreenState extends State<PlayScreen> {
         body: Column(
           children: [
             Container(
-              height: GlobalVariables.deviceHeight * 0.79,
+              height: GlobalVariables.deviceHeight * 0.78,
               child: PageView.builder(
                 scrollDirection: Axis.vertical,
                 itemCount: userImageURLs.length,
