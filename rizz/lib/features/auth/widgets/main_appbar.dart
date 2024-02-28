@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
-import 'package:rizz/common/utils.dart';
 import 'package:rizz/features/auth/widgets/custom_boost_popup.dart';
 import 'package:rizz/features/auth/widgets/custom_bottomsheet.dart';
 import 'package:rizz/features/auth/widgets/mini_boost_popup.dart';
@@ -13,7 +12,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: HexColor('0F0F0F'),
+      backgroundColor: Colors.black,
       toolbarHeight: 60,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -11,10 +11,10 @@ class Powers extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.02),
-      height: GlobalVariables.deviceHeight * 0.5,
+      height: GlobalVariables.deviceHeight * 0.43,
       width: GlobalVariables.deviceWidth * 0.9,
       decoration: BoxDecoration(
-        color: HexColor('141414'),
+        color: Colors.transparent,
         borderRadius: BorderRadius.circular(20.0),
         border: Border.all(
           color: Colors.redAccent,
@@ -26,24 +26,24 @@ class Powers extends StatelessWidget {
         child: Column(
           children: [
             _buildTitleRow(),
-            const SizedBox(height: 5.0),
+            SizedBox(height: GlobalVariables.deviceHeight * 0.01),
             _buildSubtitleText(),
-            const SizedBox(height: 30.0),
+            SizedBox(height: GlobalVariables.deviceHeight * 0.03),
             _buildPowerRow(
               'assets/images/freeboost.png',
               'Unlock free mini boost',
             ),
-            const SizedBox(height: 5.0),
-            _buildPowerRow(
-              'assets/images/directheart.png',
-              '5 Direct messages, chat instantly without rating',
-            ),
-            const SizedBox(height: 5.0),
+            // SizedBox(height: GlobalVariables.deviceHeight * 0.01),
+            // _buildPowerRow(
+            //   'assets/images/directheart.png',
+            //   'Get 5 Super ',
+            // ),
+            SizedBox(height: GlobalVariables.deviceHeight * 0.01),
             _buildPowerRow(
               'assets/images/chat.png',
-              '5 messages on reveals instead of 3 for a week',
+              '7 direct messages on reveals instead of 3 for three days',
             ),
-            const SizedBox(height: 30),
+            SizedBox(height: GlobalVariables.deviceHeight * 0.04),
             _buildInviteButton(),
           ],
         ),
@@ -86,7 +86,7 @@ class Powers extends StatelessWidget {
           width: 30.0,
           height: 30.0,
         ),
-        const SizedBox(width: 10.0),
+        const SizedBox(width: 15.0),
         Container(
           width: GlobalVariables.deviceWidth * 0.65,
           alignment: Alignment.centerLeft,
@@ -103,7 +103,7 @@ class Powers extends StatelessWidget {
 
   Widget _buildInviteButton() {
     return CustomButton(
-      text: 'Invite Friends 0/3',
+      text: '2 invites left',
       onTap: () {
         debugPrint('Print button tapped');
       },

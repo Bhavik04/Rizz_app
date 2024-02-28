@@ -3,6 +3,8 @@ import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
 import 'package:rizz/features/auth/widgets/main_appbar.dart';
 import 'package:rizz/features/auth/widgets/block_sheet.dart';
+import 'package:rizz/features/auth/widgets/snapchat_bottom.dart';
+import 'package:rizz/features/auth/widgets/superchat.dart';
 import 'package:rizz/services/auth_service.dart';
 import 'package:rizz/services/firestore_service.dart';
 
@@ -50,7 +52,7 @@ class _PlayScreenState extends State<PlayScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: HexColor("0F0F0F"),
+        backgroundColor: Colors.black,
         appBar: MainAppBar(),
         body: Column(
           children: [
@@ -89,53 +91,95 @@ class _PlayScreenState extends State<PlayScreen> {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Positioned(
-                                    bottom: 80.0,
-                                    left: 0,
-                                    right: 0,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.symmetric(
-                                            horizontal:
-                                                GlobalVariables.deviceWidth *
-                                                    0.04,
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Column(
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                              horizontal:
+                                                  GlobalVariables.deviceWidth *
+                                                      0.04,
+                                            ),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                RichText(
+                                                  text: const TextSpan(
+                                                    children: [
+                                                      TextSpan(
+                                                        text: 'Sobu',
+                                                        style: TextStyle(
+                                                          fontSize: 22.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: Colors.white,
+                                                        ),
+                                                      ),
+                                                      TextSpan(
+                                                        text: '\n99, Nagaliya',
+                                                        style: TextStyle(
+                                                          fontSize: 18.0,
+                                                          color: Colors.white,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Column(
                                             children: [
-                                              RichText(
-                                                text: const TextSpan(
-                                                  children: [
-                                                    TextSpan(
-                                                      text: 'Sobu',
-                                                      style: TextStyle(
-                                                        fontSize: 22.0,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        color: Colors.white,
-                                                      ),
-                                                    ),
-                                                    TextSpan(
-                                                      text: '\n99, Nagaliya',
-                                                      style: TextStyle(
-                                                        fontSize: 20.0,
-                                                        color: Colors.white,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                      ),
-                                                    ),
-                                                  ],
+                                              GestureDetector(
+                                                onTap: () {
+                                                  showSnapchatBottom(context);
+                                                },
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                    right: GlobalVariables
+                                                            .deviceWidth *
+                                                        0.02,
+                                                  ),
+                                                  child: Image.asset(
+                                                    'assets/images/Snapchat.png',
+                                                  ),
                                                 ),
                                               ),
                                             ],
                                           ),
-                                        ),
-                                      ],
-                                    ),
+                                          Column(
+                                            children: [
+                                              GestureDetector(
+                                                onTap: () {
+                                                  showSuperChat(context);
+                                                },
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                    right: GlobalVariables
+                                                            .deviceWidth *
+                                                        0.04,
+                                                  ),
+                                                  child: Image.asset(
+                                                    'assets/images/superchat.png',
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      )
+                                    ],
                                   ),
                                   Container(
                                     margin: EdgeInsets.fromLTRB(
@@ -148,7 +192,7 @@ class _PlayScreenState extends State<PlayScreen> {
                                     decoration: BoxDecoration(
                                       color: Colors.white24,
                                       border: Border.all(
-                                          color: Colors.white24, width: 1),
+                                          color: Colors.white24, width: 2),
                                       borderRadius: BorderRadius.circular(15.0),
                                     ),
                                     child: SliderTheme(

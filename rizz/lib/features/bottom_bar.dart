@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
-import 'package:rizz/common/utils.dart';
 
 class BottomNavigationPage extends StatefulWidget {
   const BottomNavigationPage({
@@ -53,7 +52,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
         child: widget.child,
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: HexColor('0F0F0F'),
+        backgroundColor: Colors.black,
         items: <BottomNavigationBarItem>[
           buildNavItem(0, 'Play'),
           buildNavItem(1, 'Inbox'),

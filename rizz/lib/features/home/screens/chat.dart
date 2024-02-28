@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rizz/common/utils.dart';
+import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/features/auth/widgets/custom_appbar.dart';
+import 'package:rizz/features/auth/widgets/custom_text.dart';
 
 class ChatScreen extends StatefulWidget {
   static const routeName = 'ChatScreen';
@@ -16,15 +17,25 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-      backgroundColor: HexColor("0F0F0F"),
-      appBar: CustomAppBar(
-        onLeftIconTap: () {},
-        onRightIconTap: () {
-          showCustomBottomSheet(context);
-        },
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: const CustomAppBar(),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.only(
+                top: GlobalVariables.deviceHeight * 0.02,
+                left: GlobalVariables.deviceWidth * 0.05),
+            child: const CustomText(
+              text: 'Messages',
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              textColor: Colors.white,
+            ),
+          ),
+        ],
       ),
-    ));
+    );
   }
 }

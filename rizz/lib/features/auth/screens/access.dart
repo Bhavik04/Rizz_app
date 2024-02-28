@@ -112,7 +112,7 @@ class _AcessScreenState extends State<AcessScreen> {
                       const SizedBox(
                         width: 8,
                       ),
-                      Container(
+                      SizedBox(
                         width: GlobalVariables.deviceWidth * 0.65,
                         child: const Text(
                           'Slay cares intensily about your privacy. We will never misuse your data. ',

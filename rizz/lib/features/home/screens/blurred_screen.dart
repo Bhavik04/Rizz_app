@@ -21,7 +21,7 @@ class _BlurredScreenState extends State<BlurredScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: HexColor('0f0f0f'),
+        backgroundColor: Colors.black,
         body: Stack(
           children: [
             Center(

@@ -2,25 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
+import 'package:rizz/features/auth/widgets/custom_divider.dart';
 import 'package:rizz/features/auth/widgets/custom_popup.dart';
 
-void showSnapchatBottom(BuildContext context) {
+void showMessageBottom(BuildContext context) {
   showModalBottomSheet(
     context: context,
     isDismissible: true,
     backgroundColor: Colors.transparent,
     builder: (BuildContext context) {
-      return _buildSnapchatBottomSheet(context);
+      return _buildMessageBottomSheet(context);
     },
   );
 }
 
-Widget _buildSnapchatBottomSheet(BuildContext context) {
+Widget _buildMessageBottomSheet(BuildContext context) {
   return SingleChildScrollView(
     child: Container(
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-        color: HexColor('141414'),
+        color: HexColor('fefefe'),
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20.0),
           topRight: Radius.circular(20.0),
@@ -34,28 +35,40 @@ Widget _buildSnapchatBottomSheet(BuildContext context) {
             Container(
               margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.01),
               child: Text(
-                'Reveal Snapchat Username',
+                'Direct Message User',
                 style: TextStyle(
-                    color: Colors.white,
+                    color: HexColor('FF8A00'),
                     fontSize: 24,
                     fontWeight: FontWeight.w800),
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
+              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.02),
               width: GlobalVariables.deviceWidth * 0.70,
               child: const Text(
-                'Premium users can reveal snapchat username of all profiles',
+                '3 daily messages left',
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.normal),
+                    color: Colors.black54,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold),
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
+              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.02),
+              child: CustomButton(
+                onTap: () {},
+                text: 'DM User',
+                buttonColor: Colors.black,
+                textColor: HexColor('FFFFFF'),
+              ),
+            ),
+            Container(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: CustomDividerRow()),
+            Container(
+              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.02),
               child: CustomButton(
                 onTap: () {
                   Navigator.pop(context);
@@ -70,13 +83,27 @@ Widget _buildSnapchatBottomSheet(BuildContext context) {
                     },
                   );
                 },
-                text: 'See Username',
-                buttonColor: HexColor('FFD500'),
+                text: 'God Mode',
+                buttonColor: HexColor('F24139'),
                 textColor: HexColor('FFFFFF'),
+                image: Image.asset('assets/images/thunder.png'),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.01),
+              width: GlobalVariables.deviceWidth * 0.70,
+              child: const Text(
+                'Send unlimited direct messages',
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                style: TextStyle(
+                    color: Colors.black54,
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold),
               ),
             ),
             const SizedBox(
-              height: 25,
+              height: 20,
             )
           ],
         ),

@@ -4,23 +4,23 @@ import 'package:rizz/common/utils.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_popup.dart';
 
-void showSnapchatBottom(BuildContext context) {
+void showSuperChat(BuildContext context) {
   showModalBottomSheet(
     context: context,
     isDismissible: true,
     backgroundColor: Colors.transparent,
     builder: (BuildContext context) {
-      return _buildSnapchatBottomSheet(context);
+      return _buildSuperChat(context);
     },
   );
 }
 
-Widget _buildSnapchatBottomSheet(BuildContext context) {
+Widget _buildSuperChat(BuildContext context) {
   return SingleChildScrollView(
     child: Container(
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-        color: HexColor('141414'),
+        color: HexColor('fefefe'),
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20.0),
           topRight: Radius.circular(20.0),
@@ -34,28 +34,28 @@ Widget _buildSnapchatBottomSheet(BuildContext context) {
             Container(
               margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.01),
               child: Text(
-                'Reveal Snapchat Username',
+                'Unlimited Super Chats',
                 style: TextStyle(
-                    color: Colors.white,
+                    color: HexColor('FF8A00'),
                     fontSize: 24,
                     fontWeight: FontWeight.w800),
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
-              width: GlobalVariables.deviceWidth * 0.70,
+              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.02),
+              width: GlobalVariables.deviceWidth * 0.60,
               child: const Text(
-                'Premium users can reveal snapchat username of all profiles',
+                'Premium users can chat instantly without rating anyone',
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.normal),
+                    color: Colors.black54,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold),
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
+              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.02),
               child: CustomButton(
                 onTap: () {
                   Navigator.pop(context);
@@ -70,9 +70,10 @@ Widget _buildSnapchatBottomSheet(BuildContext context) {
                     },
                   );
                 },
-                text: 'See Username',
-                buttonColor: HexColor('FFD500'),
+                text: 'God Mode',
+                buttonColor: HexColor('F24139'),
                 textColor: HexColor('FFFFFF'),
+                image: Image.asset('assets/images/thunder.png'),
               ),
             ),
             const SizedBox(

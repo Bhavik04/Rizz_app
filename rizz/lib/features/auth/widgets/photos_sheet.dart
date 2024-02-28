@@ -68,7 +68,7 @@ class _PhotoSheetState extends State<PhotoSheet> {
               ],
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [

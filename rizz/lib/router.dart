@@ -8,7 +8,6 @@ import 'package:rizz/features/auth/screens/create_profile.dart';
 import 'package:rizz/features/auth/screens/create_referral.dart';
 import 'package:rizz/features/auth/screens/create_username.dart';
 import 'package:rizz/features/auth/screens/create_snapchat.dart';
-import 'package:rizz/features/auth/screens/onboardig.dart';
 import 'package:rizz/features/auth/screens/sign_in.dart';
 import 'package:rizz/features/bottom_bar.dart';
 import 'package:rizz/features/home/screens/ad_swipe.dart';
@@ -102,16 +101,7 @@ class AppRouter {
                                                       builder: (context,
                                                               state) =>
                                                           const CreateProfileScreen(),
-                                                      routes: [
-                                                        GoRoute(
-                                                          path: 'OnboardScreen',
-                                                          name: OnboardScreen
-                                                              .routeName,
-                                                          builder: (context,
-                                                                  state) =>
-                                                              const OnboardScreen(),
-                                                        ),
-                                                      ]),
+                                                      routes: []),
                                                 ]),
                                           ]),
                                     ]),

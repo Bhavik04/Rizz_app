@@ -3,10 +3,10 @@ import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
 import 'package:rizz/features/auth/screens/create_photo.dart';
-import 'package:rizz/features/auth/screens/onboardig.dart';
 import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
+import 'package:rizz/features/home/screens/play.dart';
 
 import '../../../services/auth_service.dart';
 import '../../../services/firestore_service.dart';
@@ -80,18 +80,18 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                     margin: EdgeInsets.only(
                         top: GlobalVariables.deviceHeight * 0.04),
                     child: CustomButton(
-                      text: 'Next',
+                      text: 'Go Slay',
                       onTap: () {
                         debugPrint('print button');
-                          FirestoreService().createUserData(
-                            AuthService().currentUser!.uid,
-                            GlobalVariables.username,
-                            GlobalVariables.snapchat,
-                            GlobalVariables.age,
-                            gender: GlobalVariables.gender,
-                            photoURLs: GlobalVariables.photoURLs,
-                          );
-                        context.goNamed(OnboardScreen.routeName);
+                        FirestoreService().createUserData(
+                          AuthService().currentUser!.uid,
+                          GlobalVariables.username,
+                          GlobalVariables.snapchat,
+                          GlobalVariables.age,
+                          gender: GlobalVariables.gender,
+                          photoURLs: GlobalVariables.photoURLs,
+                        );
+                        context.goNamed(PlayScreen.routeName);
                       },
                       buttonColor: Colors.white,
                       textColor: Colors.black,

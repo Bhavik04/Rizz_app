@@ -19,21 +19,7 @@ class _AdswipeScreenState extends State<AdswipeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: HexColor("0F0F0F"),
-        appBar: AppBar(
-          backgroundColor: HexColor('0F0F0F'),
-          leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back,
-              color: HexColor('FFFFFF'),
-              size: 30,
-            ),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-          automaticallyImplyLeading: false,
-        ),
+        backgroundColor: Colors.black,
         body: Center(
           child: Column(
             children: [

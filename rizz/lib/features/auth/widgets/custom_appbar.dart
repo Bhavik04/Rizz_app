@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart'; // Import the url_launcher package
-import 'package:rizz/common/utils.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:rizz/features/auth/widgets/custom_boost_popup.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -16,7 +15,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: HexColor('0F0F0F'),
+      backgroundColor: Colors.black,
       toolbarHeight: 60,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

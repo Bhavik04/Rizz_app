@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:rizz/common/global_variables.dart';
-import 'package:rizz/common/utils.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
 import 'package:rizz/features/auth/widgets/new_card_widget.dart';
 import 'package:rizz/features/auth/widgets/custom_appbar.dart';
@@ -18,7 +17,7 @@ class _InboxScreenState extends State<InboxScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: HexColor("0F0F0F"),
+      backgroundColor: Colors.black,
       appBar: const CustomAppBar(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

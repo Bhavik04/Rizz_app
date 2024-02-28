@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:rizz/common/global_variables.dart';
-import 'package:rizz/common/utils.dart';
 import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/free_powers.dart';
 import 'package:rizz/features/auth/widgets/photos_sheet.dart';
@@ -64,91 +63,94 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: HexColor('0F0F0F'),
+        backgroundColor: Colors.black,
         appBar: ArrowBar(
           title: 'Profile',
           textPadding:
               EdgeInsets.only(right: GlobalVariables.deviceWidth * 0.09),
-          backgroundColor: HexColor('0F0F0F'),
+          backgroundColor: Colors.black,
           onBack: () {
             Navigator.pop(context);
           },
           showReportButton: false,
         ),
-        body: Container(
-          alignment: Alignment.center,
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 20,
-              ),
-              Container(
-                alignment: Alignment.center,
-                margin: EdgeInsets.fromLTRB(
-                    0, 0, 0, GlobalVariables.deviceHeight * 0.01),
-                height: GlobalVariables.deviceWidth * 0.280,
-                width: GlobalVariables.deviceWidth * 0.280,
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  shape: BoxShape.circle,
-                  image: profileImageURL != null
-                      ? DecorationImage(
-                          image: NetworkImage(profileImageURL!),
-                          fit: BoxFit.cover,
-                        )
-                      : null,
+        body: SingleChildScrollView(
+          child: Container(
+            alignment: Alignment.center,
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 20,
                 ),
-                child: Stack(
-                  children: [
-                    // Profile Image
-                    if (profileImageURL != null)
-                      Positioned.fill(
-                        child: ClipOval(
-                          child: Image.network(
-                            profileImageURL!,
+                Container(
+                  alignment: Alignment.center,
+                  margin: EdgeInsets.fromLTRB(
+                      0, 0, 0, GlobalVariables.deviceHeight * 0.01),
+                  height: GlobalVariables.deviceWidth * 0.280,
+                  width: GlobalVariables.deviceWidth * 0.280,
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    shape: BoxShape.circle,
+                    image: profileImageURL != null
+                        ? DecorationImage(
+                            image: NetworkImage(profileImageURL!),
                             fit: BoxFit.cover,
+                          )
+                        : null,
+                  ),
+                  child: Stack(
+                    children: [
+                      // Profile Image
+                      if (profileImageURL != null)
+                        Positioned.fill(
+                          child: ClipOval(
+                            child: Image.network(
+                              profileImageURL!,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      // Edit Icon
+                      Positioned(
+                        bottom: 0,
+                        right: 0,
+                        child: GestureDetector(
+                          onTap: () {
+                            showPhotoSheet(context);
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(7),
+                            decoration: BoxDecoration(
+                              color: GlobalVariables.themeColor,
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Icon(Icons.edit, color: Colors.white),
                           ),
                         ),
                       ),
-                    // Edit Icon
-                    Positioned(
-                      bottom: 0,
-                      right: 0,
-                      child: GestureDetector(
-                        onTap: () {
-                          showPhotoSheet(context);
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.all(7),
-                          decoration: BoxDecoration(
-                            color: GlobalVariables.themeColor,
-                            shape: BoxShape.circle,
-                          ),
-                          child: const Icon(Icons.edit, color: Colors.white),
-                        ),
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              const Text(
-                '@jaat_boyhukka',
-                style: TextStyle(
-                  fontSize: 22,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
+                const Text(
+                  '@jaat_boyhukka',
+                  style: TextStyle(
+                    fontSize: 22,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              const Text(
-                'shobhit, 99',
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.white,
-                  fontWeight: FontWeight.normal,
+                const Text(
+                  'shobhit, 99',
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                    fontWeight: FontWeight.normal,
+                  ),
                 ),
-              ),
-              const Powers()
-            ],
+                const Powers(),
+              ],
+            ),
           ),
         ),
       ),

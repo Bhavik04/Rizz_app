@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:rizz/common/global_variables.dart';
-import 'package:rizz/common/utils.dart';
 import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
-import 'package:rizz/features/auth/widgets/snapchat_bottom.dart';
+import 'package:rizz/features/auth/widgets/dm_bottom.dart';
 
 class RevealedScreen extends StatefulWidget {
   static const routeName = 'RevealedScreen';
@@ -19,7 +18,7 @@ class _RevealedScreenState extends State<RevealedScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: HexColor('0F0F0F'),
+        backgroundColor: Colors.black,
         body: Stack(
           children: [
             Center(
@@ -83,11 +82,10 @@ class _RevealedScreenState extends State<RevealedScreen> {
                         children: [
                           CustomButton(
                             onTap: () {
-                              showSnapchatBottom(context);
+                              showMessageBottom(context);
                             },
-                            text: 'Snapchat ',
-                            image: Image.asset('assets/images/Snapchat.png'),
-                            buttonColor: HexColor('000000'),
+                            text: 'DM User',
+                            buttonColor: Colors.black,
                             textColor: Colors.white,
                           ),
                         ],
