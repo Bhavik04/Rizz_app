@@ -52,7 +52,6 @@ class _AgeScreenState extends State<AgeScreen> {
           onBack: () {
             context.goNamed(ReferralScreen.routeName);
           },
-          showReportButton: false,
         ),
         body: Container(
           alignment: Alignment.topCenter,

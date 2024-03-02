@@ -3,8 +3,8 @@ import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 
-class MiniBoostPopup extends StatelessWidget {
-  MiniBoostPopup();
+class FreeBoostPopup extends StatelessWidget {
+  const FreeBoostPopup({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class MiniBoostPopup extends StatelessWidget {
               margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.01),
               width: GlobalVariables.deviceWidth * 0.70,
               child: Text(
-                'Mini Boost',
+                'Free Boost',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 36,
@@ -39,7 +39,7 @@ class MiniBoostPopup extends StatelessWidget {
             SizedBox(
               width: GlobalVariables.deviceWidth * 0.70,
               child: Text(
-                'Get free mini boost for each invite',
+                'Get one free boost for each invite',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 15,
@@ -56,7 +56,7 @@ class MiniBoostPopup extends StatelessWidget {
               margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
               width: GlobalVariables.deviceWidth * 0.70,
               child: Text(
-                'Get one mini boost & 5x messages',
+                'Get free boosts upto 3 invites',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 14,

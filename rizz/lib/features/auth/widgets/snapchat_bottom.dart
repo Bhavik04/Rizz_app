@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
-import 'package:rizz/features/auth/widgets/custom_popup.dart';
 
 void showSnapchatBottom(BuildContext context) {
   showModalBottomSheet(
@@ -33,7 +33,7 @@ Widget _buildSnapchatBottomSheet(BuildContext context) {
           children: [
             Container(
               margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.01),
-              child: Text(
+              child: const Text(
                 'Reveal Snapchat Username',
                 style: TextStyle(
                     color: Colors.white,
@@ -59,16 +59,7 @@ Widget _buildSnapchatBottomSheet(BuildContext context) {
               child: CustomButton(
                 onTap: () {
                   Navigator.pop(context);
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return CustomDialog(
-                        onButtonTap: (buttonText) {
-                          debugPrint('$buttonText button tapped');
-                        },
-                      );
-                    },
-                  );
+                  context.goNamed('SubscriptionScreen');
                 },
                 text: 'See Username',
                 buttonColor: HexColor('FFD500'),

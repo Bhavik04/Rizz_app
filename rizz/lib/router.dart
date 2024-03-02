@@ -17,7 +17,7 @@ import 'package:rizz/features/home/screens/inbox.dart';
 import 'package:rizz/features/home/screens/play.dart';
 import 'package:rizz/features/home/screens/profile.dart';
 import 'package:rizz/features/home/screens/revealed_screen.dart';
-import 'package:rizz/features/home/screens/revealed_snapchat.dart';
+import 'package:rizz/features/home/screens/subscription.dart';
 
 class CustomNavigationHelper {
   static final CustomNavigationHelper _instance =
@@ -101,7 +101,7 @@ class AppRouter {
                                                       builder: (context,
                                                               state) =>
                                                           const CreateProfileScreen(),
-                                                      routes: []),
+                                                      routes: const []),
                                                 ]),
                                           ]),
                                     ]),
@@ -124,6 +124,12 @@ class AppRouter {
                             path: 'ProfileScreen',
                             name: ProfileScreen.routeName,
                             builder: (context, state) => const ProfileScreen(),
+                          ),
+                          GoRoute(
+                            path: 'SubscriptionScreen',
+                            name: SubscriptionScreen.routeName,
+                            builder: (context, state) =>
+                                const SubscriptionScreen(),
                           ),
                           GoRoute(
                             path: 'AdswipeScreen',
@@ -164,12 +170,6 @@ class AppRouter {
                                 builder: (context, state) =>
                                     const RevealedScreen(),
                               ),
-                              GoRoute(
-                                path: 'SnapRevealedScreen',
-                                name: SnapRevealedScreen.routeName,
-                                builder: (context, state) =>
-                                    const SnapRevealedScreen(),
-                              )
                             ]),
                       ]),
                   StatefulShellBranch(

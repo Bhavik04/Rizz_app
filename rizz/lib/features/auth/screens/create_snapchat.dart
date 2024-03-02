@@ -51,7 +51,6 @@ class _SnapchatScreenState extends State<SnapchatScreen> {
           onBack: () {
             context.goNamed(UserNameScreen.routeName);
           },
-          showReportButton: false,
         ),
         body: Container(
           alignment: Alignment.topCenter,

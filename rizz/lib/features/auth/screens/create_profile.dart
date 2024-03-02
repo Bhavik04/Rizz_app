@@ -32,7 +32,6 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
           onBack: () {
             context.goNamed(PhotoScreen.routeName);
           },
-          showReportButton: false,
         ),
         body: Container(
           alignment: Alignment.topCenter,

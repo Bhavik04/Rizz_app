@@ -3,12 +3,15 @@ import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
-import 'package:rizz/features/auth/widgets/custom_popup.dart';
 
 class NewCardWidget extends StatefulWidget {
+  const NewCardWidget({super.key});
+
   @override
   State<NewCardWidget> createState() => _NewCardWidgetState();
 }
+
+// card should get deleted after 24 hours
 
 class _NewCardWidgetState extends State<NewCardWidget> {
   @override
@@ -69,21 +72,13 @@ class _NewCardWidgetState extends State<NewCardWidget> {
               children: [
                 CustomButton(
                   onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return CustomDialog(
-                          onButtonTap: (buttonText) {
-                            debugPrint('$buttonText button tapped');
-                          },
-                        );
-                      },
-                    );
+                    context.goNamed('SubscriptionScreen');
                   },
                   text: 'See who likes you',
                   image: Image.asset('assets/images/likesyou.png'),
                   buttonColor: HexColor('F24139'),
                   textColor: Colors.white,
+                  width: GlobalVariables.deviceWidth * 0.8,
                 ),
               ],
             ),

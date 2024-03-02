@@ -50,7 +50,6 @@ class _UserNameScreenState extends State<UserNameScreen> {
           onBack: () {
             context.goNamed(SignInPage.routeName);
           },
-          showReportButton: false,
         ),
         body: Container(
           alignment: Alignment.topCenter,

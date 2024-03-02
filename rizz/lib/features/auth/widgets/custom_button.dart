@@ -7,6 +7,10 @@ class CustomButton extends StatelessWidget {
   final Color textColor;
   final Image? image;
   final double borderRadius;
+  final double width;
+  final double height;
+  final double textSize;
+  final double iconSize;
 
   const CustomButton({
     this.onTap,
@@ -14,15 +18,19 @@ class CustomButton extends StatelessWidget {
     required this.buttonColor,
     required this.textColor,
     this.image,
-    this.borderRadius = 40, // Default value for borderRadius
+    this.borderRadius = 40,
+    this.width = 300,
+    this.height = 60,
+    this.textSize = 20,
+    this.iconSize = 24,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 300,
-      height: 60,
+      width: width,
+      height: height,
       child: Material(
         color: Colors.transparent,
         child: InkWell(
@@ -42,12 +50,16 @@ class CustomButton extends StatelessWidget {
                   if (image != null)
                     Padding(
                       padding: const EdgeInsets.only(right: 10.0),
-                      child: image,
+                      child: SizedBox(
+                        width: iconSize,
+                        height: iconSize,
+                        child: image,
+                      ),
                     ),
                   Text(
                     text,
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: textSize,
                       fontWeight: FontWeight.w800,
                       color: textColor,
                     ),

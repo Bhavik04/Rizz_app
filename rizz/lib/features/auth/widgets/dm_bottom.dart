@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_divider.dart';
-import 'package:rizz/features/auth/widgets/custom_popup.dart';
 
 void showMessageBottom(BuildContext context) {
   showModalBottomSheet(
@@ -46,7 +46,7 @@ Widget _buildMessageBottomSheet(BuildContext context) {
               margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.02),
               width: GlobalVariables.deviceWidth * 0.70,
               child: const Text(
-                '3 daily messages left',
+                '5 daily messages left',
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 style: TextStyle(
@@ -72,16 +72,7 @@ Widget _buildMessageBottomSheet(BuildContext context) {
               child: CustomButton(
                 onTap: () {
                   Navigator.pop(context);
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return CustomDialog(
-                        onButtonTap: (buttonText) {
-                          debugPrint('$buttonText button tapped');
-                        },
-                      );
-                    },
-                  );
+                  context.goNamed('SubscriptionScreen');
                 },
                 text: 'God Mode',
                 buttonColor: HexColor('F24139'),

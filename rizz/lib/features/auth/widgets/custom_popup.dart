@@ -21,12 +21,24 @@ class _CustomDialogState extends State<CustomDialog> {
 
   List<String> imageList = [
     'assets/images/sub_boost.png',
+    'assets/images/sub_superchat.png',
     'assets/images/sub_reveal.png',
     'assets/images/sub_chat.png',
     'assets/images/sub_snap.png',
     'assets/images/sub_swipe.png',
     'assets/images/sub_ads.png',
     'assets/images/sub_access.png',
+  ];
+
+  List<String> imageTexts = [
+    '5 weekly boost', // Added text for the first image
+    'Send unlimited Super Chats!',
+    'Unlock unlimited reveals!',
+    'Send unlimited DMs on reveals!',
+    'Reveal Snapchat usernames!',
+    'Swipe without limits!',
+    'Ad-free experience for Pro members!',
+    'Get early access to new features!',
   ];
 
   @override
@@ -52,8 +64,8 @@ class _CustomDialogState extends State<CustomDialog> {
       ),
       content: Container(
         alignment: Alignment.center,
-        height: GlobalVariables.deviceHeight * 0.560,
-        width: 260.0,
+        height: GlobalVariables.deviceHeight * 0.650,
+        width: 300.0,
         child: Column(
           children: [
             Container(
@@ -75,8 +87,8 @@ class _CustomDialogState extends State<CustomDialog> {
               ),
             ),
             Container(
-              height: 110,
-              width: 250,
+              height: 155,
+              //    width: 300,
               margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
               child: PageView.builder(
                 controller: pageController,
@@ -90,8 +102,22 @@ class _CustomDialogState extends State<CustomDialog> {
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Center(
-                      child: Image.asset(imageList[index]),
+                    child: Column(
+                      children: [
+                        Center(
+                          child: Image.asset(imageList[index]),
+                        ),
+                        const SizedBox(height: 8.0),
+                        Text(
+                          imageTexts[index],
+                          style: TextStyle(
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.w600,
+                            color: HexColor('D0D0D0'),
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
                     ),
                   );
                 },

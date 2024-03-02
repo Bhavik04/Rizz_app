@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/features/auth/widgets/custom_boost_popup.dart';
 import 'package:rizz/features/auth/widgets/custom_bottomsheet.dart';
-import 'package:rizz/features/auth/widgets/mini_boost_popup.dart';
+import 'package:rizz/features/auth/widgets/free_boost_popup.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
@@ -51,7 +51,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return MiniBoostPopup();
+                  return FreeBoostPopup();
                 },
               );
             },

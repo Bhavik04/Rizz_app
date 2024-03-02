@@ -139,23 +139,75 @@ class _PlayScreenState extends State<PlayScreen> {
                                       ),
                                       Row(
                                         children: [
+                                          // Column(
+                                          //   children: [
+                                          //     GestureDetector(
+                                          //       onTap: () {
+                                          //         showSnapchatBottom(context);
+                                          //       },
+                                          //       child: Padding(
+                                          //         padding: EdgeInsets.only(
+                                          //           right: GlobalVariables
+                                          //                   .deviceWidth *
+                                          //               0.02,
+                                          //         ),
+                                          //         child: Image.asset(
+                                          //           'assets/images/Snapchat.png',
+                                          //         ),
+                                          //       ),
+                                          //     ),
+                                          //   ],
+                                          // ),
                                           Column(
                                             children: [
                                               GestureDetector(
                                                 onTap: () {
                                                   showSnapchatBottom(context);
+                                                  // show users snap id in text instead of the snap.png if the user is premium
                                                 },
                                                 child: Padding(
                                                   padding: EdgeInsets.only(
-                                                    right: GlobalVariables
+                                                      right: GlobalVariables
+                                                              .deviceWidth *
+                                                          0.02),
+                                                  child: Container(
+                                                    height: GlobalVariables
+                                                            .deviceHeight *
+                                                        0.055,
+                                                    width: GlobalVariables
                                                             .deviceWidth *
-                                                        0.02,
-                                                  ),
-                                                  child: Image.asset(
-                                                    'assets/images/Snapchat.png',
+                                                        0.3,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20),
+                                                      color: Colors.yellow,
+                                                    ),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Image.asset(
+                                                            'assets/images/snap.png'),
+                                                        const SizedBox(
+                                                          width: 2,
+                                                        ),
+
+                                                        //show text only to premium users
+                                                        // const CustomText(
+                                                        //   text: '@sobuhikehde',
+                                                        //   fontSize: 12,
+                                                        //   fontWeight:
+                                                        //       FontWeight.normal,
+                                                        //   textColor:
+                                                        //       Colors.black,
+                                                        // )
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
+                                              )
                                             ],
                                           ),
                                           Column(
@@ -163,6 +215,8 @@ class _PlayScreenState extends State<PlayScreen> {
                                               GestureDetector(
                                                 onTap: () {
                                                   showSuperChat(context);
+
+                                                  // send user directly in users chat, if user is premium otherwise ask for a 5 star rating for a free super chat
                                                 },
                                                 child: Padding(
                                                   padding: EdgeInsets.only(
@@ -190,7 +244,7 @@ class _PlayScreenState extends State<PlayScreen> {
                                     ),
                                     height: GlobalVariables.deviceHeight * 0.12,
                                     decoration: BoxDecoration(
-                                      color: Colors.white24,
+                                      color: Colors.white38,
                                       border: Border.all(
                                           color: Colors.white24, width: 2),
                                       borderRadius: BorderRadius.circular(15.0),

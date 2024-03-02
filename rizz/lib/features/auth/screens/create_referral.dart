@@ -51,7 +51,6 @@ class _ReferralScreenState extends State<ReferralScreen> {
           onBack: () {
             context.goNamed(SnapchatScreen.routeName);
           },
-          showReportButton: false,
         ),
         body: Container(
           alignment: Alignment.topCenter,

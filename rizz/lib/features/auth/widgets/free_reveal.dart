@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
+import 'package:rizz/features/auth/widgets/custom_divider.dart';
 
-void showSuperChat(BuildContext context) {
+void showRevealBottom(BuildContext context) {
   showModalBottomSheet(
     context: context,
     isDismissible: true,
     backgroundColor: Colors.transparent,
     builder: (BuildContext context) {
-      return _buildSuperChat(context);
+      return _buildRevealBottomSheet(context);
     },
   );
 }
 
-Widget _buildSuperChat(BuildContext context) {
+Widget _buildRevealBottomSheet(BuildContext context) {
   return SingleChildScrollView(
     child: Container(
       width: MediaQuery.of(context).size.width,
@@ -34,7 +34,7 @@ Widget _buildSuperChat(BuildContext context) {
             Container(
               margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.01),
               child: Text(
-                'Unlimited Super Chats',
+                'Unlimited Reveals',
                 style: TextStyle(
                     color: HexColor('FF8A00'),
                     fontSize: 24,
@@ -43,9 +43,9 @@ Widget _buildSuperChat(BuildContext context) {
             ),
             Container(
               margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.02),
-              width: GlobalVariables.deviceWidth * 0.60,
+              width: GlobalVariables.deviceWidth * 0.75,
               child: const Text(
-                'Premium users can chat instantly without rating anyone',
+                'Share the best rating on your snap story and get unlimited reveals for a day',
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 style: TextStyle(
@@ -58,17 +58,43 @@ Widget _buildSuperChat(BuildContext context) {
               margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.02),
               child: CustomButton(
                 onTap: () {
-                  Navigator.pop(context);
-                  context.goNamed('SubscriptionScreen');
+                  //SHARE RATING TO SNAP STORY
                 },
-                text: 'God Mode',
+                text: 'Share',
+                image: Image.asset('assets/images/snap.png'),
+                buttonColor: HexColor('FFE500'),
+                textColor: Colors.white,
+              ),
+            ),
+            Container(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: CustomDividerRow()),
+            Container(
+              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.02),
+              child: CustomButton(
+                onTap: () {
+                  // SHOW ONE AD
+                },
+                text: 'Watch AD',
                 buttonColor: HexColor('F24139'),
                 textColor: HexColor('FFFFFF'),
-                image: Image.asset('assets/images/thunder.png'),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.01),
+              width: GlobalVariables.deviceWidth * 0.70,
+              child: const Text(
+                'Watch one ad for each reveal',
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                style: TextStyle(
+                    color: Colors.black54,
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold),
               ),
             ),
             const SizedBox(
-              height: 25,
+              height: 20,
             )
           ],
         ),

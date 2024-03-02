@@ -33,11 +33,11 @@ class Powers extends StatelessWidget {
               'assets/images/freeboost.png',
               'Unlock free mini boost',
             ),
-            // SizedBox(height: GlobalVariables.deviceHeight * 0.01),
-            // _buildPowerRow(
-            //   'assets/images/directheart.png',
-            //   'Get 5 Super ',
-            // ),
+            SizedBox(height: GlobalVariables.deviceHeight * 0.01),
+            _buildPowerRow(
+              'assets/images/directheart.png',
+              'Get 5 Super ',
+            ),
             SizedBox(height: GlobalVariables.deviceHeight * 0.01),
             _buildPowerRow(
               'assets/images/chat.png',

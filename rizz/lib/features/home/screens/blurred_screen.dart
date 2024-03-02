@@ -6,6 +6,7 @@ import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
 import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
+import 'package:rizz/features/auth/widgets/free_reveal.dart';
 
 class BlurredScreen extends StatefulWidget {
   static const routeName = 'BlurredScreen';
@@ -92,7 +93,10 @@ class _BlurredScreenState extends State<BlurredScreen> {
                       child: Column(
                         children: [
                           CustomButton(
-                            onTap: () {},
+                            onTap: () {
+                              showRevealBottom(context);
+                              //SHOW THIS TILL THE USER CLICKS ON  THE SHARE BUTTON, AFTER THAT JUST DIRECTLY SEND TO SNAP STORY
+                            },
                             text: 'Answer',
                             image: Image.asset('assets/images/snap.png'),
                             buttonColor: HexColor('FFE500'),
@@ -113,6 +117,7 @@ class _BlurredScreenState extends State<BlurredScreen> {
                         children: [
                           CustomButton(
                             onTap: () {
+                              //FIRST SHOW FREE REVEAL SHEET TILL THE USER CLICKS ON  THE SHARE BUTTON, AFTER THAT GIVE unlimited REVEALS WITHOUT ADS for a day
                               context.goNamed('RevealedScreen');
                             },
                             text: 'Reveal Sender',
@@ -136,7 +141,6 @@ class _BlurredScreenState extends State<BlurredScreen> {
                 onBack: () {
                   Navigator.pop(context);
                 },
-                showReportButton: false,
               ),
             ),
           ],

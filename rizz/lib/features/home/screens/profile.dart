@@ -1,8 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
-import 'package:rizz/features/auth/widgets/free_powers.dart';
+import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/photos_sheet.dart';
 import 'package:rizz/services/auth_service.dart';
 import 'package:rizz/services/firestore_service.dart';
@@ -148,7 +149,36 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     fontWeight: FontWeight.normal,
                   ),
                 ),
-                const Powers(),
+
+                //  const Powers(),
+
+                Container(
+                  margin: EdgeInsets.only(
+                    top: GlobalVariables.deviceHeight * 0.03,
+                  ),
+                  child: GestureDetector(
+                    onTap: () {
+                      context.goNamed('SubscriptionScreen');
+                    },
+                    child: Image.asset(
+                      'assets/images/subscription.png',
+                      width: GlobalVariables.deviceHeight * 0.5,
+                    ),
+                  ),
+                ),
+                Container(
+                  margin:
+                      EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
+                  child: CustomButton(
+                    onTap: () {
+                      // get user feedback
+                    },
+                    text: 'Send Feedback',
+                    buttonColor: Colors.red,
+                    textColor: Colors.white,
+                    borderRadius: 10,
+                  ),
+                )
               ],
             ),
           ),

@@ -33,7 +33,7 @@ class _InboxScreenState extends State<InboxScreen> {
               textColor: Colors.white,
             ),
           ),
-          Expanded(
+          const Expanded(
             child: NewCardWidget(),
           ),
         ],

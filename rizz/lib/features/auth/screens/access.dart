@@ -32,7 +32,6 @@ class _AcessScreenState extends State<AcessScreen> {
           onBack: () {
             context.goNamed(GenderScreen.routeName);
           },
-          showReportButton: false,
         ),
         body: Container(
           alignment: Alignment.topCenter,

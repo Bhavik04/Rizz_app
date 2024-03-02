@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
-import 'package:rizz/features/auth/widgets/custom_popup.dart';
 
 class CustomBoostPopup extends StatefulWidget {
   final VoidCallback onButtonTap;
@@ -87,16 +87,7 @@ class _CustomBoostPopupState extends State<CustomBoostPopup> {
                   text: 'Boost',
                   onTap: () {
                     Navigator.pop(context);
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return CustomDialog(
-                          onButtonTap: (buttonText) {
-                            debugPrint('$buttonText button tapped');
-                          },
-                        );
-                      },
-                    );
+                    context.goNamed('SubscriptionScreen');
                   },
                   buttonColor: HexColor('F24139'),
                   textColor: Colors.white),

@@ -34,7 +34,6 @@ class _GenderScreenState extends State<GenderScreen> {
           onBack: () {
             context.goNamed(AgeScreen.routeName);
           },
-          showReportButton: false,
         ),
         body: Container(
           alignment: Alignment.topCenter,
