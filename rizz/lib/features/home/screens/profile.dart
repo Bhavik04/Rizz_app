@@ -2,11 +2,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
+import 'package:rizz/db/modals/user.dart';
 import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/photos_sheet.dart';
 import 'package:rizz/services/auth_service.dart';
 import 'package:rizz/services/firestore_service.dart';
+import 'package:rizz/services/profile_service.dart';
 import 'package:rizz/services/storage_service.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -28,13 +30,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Future<void> fetchProfileImage() async {
-    final currentUserId = AuthService().currentUser!.uid;
+    // final currentUserId = AuthService().currentUser!.uid;
 
-    final userData = await FirestoreService().getUserData(currentUserId);
+    // final userData = await FirestoreService().getUserData(currentUserId);
+    User user = await ProfileService().getUserDetails();
 
-    if (userData != null && userData.containsKey('photoURL')) {
+    if (user.imageUrl.isNotEmpty) {
       setState(() {
-        profileImageURL = userData['photoURL'][0];
+        profileImageURL =user.imageUrl[0];
       });
     }
   }

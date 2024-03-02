@@ -1,7 +1,7 @@
 import 'package:rizz/db/services/dbstore.dart';
 import 'package:rizz/objectbox.g.dart';
 
-abstract class DatabaseService {
+ class DatabaseService {
   DBStore dbStore = DBStore();
   Store? _store = null;
 

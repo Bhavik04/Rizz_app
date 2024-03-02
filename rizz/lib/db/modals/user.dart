@@ -9,7 +9,7 @@ class User {
   String snapId;
   int age;
   String gender;
-  String imageUrl;
+  List<String> imageUrl;
 
   User({
     this.id = 0,
