@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
+import 'package:rizz/features/auth/screens/sign_in.dart';
 import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/photos_sheet.dart';
@@ -170,8 +171,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   margin:
                       EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
                   child: CustomButton(
-                    onTap: () {
-                      // get user feedback
+                    onTap: () async {
+                      AuthService authService = AuthService();
+                      await authService.signOut();
+                      context.goNamed(SignInPage.routeName);
                     },
                     text: 'Send Feedback',
                     buttonColor: Colors.red,

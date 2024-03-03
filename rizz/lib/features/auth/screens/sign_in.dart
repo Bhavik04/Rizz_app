@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
+import 'package:rizz/features/auth/screens/create_username.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/home/screens/play.dart';
 import 'package:rizz/services/auth_service.dart';
+import 'package:rizz/services/firestore_service.dart';
 
 class SignInPage extends StatefulWidget {
   static const routeName = 'SignInPage';
@@ -63,7 +65,17 @@ class _SignInPageState extends State<SignInPage> {
 
                   // Check signInSuccess before navigating
                   if (signInSuccess) {
-                    context.goNamed(PlayScreen.routeName);
+                    // Check if the user is new or existing
+                    final bool isNewUser = await FirestoreService()
+                        .checkIfNewUser(AuthService().currentUser?.uid ?? '');
+
+                    if (isNewUser) {
+                      // For a new user, navigate to the UserNameScreen
+                      context.goNamed(UserNameScreen.routeName);
+                    } else {
+                      // For an existing user, navigate to the PlayScreen
+                      context.goNamed(PlayScreen.routeName);
+                    }
                   } else {
                     // Handle the case where sign-in was not successful
                     // Add appropriate feedback to the user if needed
