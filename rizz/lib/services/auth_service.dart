@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:rizz/services/firestore_service.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -12,6 +13,13 @@ class AuthService {
   Future<void> signInWithGoogle(
       {required Function(bool) onSignInComplete}) async {
     try {
+      // Sign out the current user from Google Sign-In
+      await _gUser.signOut();
+
+      // Sign out the current user from Firebase Authentication
+      await _auth.signOut();
+
+      // Trigger the Google Sign-In process
       final GoogleSignInAccount? googleSignInAccount = await _gUser.signIn();
 
       if (googleSignInAccount == null) {
@@ -29,19 +37,27 @@ class AuthService {
         idToken: googleSignInAuthentication.idToken,
       );
 
+      // Sign in with Firebase using the obtained credentials
       await _auth.signInWithCredential(authCredential);
 
-      if (_auth.currentUser != null) {
-        // Sign-in successful
-        print('User signed in successfully');
+      // Check if the user is new or existing
+      final bool isNewUser =
+          await FirestoreService().checkIfNewUser(_auth.currentUser?.uid ?? '');
+
+      // Depending on the user's status, navigate to the appropriate screen
+      if (isNewUser) {
+        // For a new user, navigate to the UserNameScreen
+        print('New user signed in successfully');
         onSignInComplete(true);
       } else {
-        // Handle the case where sign-in was not successful
-        print('Sign-in not successful');
-        onSignInComplete(false);
+        // For an existing user, navigate to the PlayScreen
+        print('Existing user signed in successfully');
+        // Adjust this line based on your navigation logic
+        // For example: context.goNamed(PlayScreen.routeName);
+        onSignInComplete(true);
       }
     } on FirebaseAuthException catch (e) {
-      // Handle other FirebaseAuthExceptions
+      // Handle FirebaseAuthExceptions
       print(e.message);
       onSignInComplete(false);
     } on Exception catch (e) {

@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:rizz/features/auth/screens/sign_in.dart';
-import 'package:rizz/services/auth_service.dart';
-import 'package:rizz/services/firestore_service.dart';
-import 'package:rizz/services/storage_service.dart';
 
 class CustomPopup extends StatelessWidget {
   const CustomPopup({super.key});
@@ -44,9 +39,7 @@ class CustomPopup extends StatelessWidget {
                 ),
                 const SizedBox(width: 20),
                 ElevatedButton(
-                  onPressed: () async {
-                    await onDelete(context);
-                  },
+                  onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white24,
                   ),
@@ -61,27 +54,5 @@ class CustomPopup extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Future<void> onDelete(BuildContext context) async {
-    try {
-      final uid = AuthService().currentUser?.uid;
-      if (uid != null) {
-        await AuthService().signOut();
-
-        // Delete Firestore data
-        await FirestoreService().deleteUserData(uid);
-
-        // Delete Storage data
-        await StorageService().deleteProfileImage(uid);
-
-        // Delete Firebase Authentication data
-        await AuthService().deleteUser();
-
-        context.goNamed(SignInPage.routeName);
-      }
-    } catch (e) {
-      print('Error deleting user: $e');
-    }
   }
 }

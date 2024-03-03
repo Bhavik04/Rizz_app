@@ -39,15 +39,33 @@ class FirestoreService {
       dataToUpdate['photoURL'] = photoURLs;
     }
 
-    // Generate and store referral code
-    final String referralCode = _generateReferralCode();
-    dataToUpdate['referralCode'] = referralCode;
+    // Check if the user is new or existing
+    final bool isNewUser = await checkIfNewUser(uid);
+
+    // Generate and store referral code only for new users
+    if (isNewUser) {
+      final String referralCode = _generateReferralCode();
+      dataToUpdate['referralCode'] = referralCode;
+    }
 
     if (dataToUpdate.isNotEmpty) {
       await _firestore
           .collection('users')
           .doc(uid)
           .set(dataToUpdate, SetOptions(merge: true));
+    }
+  }
+
+  Future<bool> checkIfNewUser(String uid) async {
+    try {
+      final DocumentSnapshot<Map<String, dynamic>> userSnapshot =
+          await _firestore.collection('users').doc(uid).get();
+
+      return !userSnapshot
+          .exists; // If the user exists, return false; otherwise, return true
+    } catch (e) {
+      print('Error checking if user is new: $e');
+      return true; // Consider the user as new in case of an exception
     }
   }
 

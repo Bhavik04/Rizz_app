@@ -41,16 +41,20 @@ class ArrowBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: textPadding,
-              child: Text(
-                title,
-                style: TextStyle(
-                  color: titleColor ?? GlobalVariables.themeColor,
-                  fontSize: 25.0,
-                  fontWeight: FontWeight.bold,
+            Expanded(
+              child: Center(
+                child: Padding(
+                  padding: textPadding,
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      color: titleColor ?? GlobalVariables.themeColor,
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-                textAlign: TextAlign.center,
               ),
             ),
             if (showReportButton)

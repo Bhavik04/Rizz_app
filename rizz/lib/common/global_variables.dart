@@ -9,10 +9,10 @@ class GlobalVariables {
       window.physicalSize.height / window.devicePixelRatio;
   static Color themeColor = HexColor("FD630F");
 
-   static String? uid;
-   static String? username;
-   static String? snapchat;
-   static int? age;
-   static String? gender = '';
-   static List<String> photoURLs=[];
+//  static String? uid;
+  static String? username;
+  static String? snapchat;
+  static int? age;
+  static String? gender = '';
+  static List<String> photoURLs = [];
 }
