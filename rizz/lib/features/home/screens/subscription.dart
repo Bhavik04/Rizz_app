@@ -67,8 +67,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
           child: Column(
             children: [
               Container(
-                margin:
-                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.00),
+             
                 alignment: Alignment.center,
                 width: GlobalVariables.deviceWidth * 0.70,
                 child: Row(
@@ -77,7 +76,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                     const Text(
                       'God Mode',
                       style: TextStyle(
-                        fontSize: 30,
+                        fontSize: 27,
                         fontWeight: FontWeight.w900,
                         color: Colors.white,
                       ),
@@ -107,7 +106,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                       child: Column(
                         children: [
                           SizedBox(
-                            height: GlobalVariables.deviceHeight * 0.2,
+                            height: GlobalVariables.deviceHeight * 0.18,
                             child: Center(
                               child: Image.asset(imageList[index]),
                             ),
@@ -117,7 +116,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                             child: Text(
                               imageTexts[index],
                               style: const TextStyle(
-                                fontSize: 17.0,
+                                fontSize: 16.5,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.white,
                               ),

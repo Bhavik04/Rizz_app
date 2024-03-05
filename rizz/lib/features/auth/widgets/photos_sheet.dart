@@ -72,7 +72,7 @@ class _PhotoSheetState extends State<PhotoSheet> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              buildPhotoContainer('assets/images/image1.png'),
+              buildPhotoContainer(''),
               buildPhotoContainer(''),
               buildPhotoContainer(''),
             ],

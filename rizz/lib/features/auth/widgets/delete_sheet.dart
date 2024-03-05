@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:rizz/features/auth/screens/sign_in.dart';
 import 'package:rizz/features/auth/widgets/delete_popup.dart';
+import 'package:rizz/services/auth_service.dart';
 
 void showDeleteSheet(BuildContext context) {
   showModalBottomSheet(
@@ -36,6 +39,20 @@ Widget _buildDeleteSheet(BuildContext context) {
           18,
           FontWeight.normal,
           () {},
+        ),
+        const Divider(
+          height: 2,
+        ),
+        _buildBottomSheetItem(
+          context,
+          'Sign Out',
+          Colors.red,
+          18,
+          FontWeight.normal,
+          () async {
+            await AuthService().signOut();
+            context.goNamed(SignInPage.routeName);
+          },
         ),
         const Divider(
           height: 2,
