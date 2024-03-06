@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:rizz/features/auth/screens/sign_in.dart';
+import 'package:rizz/services/storage_service.dart';
+import 'package:rizz/services/firestore_service.dart';
+import 'package:rizz/services/auth_service.dart';
 
 class CustomPopup extends StatelessWidget {
-  const CustomPopup({super.key});
+  final String uid;
+
+  const CustomPopup({Key? key, required this.uid}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +25,7 @@ class CustomPopup extends StatelessWidget {
         child: Column(
           children: [
             const Text(
-              'If you will delete your account, you will loose all your data, chats & inbox ratings...',
+              'If you will delete your account, you will lose all your data, chats & inbox ratings...',
               style: TextStyle(color: Colors.white),
             ),
             const SizedBox(height: 20),
@@ -39,7 +46,24 @@ class CustomPopup extends StatelessWidget {
                 ),
                 const SizedBox(width: 20),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    try {
+                      // Delete profile image from Firebase Storage
+                      await StorageService().deleteProfileImage(uid);
+
+                      // Delete user data from Firestore
+                      await FirestoreService().deleteUserData(uid);
+
+                      // Delete the user from Firebase Authentication
+                      await AuthService().deleteUser();
+
+                      // Additional logic if needed
+                      context.goNamed(SignInPage.routeName);
+                    } catch (e) {
+                      // Handle the error, show a message, or log it
+                      print('Error deleting user data: $e');
+                    }
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white24,
                   ),

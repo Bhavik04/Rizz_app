@@ -39,10 +39,10 @@
               "client_type": 3
             },
             {
-              "client_id": "616555807283-rj9n78cjept6e25jet9jgm3bmfdccuu2.apps.googleusercontent.com",
+              "client_id": "616555807283-23vb950d8tao6u3334efs9r77e5fhkoa.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.rizz"
+                "bundle_id": "com.example.rizz.RunnerTests"
               }
             }
           ]

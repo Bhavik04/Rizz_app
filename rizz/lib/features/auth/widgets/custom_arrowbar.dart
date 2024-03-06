@@ -12,7 +12,7 @@ class ArrowBar extends StatelessWidget implements PreferredSizeWidget {
   final EdgeInsetsGeometry textPadding;
 
   const ArrowBar({
-    super.key,
+    Key? key,
     required this.title,
     required this.backgroundColor,
     this.titleColor,
@@ -20,7 +20,7 @@ class ArrowBar extends StatelessWidget implements PreferredSizeWidget {
     this.showReportButton = false,
     this.showCrossIcon = false,
     this.textPadding = const EdgeInsets.all(0.0),
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -58,14 +58,17 @@ class ArrowBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             ),
             if (showReportButton)
-              GestureDetector(
-                onTap: () {
-                  showSkipSheet(context, includeSkipUser: false);
-                },
-                child: const Icon(
-                  Icons.report,
-                  size: 30.0,
-                  color: Colors.white,
+              Padding(
+                padding: const EdgeInsets.only(right: 10.0),
+                child: GestureDetector(
+                  onTap: () {
+                    showSkipSheet(context, includeSkipUser: false);
+                  },
+                  child: Image.asset(
+                    'assets/images/report.png',
+                    width: 30.0,
+                    height: 30.0,
+                  ),
                 ),
               ),
           ],

@@ -87,10 +87,10 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                 ),
               ),
               Container(
-                height: 210,
-                width: 350,
+                height: GlobalVariables.deviceHeight *0.27,
+                width: GlobalVariables.deviceWidth *0.8,
                 margin:
-                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.01),
+                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.04),
                 child: PageView.builder(
                   controller: pageController,
                   scrollDirection: Axis.horizontal,
@@ -102,11 +102,11 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                   },
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(0.0),
                       child: Column(
                         children: [
                           SizedBox(
-                            height: GlobalVariables.deviceHeight * 0.18,
+                            height: GlobalVariables.deviceHeight * 0.19,
                             child: Center(
                               child: Image.asset(imageList[index]),
                             ),
@@ -130,19 +130,21 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                   },
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(
-                  imageList.length,
-                  (index) => Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                    width: 8.0,
-                    height: 8.0,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: index == currentPage
-                          ? HexColor('F24139')
-                          : Colors.white,
+              Container(margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.00),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(
+                    imageList.length,
+                    (index) => Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                      width: 8.0,
+                      height: 8.0,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: index == currentPage
+                            ? HexColor('F24139')
+                            : Colors.white,
+                      ),
                     ),
                   ),
                 ),
@@ -150,7 +152,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
             ],
           ),
         ),
-        bottomSheet: const SubscriptionBottomSheet(),
+bottomSheet: const SubscriptionBottomSheet(),
       ),
     );
   }

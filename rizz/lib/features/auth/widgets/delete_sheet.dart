@@ -15,6 +15,8 @@ void showDeleteSheet(BuildContext context) {
 }
 
 Widget _buildDeleteSheet(BuildContext context) {
+  final String uid = AuthService().currentUser!.uid;
+
   return Container(
     color: Colors.transparent,
     child: Column(
@@ -67,7 +69,7 @@ Widget _buildDeleteSheet(BuildContext context) {
             showDialog(
               context: context,
               builder: (BuildContext context) {
-                return const CustomPopup();
+                return CustomPopup(uid: uid);
               },
             );
           },

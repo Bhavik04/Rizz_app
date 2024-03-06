@@ -39,7 +39,7 @@ class _SubscriptionBottomSheetState extends State<SubscriptionBottomSheet> {
               Container(
                 width: 40,
                 height: 5,
-                margin: const EdgeInsets.symmetric(vertical: 6),
+                margin: const EdgeInsets.symmetric(vertical: 0),
                 decoration: BoxDecoration(
                   color: Colors.black,
                   borderRadius: BorderRadius.circular(4),
@@ -64,7 +64,8 @@ class _SubscriptionBottomSheetState extends State<SubscriptionBottomSheet> {
                   buttonColor: HexColor('F24139'),
                   textColor: Colors.white,
                   width: GlobalVariables.deviceWidth * 0.9,
-                  height: GlobalVariables.deviceHeight * 0.09,
+                //  height: GlobalVariables.deviceHeight * 0.09,
+                height: 70,
                   textSize: 22,
                 ),
               ),
@@ -122,7 +123,8 @@ class _SubscriptionBottomSheetState extends State<SubscriptionBottomSheet> {
           },
           child: Container(
             width: GlobalVariables.deviceWidth * 0.27,
-            height: GlobalVariables.deviceHeight * 0.19,
+          //  height: GlobalVariables.deviceHeight * 0.19,
+          height: 135,
             decoration: BoxDecoration(
               color: Colors.black,
               borderRadius: BorderRadius.circular(12),
@@ -138,7 +140,7 @@ class _SubscriptionBottomSheetState extends State<SubscriptionBottomSheet> {
             child: Padding(
               padding: const EdgeInsets.all(11.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
                     padding: const EdgeInsets.all(1),
@@ -158,7 +160,7 @@ class _SubscriptionBottomSheetState extends State<SubscriptionBottomSheet> {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  const SizedBox(height: 20),
+                   SizedBox(height: GlobalVariables.deviceHeight *0.02),
                   Text(
                     rupeesText,
                     style: const TextStyle(
