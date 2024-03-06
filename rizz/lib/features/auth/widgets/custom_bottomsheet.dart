@@ -9,7 +9,10 @@ void showCustomBottomSheet(BuildContext context) {
     isDismissible: true,
     builder: (BuildContext context) {
       return DraggableScrollableSheet(
-        initialChildSize: 0.9,
+        initialChildSize: 0.72,
+        maxChildSize: 0.75,
+        minChildSize: 0.70,
+
         expand: false,
         builder: (BuildContext context, ScrollController scrollController) {
           return _buildCustomBottomSheet(context, scrollController);

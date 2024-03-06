@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
@@ -31,7 +32,7 @@ class _CustomBoostPopupState extends State<CustomBoostPopup> {
       ),
       content: Container(
         alignment: Alignment.center,
-        height: GlobalVariables.deviceHeight * 0.560,
+        height: 410,
         width: 260.0,
         child: Column(
           children: [
@@ -47,7 +48,7 @@ class _CustomBoostPopupState extends State<CustomBoostPopup> {
                       fontWeight: FontWeight.w900,
                       color: HexColor('FD630F')),
                 )),
-            SizedBox(
+            Container(margin: EdgeInsets.only(top: GlobalVariables.deviceHeight *0.01),
               width: GlobalVariables.deviceWidth * 0.70,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -65,12 +66,12 @@ class _CustomBoostPopupState extends State<CustomBoostPopup> {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.08),
+              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.07),
               alignment: Alignment.center,
               child: Image.asset('assets/images/boost.png'),
             ),
             Container(
-              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
+              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.02),
               width: GlobalVariables.deviceWidth * 0.70,
               child: Text(
                 'Get super boosts & 10x messages',
@@ -82,7 +83,7 @@ class _CustomBoostPopupState extends State<CustomBoostPopup> {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
+              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.02),
               child: CustomButton(
                   text: 'Boost',
                   onTap: () {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
@@ -20,7 +21,7 @@ class FreeBoostPopup extends StatelessWidget {
       ),
       content: Container(
         alignment: Alignment.center,
-        height: GlobalVariables.deviceHeight * 0.560,
+        height: 410,
         width: 260.0,
         child: Column(
           children: [
@@ -36,7 +37,7 @@ class FreeBoostPopup extends StatelessWidget {
                     color: HexColor('FD630F')),
               ),
             ),
-            SizedBox(
+            Container( margin: EdgeInsets.only(top: GlobalVariables.deviceHeight *0.01),
               width: GlobalVariables.deviceWidth * 0.70,
               child: Text(
                 'Get one free boost for each invite',
@@ -48,12 +49,12 @@ class FreeBoostPopup extends StatelessWidget {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.08),
+              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.07),
               alignment: Alignment.center,
               child: Image.asset('assets/images/boost.png'),
             ),
             Container(
-              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
+              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.02),
               width: GlobalVariables.deviceWidth * 0.70,
               child: Text(
                 'Get free boosts upto 3 invites',
@@ -65,7 +66,7 @@ class FreeBoostPopup extends StatelessWidget {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
+              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.02),
               child: CustomButton(
                   text: 'Invite friend',
                   onTap: () {
