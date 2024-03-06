@@ -58,7 +58,7 @@ class _BlurredScreenState extends State<BlurredScreen> {
                           const Text(
                             'A 21 year old girl from New Delhi',
                             style: TextStyle(
-                              fontSize: 16.0,
+                              fontSize: 20.0,
                               color: Colors.white,
                               fontWeight: FontWeight.normal,
                             ),
@@ -72,14 +72,14 @@ class _BlurredScreenState extends State<BlurredScreen> {
                                   text: 'Rated you:',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w900,
-                                    fontSize: 25.0,
+                                    fontSize: 30.0,
                                   ),
                                 ),
                                 TextSpan(
                                     text: '\n10',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w900,
-                                        fontSize: 80)),
+                                        fontSize: 90)),
                               ],
                             ),
                           ),

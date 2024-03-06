@@ -35,7 +35,7 @@ class _NewCardWidgetState extends State<NewCardWidget> {
                   color: Colors.deepPurpleAccent,
                   elevation: 2.0,
                   child: Container(
-                    height: GlobalVariables.deviceHeight * 0.10,
+                    height: 70,
                     padding: EdgeInsets.only(
                         bottom: GlobalVariables.deviceHeight * 0.02),
                     child: ListTile(
