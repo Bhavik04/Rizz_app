@@ -35,9 +35,9 @@ class FirestoreService {
     if (gender != null && gender.isNotEmpty) {
       dataToUpdate['gender'] = gender;
     }
-    if (photoURLs.isNotEmpty) {
-      dataToUpdate['photoURL'] = photoURLs;
-    }
+   if (photoURLs.isNotEmpty) {
+  dataToUpdate['photoURLs'] = FieldValue.arrayUnion(photoURLs);
+}
 
     // Check if the user is new or existing
     final bool isNewUser = await checkIfNewUser(uid);
@@ -85,11 +85,11 @@ class FirestoreService {
     }
   }
 
-  Future<Map<String, dynamic>?> getUserDataForImage(String imageURL) async {
+  Future<Map<String, dynamic>?> getUserDataForImage(dynamic imageURL) async {
     try {
       final QuerySnapshot<Map<String, dynamic>> querySnapshot = await _firestore
           .collection('users')
-          .where('photoURL', isEqualTo: imageURL)
+          .where('photoURLs', isEqualTo: imageURL)
           .get();
 
       if (querySnapshot.docs.isNotEmpty) {
@@ -103,16 +103,16 @@ class FirestoreService {
     }
   }
 
-  Future<List<String>> getAllUserImages(String currentUserUid) async {
+  Future<List> getAllUserImages(String currentUserUid)  async {
     try {
       final QuerySnapshot<Map<String, dynamic>> querySnapshot =
-          await _firestore.collection('users').get();
+           await _firestore.collection('users').get();
 
       return querySnapshot.docs
           .where((document) =>
-              document['photoURL'] != null && document.id != currentUserUid)
-          .map((document) => document['photoURL'] as String)
-          .toList();
+              document['photoURLs'] != null && document.id != currentUserUid)
+          .map((document) => document['photoURLs'] )
+          .toList() ;
     } catch (e) {
       print('Error getting user images: $e');
       return [];

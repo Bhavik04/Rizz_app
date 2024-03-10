@@ -19,7 +19,7 @@ class PlayScreen extends StatefulWidget {
 
 class _PlayScreenState extends State<PlayScreen> {
   String? referralCode;
-  List<String> userImageURLs = [];
+  List<dynamic> userImageURLs = [];
 
   @override
   void initState() {
@@ -39,7 +39,7 @@ class _PlayScreenState extends State<PlayScreen> {
   }
 
   Future<void> _loadUserImages() async {
-    final List<String> images = await FirestoreService()
+    final List<dynamic> images = await FirestoreService()
         .getAllUserImages(AuthService().currentUser?.uid ?? '');
 
     setState(() {
@@ -83,7 +83,7 @@ class _PlayScreenState extends State<PlayScreen> {
                                   width: 1.0,
                                 ),
                                 image: DecorationImage(
-                                  image: NetworkImage(userImageURLs[index]),
+                                  image: NetworkImage(userImageURLs[index][0]),
                                   fit: BoxFit.cover,
                                 ),
                               ),
