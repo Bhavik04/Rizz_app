@@ -2,7 +2,7 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirestoreService {
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   String _generateReferralCode() {
     const String alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -49,7 +49,7 @@ class FirestoreService {
     }
 
     if (dataToUpdate.isNotEmpty) {
-      await _firestore
+      await firestore
           .collection('users')
           .doc(uid)
           .set(dataToUpdate, SetOptions(merge: true));
@@ -59,7 +59,7 @@ class FirestoreService {
   Future<bool> checkIfNewUser(String uid) async {
     try {
       final DocumentSnapshot<Map<String, dynamic>> userSnapshot =
-          await _firestore.collection('users').doc(uid).get();
+          await firestore.collection('users').doc(uid).get();
 
       return !userSnapshot
           .exists; // If the user exists, return false; otherwise, return true
@@ -72,7 +72,7 @@ class FirestoreService {
   Future<Map<String, dynamic>?> getUserData(String uid) async {
     try {
       final DocumentSnapshot documentSnapshot =
-          await _firestore.collection('users').doc(uid).get();
+          await firestore.collection('users').doc(uid).get();
 
       if (documentSnapshot.exists) {
         return documentSnapshot.data() as Map<String, dynamic>;
@@ -87,7 +87,7 @@ class FirestoreService {
 
   Future<Map<String, dynamic>?> getUserDataForImage(dynamic imageURL) async {
     try {
-      final QuerySnapshot<Map<String, dynamic>> querySnapshot = await _firestore
+      final QuerySnapshot<Map<String, dynamic>> querySnapshot = await firestore
           .collection('users')
           .where('photoURLs', isEqualTo: imageURL)
           .get();
@@ -106,7 +106,7 @@ class FirestoreService {
   Future<List> getAllUserImages(String currentUserUid)  async {
     try {
       final QuerySnapshot<Map<String, dynamic>> querySnapshot =
-           await _firestore.collection('users').get();
+           await firestore.collection('users').get();
 
       return querySnapshot.docs
           .where((document) =>
@@ -120,6 +120,6 @@ class FirestoreService {
   }
 
   Future<void> deleteUserData(String uid) async {
-    await _firestore.collection('users').doc(uid).delete();
+    await firestore.collection('users').doc(uid).delete();
   }
 }
