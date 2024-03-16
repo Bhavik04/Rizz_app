@@ -1,15 +1,16 @@
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:rizz/services/auth_service.dart'; // to get the user's UID
+import 'package:rizz/services/auth_service.dart';
 
 class StorageService {
   final FirebaseStorage _storage = FirebaseStorage.instance;
 
-  Future<String> uploadImage(File imageFile) async {
+  Future<String> uploadImage(File imageFile, int containerIndex) async {
     try {
       final String uid = AuthService().currentUser!.uid;
-      const String folderName = 'profile_images';
-      final String fileName = '$folderName/$uid.png';
+      final String folderName = 'profile_images/$uid';
+
+      final String fileName = '$folderName/image_$containerIndex.png';
 
       final Reference storageReference = _storage.ref().child(fileName);
 
@@ -24,8 +25,14 @@ class StorageService {
     }
   }
 
-  Future<void> deleteProfileImage(String uid) async {
-    final String fileName = 'profile_images/$uid.png';
-    await _storage.ref().child(fileName).delete();
+  Future<void> deleteProfileFolder(String uid) async {
+    try {
+      final String folderName = 'profile_images/$uid';
+      await _storage.ref(folderName).delete();
+      print('User folder deleted successfully: $folderName');
+    } catch (e) {
+      print('Error deleting user folder: $e');
+      throw Exception('User folder deletion failed');
+    }
   }
 }

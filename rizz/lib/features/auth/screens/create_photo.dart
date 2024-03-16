@@ -35,8 +35,9 @@ class _PhotoScreenState extends State<PhotoScreen> {
       PhotoScreen.selectedImage = _pickedImage;
 
       try {
-        // Upload the image to Firebase Storage
-        final downloadURL = await StorageService().uploadImage(_pickedImage!);
+     // Upload the image to Firebase Storage
+final downloadURL = await StorageService().uploadImage(_pickedImage!, 1);
+
 
         // await FirestoreService().createUserData(
         //   AuthService().currentUser!.uid,

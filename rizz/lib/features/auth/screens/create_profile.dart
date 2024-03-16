@@ -63,7 +63,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                     margin: EdgeInsets.only(
                         top: GlobalVariables.deviceHeight * 0.03),
                     height: GlobalVariables.deviceHeight * 0.520,
-                    width: GlobalVariables.deviceWidth * 0.590,
+                    width: GlobalVariables.deviceWidth * 0.700,
                     decoration: BoxDecoration(
                       color: GlobalVariables.themeColor,
                       borderRadius: BorderRadius.circular(20),

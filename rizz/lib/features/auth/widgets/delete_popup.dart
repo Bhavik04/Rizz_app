@@ -49,7 +49,7 @@ class CustomPopup extends StatelessWidget {
                   onPressed: () async {
                     try {
                       // Delete profile image from Firebase Storage
-                      await StorageService().deleteProfileImage(uid);
+                      await StorageService().deleteProfileFolder(uid);
 
                       // Delete user data from Firestore
                       await FirestoreService().deleteUserData(uid);

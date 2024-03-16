@@ -51,7 +51,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return FreeBoostPopup();
+                  return const FreeBoostPopup();
                 },
               );
             },

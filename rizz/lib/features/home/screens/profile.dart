@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
+import 'package:rizz/features/auth/widgets/add_photo.dart';
 import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/photos_sheet.dart';
@@ -20,21 +21,27 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   String? profileImageURL;
+  String? snapchatId;
+  String? username;
+  int? age;
 
   @override
   void initState() {
     super.initState();
-    fetchProfileImage();
+    fetchProfileData();
   }
 
-  Future<void> fetchProfileImage() async {
+  Future<void> fetchProfileData() async {
     final currentUserId = AuthService().currentUser!.uid;
 
     final userData = await FirestoreService().getUserData(currentUserId);
 
-    if (userData != null && userData.containsKey('photoURL')) {
+    if (userData != null) {
       setState(() {
-        profileImageURL = userData['photoURL'][0];
+        profileImageURL = userData.containsKey('photoURL') ? userData['photoURL'][0] : null;
+        snapchatId = userData['snapchat'] as String?;
+        username = userData['username'] as String?;
+        age = userData['age'] as int?;
       });
     }
   }
@@ -42,8 +49,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void updateProfileImage(File newPhoto) async {
     final currentUserId = AuthService().currentUser!.uid;
 
-    // Upload the new photo to Firebase Storage
-    final downloadURL = await StorageService().uploadImage(newPhoto);
+   // Upload the new photo to Firebase Storage with container index 1
+final downloadURL = await StorageService().uploadImage(newPhoto, 1);
+
     GlobalVariables.photoURLs[0] = downloadURL;
 
     // Update the photoURL in Firestore
@@ -56,19 +64,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
       photoURLs: GlobalVariables.photoURLs,
     );
 
-    // Fetch and update the profile image
-    fetchProfileImage();
+    // Fetch and update the profile data
+    fetchProfileData();
   }
-
-  @override
+  
+@override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.black,
         appBar: ArrowBar(
           title: 'Profile',
-          textPadding:
-              EdgeInsets.only(right: GlobalVariables.deviceWidth * 0.09),
+          textPadding: EdgeInsets.only(right: GlobalVariables.deviceWidth * 0.09),
           backgroundColor: Colors.black,
           onBack: () {
             Navigator.pop(context);
@@ -118,7 +125,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         right: 0,
                         child: GestureDetector(
                           onTap: () {
-                            showPhotoSheet(context);
+                           showPhotoSheet(context);
                           },
                           child: Container(
                             padding: const EdgeInsets.all(7),
@@ -133,22 +140,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ],
                   ),
                 ),
-                const Text(
-                  '@jaat_boyhukka',
-                  style: TextStyle(
-                    fontSize: 22,
+                 Text(
+                  '@${snapchatId ?? 'loading...'}', // Display the Snapchat ID or 'loading...' if not available
+                  style: const TextStyle(
+                    fontSize: 24,
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const Text(
-                  'shobhit, 99',
-                  style: TextStyle(
+               
+                Text(
+                  '$username, ${age ?? 'loading...'}',
+                  style: const TextStyle(
                     fontSize: 18,
                     color: Colors.white,
                     fontWeight: FontWeight.normal,
                   ),
                 ),
+
 
                 //  const Powers(),
 

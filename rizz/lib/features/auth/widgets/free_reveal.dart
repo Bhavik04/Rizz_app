@@ -45,7 +45,7 @@ Widget _buildRevealBottomSheet(BuildContext context) {
               margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.02),
               width: GlobalVariables.deviceWidth * 0.75,
               child: const Text(
-                'Share the best rating on your snap story and get unlimited reveals for a day',
+                'Share this rating on your snap story and get unlimited reveals for a day',
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 style: TextStyle(

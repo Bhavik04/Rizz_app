@@ -76,7 +76,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                     const Text(
                       'God Mode',
                       style: TextStyle(
-                        fontSize: 27,
+                        fontSize: 30,
                         fontWeight: FontWeight.w900,
                         color: Colors.white,
                       ),
@@ -87,10 +87,10 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                 ),
               ),
               Container(
-                height: GlobalVariables.deviceHeight *0.27,
-                width: GlobalVariables.deviceWidth *0.8,
+                height: GlobalVariables.deviceHeight *0.32,
+                width: GlobalVariables.deviceWidth *0.85,
                 margin:
-                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.04),
+                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.05),
                 child: PageView.builder(
                   controller: pageController,
                   scrollDirection: Axis.horizontal,
@@ -106,7 +106,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                       child: Column(
                         children: [
                           SizedBox(
-                            height: GlobalVariables.deviceHeight * 0.19,
+                            height: GlobalVariables.deviceHeight * 0.20,
                             child: Center(
                               child: Image.asset(imageList[index]),
                             ),
@@ -116,7 +116,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                             child: Text(
                               imageTexts[index],
                               style: const TextStyle(
-                                fontSize: 16.5,
+                                fontSize: 20,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.white,
                               ),
@@ -130,7 +130,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                   },
                 ),
               ),
-              Container(margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.00),
+              Container(margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(
@@ -152,7 +152,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
             ],
           ),
         ),
-bottomSheet: const SubscriptionBottomSheet(),
+           bottomSheet: const SubscriptionBottomSheet(),
       ),
     );
   }

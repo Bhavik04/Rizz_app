@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/features/auth/widgets/custom_appbar.dart';
+import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
+import 'package:rizz/features/home/screens/play.dart';
 
 class ChatScreen extends StatefulWidget {
   static const routeName = 'ChatScreen';
@@ -34,6 +37,22 @@ class _ChatScreenState extends State<ChatScreen> {
               textColor: Colors.white,
             ),
           ),
+          Container(
+            margin: EdgeInsets.only(top: GlobalVariables.deviceHeight *0.2),
+            child: const CustomText(text: 'Oops! looks like you got no messages yet',
+            alignment: TextAlign.center,),),
+          Container(
+            margin: EdgeInsets.only(top: GlobalVariables.deviceHeight *0.05),
+            alignment: Alignment.center,
+            child: CustomButton(
+               onTap: () {
+                              context.goNamed(PlayScreen.routeName);
+                            },
+            text: 'Start rating',
+            buttonColor: GlobalVariables.themeColor,
+            textColor: Colors.white,
+        
+            ),)
         ],
       ),
     );

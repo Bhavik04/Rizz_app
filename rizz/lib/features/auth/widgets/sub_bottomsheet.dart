@@ -60,6 +60,9 @@ class _SubscriptionBottomSheetState extends State<SubscriptionBottomSheet> {
                 margin:
                     EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.01),
                 child: CustomButton(
+                   onTap: () {
+                             
+                            },
                   text: 'Slay God',
                   buttonColor: HexColor('F24139'),
                   textColor: Colors.white,

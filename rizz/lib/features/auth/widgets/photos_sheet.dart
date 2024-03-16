@@ -1,23 +1,27 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:rizz/common/global_variables.dart';
-import 'package:rizz/features/auth/widgets/add_photo.dart';
+import 'package:rizz/services/storage_service.dart';
 
 class PhotoSheet extends StatefulWidget {
+  const PhotoSheet({Key? key}) : super(key: key);
+
   @override
   _PhotoSheetState createState() => _PhotoSheetState();
 }
 
 class _PhotoSheetState extends State<PhotoSheet> {
-  @override
-  void initState() {
-    super.initState();
-  }
+  File? _image1;
+  File? _image2;
+  File? _image3;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.transparent,
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Container(
             height: 4,
@@ -26,113 +30,94 @@ class _PhotoSheetState extends State<PhotoSheet> {
               color: Colors.black,
               borderRadius: BorderRadius.circular(2),
             ),
-            margin: const EdgeInsets.symmetric(vertical: 8),
+            margin: const EdgeInsets.symmetric(vertical: 12),
           ),
-          Container(
-            padding: EdgeInsets.only(right: GlobalVariables.deviceWidth * 0.02),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Text(
-                      'Add Photos',
-                      style: TextStyle(
-                        color: GlobalVariables.themeColor,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: const Text(
-                      'Done',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+          const Text(
+            'Tap to add or change photo',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 12),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              buildPhotoContainer(''),
-              buildPhotoContainer(''),
-              buildPhotoContainer(''),
+              GestureDetector(
+                onTap: () => _openPicUpdateSheet(1),
+                child: _buildPhotoContainer(_image1),
+              ),
+              GestureDetector(
+                onTap: () => _openPicUpdateSheet(2),
+                child: _buildPhotoContainer(_image2),
+              ),
+              GestureDetector(
+                onTap: () => _openPicUpdateSheet(3),
+                child: _buildPhotoContainer(_image3),
+              ),
             ],
+          ),
+          const SizedBox(height: 5),
+          ElevatedButton(
+            onPressed: () async {
+              if (_image1 != null) {
+                final imageUrl = await StorageService().uploadImage(_image1!, 1);
+                // Handle saving or updating the image URL for container 1
+              }
+              if (_image2 != null) {
+                final imageUrl = await StorageService().uploadImage(_image2!, 2);
+                // Handle saving or updating the image URL for container 2
+              }
+              if (_image3 != null) {
+                final imageUrl = await StorageService().uploadImage(_image3!, 3);
+                // Handle saving or updating the image URL for container 3
+              }
+            },
+            style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 40),
+              backgroundColor: GlobalVariables.themeColor,
+            ),
+            child: const Text('Save', style: TextStyle(color: Colors.white)),
           ),
         ],
       ),
     );
   }
 
-  Widget buildPhotoContainer(String imagePath) {
-    bool hasImage = imagePath.isNotEmpty; // Check if the container has an image
-
-    return GestureDetector(
-      onTap: () {
-        showPicUpdateSheet(context);
-      },
-      child: Stack(
-        children: [
-          Container(
-            width: 110,
-            height: 160,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: hasImage
-                ? Image.asset(
-                    imagePath,
-                    fit: BoxFit.cover,
-                  )
-                : Center(
-                    child: Icon(
-                      Icons.add,
-                      size: 40,
-                      color: GlobalVariables.themeColor,
-                    ),
-                  ),
-          ),
-          Positioned(
-            top: 5,
-            right: 5,
-            child: Transform.translate(
-              offset: Offset(15, -15),
-              child: Container(
-                width: 30,
-                height: 30,
-                decoration: BoxDecoration(
-                  color: GlobalVariables.themeColor,
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Icon(
-                  hasImage ? Icons.remove : Icons.add,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
-        ],
+  Widget _buildPhotoContainer(File? imageFile) {
+    return Container(
+      width: 120,
+      height: 170,
+      decoration: BoxDecoration(
+        color: Colors.white12,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12),
+        child: imageFile != null
+            ? Image.file(imageFile, fit: BoxFit.cover, width: 120, height: 170)
+            : Icon(Icons.add, size: 50, color: GlobalVariables.themeColor),
       ),
     );
+  }
+
+  void _openPicUpdateSheet(int containerIndex) async {
+    final pickedImage =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+
+    if (pickedImage != null) {
+      final newPhoto = File(pickedImage.path);
+      setState(() {
+        if (containerIndex == 1)
+          _image1 = newPhoto;
+        else if (containerIndex == 2)
+          _image2 = newPhoto;
+        else if (containerIndex == 3)
+          _image3 = newPhoto;
+      });
+    }
   }
 }
 
@@ -143,10 +128,10 @@ void showPhotoSheet(BuildContext context) {
     backgroundColor: const Color.fromARGB(255, 15, 15, 15),
     builder: (BuildContext context) {
       return DraggableScrollableSheet(
-        initialChildSize: 0.8,
+        initialChildSize: 0.75,
         expand: false,
         builder: (BuildContext context, ScrollController scrollController) {
-          return PhotoSheet();
+          return const PhotoSheet();
         },
       );
     },
