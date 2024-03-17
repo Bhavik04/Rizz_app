@@ -14,6 +14,7 @@ import 'package:rizz/features/home/screens/ad_swipe.dart';
 import 'package:rizz/features/home/screens/blurred_screen.dart';
 import 'package:rizz/features/home/screens/chat.dart';
 import 'package:rizz/features/home/screens/inbox.dart';
+import 'package:rizz/features/home/screens/loading_screen.dart';
 import 'package:rizz/features/home/screens/play.dart';
 import 'package:rizz/features/home/screens/profile.dart';
 import 'package:rizz/features/home/screens/revealed_screen.dart';
@@ -65,6 +66,9 @@ class AppRouter {
                   name: SnapchatScreen.routeName,
                   builder: (context, state) => const SnapchatScreen(),
                   routes: [
+                    GoRoute(path: "LoadingScreen",
+                    name: LoadingScreen.routeName,
+                    builder: (context, state) => const LoadingScreen(),),
                     GoRoute(
                         path: 'ReferralScreen',
                         name: ReferralScreen.routeName,
