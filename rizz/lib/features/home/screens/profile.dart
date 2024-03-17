@@ -1,11 +1,16 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
+import 'package:rizz/db/modals/user.dart';
+import 'package:rizz/db/services/database_service.dart';
 import 'package:rizz/features/auth/widgets/add_photo.dart';
 import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/photos_sheet.dart';
+import 'package:rizz/objectbox.g.dart';
 import 'package:rizz/services/auth_service.dart';
 import 'package:rizz/services/firestore_service.dart';
 import 'package:rizz/services/storage_service.dart';
@@ -31,19 +36,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
     fetchProfileData();
   }
 
+  Future<AppUser> getCurrentUserDetails() async {
+    DatabaseService databaseService = GetIt.instance.get<DatabaseService>();
+    Store store = databaseService.getStore()!;
+    return store
+        .box<AppUser>()
+        .query(AppUser_.uId.equals(AuthService().currentUser!.uid))
+        .build()
+        .find()
+        .first;
+  }
+
+
   Future<void> fetchProfileData() async {
-    final currentUserId = AuthService().currentUser!.uid;
-
-    final userData = await FirestoreService().getUserData(currentUserId);
-
-    if (userData != null) {
+    // final userData = await FirestoreService().getUserData(currentUserId);
+    AppUser currentUser=await getCurrentUserDetails();
       setState(() {
-        profileImageURL = userData.containsKey('photoURL') ? userData['photoURL'][0] : null;
-        snapchatId = userData['snapchat'] as String?;
-        username = userData['username'] as String?;
-        age = userData['age'] as int?;
+        profileImageURL = jsonDecode(currentUser.imageUrls)[0];
+        snapchatId = currentUser.snapId;
+        username = currentUser.name;
+        age = currentUser.age;
       });
-    }
   }
 
   void updateProfileImage(File newPhoto) async {
