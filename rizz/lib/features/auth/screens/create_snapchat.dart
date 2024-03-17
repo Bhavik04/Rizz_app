@@ -36,7 +36,7 @@ class _SnapchatScreenState extends State<SnapchatScreen> {
 
   @override
   void dispose() {
-    _snapchatController.dispose();
+    // _snapchatController.dispose();
     super.dispose();
   }
 

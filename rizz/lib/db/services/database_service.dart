@@ -1,6 +1,8 @@
+import 'package:injectable/injectable.dart';
 import 'package:rizz/db/services/dbstore.dart';
 import 'package:rizz/objectbox.g.dart';
 
+@singleton
  class DatabaseService {
   DBStore dbStore = DBStore();
   Store? _store = null;
