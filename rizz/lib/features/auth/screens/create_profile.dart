@@ -6,6 +6,7 @@ import 'package:rizz/features/auth/screens/create_photo.dart';
 import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
+import 'package:rizz/features/home/screens/loading_screen.dart';
 import 'package:rizz/features/home/screens/play.dart';
 
 import '../../../services/auth_service.dart';
@@ -90,7 +91,8 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                           gender: GlobalVariables.gender,
                           photoURLs: GlobalVariables.photoURLs,
                         );
-                        context.goNamed(PlayScreen.routeName);
+                        // context.goNamed(PlayScreen.routeName);
+                        context.goNamed(LoadingScreen.routeName);
                       },
                       buttonColor: Colors.white,
                       textColor: Colors.black,

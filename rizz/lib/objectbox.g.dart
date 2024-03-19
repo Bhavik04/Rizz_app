@@ -20,44 +20,49 @@ export 'package:objectbox/objectbox.dart'; // so that callers only have to impor
 
 final _entities = <ModelEntity>[
   ModelEntity(
-      id: const IdUid(1, 4643737686930460596),
-      name: 'User',
-      lastPropertyId: const IdUid(7, 9169436890928778469),
+      id: const IdUid(2, 6810667852309190901),
+      name: 'AppUser',
+      lastPropertyId: const IdUid(8, 5336674238512703943),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 273237302179965456),
+            id: const IdUid(1, 7201364966282132036),
             name: 'id',
             type: 6,
             flags: 1),
         ModelProperty(
-            id: const IdUid(2, 372890020861545965),
-            name: 'name',
+            id: const IdUid(2, 320870156517220331),
+            name: 'uId',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(3, 3112333347511822020),
+            id: const IdUid(3, 6954266743099504584),
             name: 'email',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 1386536797943285672),
+            id: const IdUid(4, 4821538186021709762),
+            name: 'name',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(5, 6056671965920472618),
             name: 'snapId',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(5, 6693019418257389854),
+            id: const IdUid(6, 650115537996027714),
             name: 'age',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(6, 2088031263258165785),
+            id: const IdUid(7, 4526376265618484965),
             name: 'gender',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(7, 9169436890928778469),
-            name: 'imageUrl',
+            id: const IdUid(8, 5336674238512703943),
+            name: 'imageUrls',
             type: 9,
             flags: 0)
       ],
@@ -92,41 +97,53 @@ Future<Store> openStore(
 ModelDefinition getObjectBoxModel() {
   final model = ModelInfo(
       entities: _entities,
-      lastEntityId: const IdUid(1, 4643737686930460596),
+      lastEntityId: const IdUid(2, 6810667852309190901),
       lastIndexId: const IdUid(0, 0),
       lastRelationId: const IdUid(0, 0),
       lastSequenceId: const IdUid(0, 0),
-      retiredEntityUids: const [],
+      retiredEntityUids: const [4643737686930460596],
       retiredIndexUids: const [],
-      retiredPropertyUids: const [],
+      retiredPropertyUids: const [
+        9169436890928778469,
+        273237302179965456,
+        372890020861545965,
+        3112333347511822020,
+        1386536797943285672,
+        6693019418257389854,
+        2088031263258165785,
+        4653640834308927323,
+        7499113002254962779
+      ],
       retiredRelationUids: const [],
       modelVersion: 5,
       modelVersionParserMinimum: 5,
       version: 1);
 
   final bindings = <Type, EntityDefinition>{
-    User: EntityDefinition<User>(
+    AppUser: EntityDefinition<AppUser>(
         model: _entities[0],
-        toOneRelations: (User object) => [],
-        toManyRelations: (User object) => {},
-        getId: (User object) => object.id,
-        setId: (User object, int id) {
+        toOneRelations: (AppUser object) => [],
+        toManyRelations: (AppUser object) => {},
+        getId: (AppUser object) => object.id,
+        setId: (AppUser object, int id) {
           object.id = id;
         },
-        objectToFB: (User object, fb.Builder fbb) {
-          final nameOffset = fbb.writeString(object.name);
+        objectToFB: (AppUser object, fb.Builder fbb) {
+          final uIdOffset = fbb.writeString(object.uId);
           final emailOffset = fbb.writeString(object.email);
+          final nameOffset = fbb.writeString(object.name);
           final snapIdOffset = fbb.writeString(object.snapId);
           final genderOffset = fbb.writeString(object.gender);
-          final imageUrlOffset = fbb.writeString(object.imageUrl);
-          fbb.startTable(8);
+          final imageUrlsOffset = fbb.writeString(object.imageUrls);
+          fbb.startTable(9);
           fbb.addInt64(0, object.id);
-          fbb.addOffset(1, nameOffset);
+          fbb.addOffset(1, uIdOffset);
           fbb.addOffset(2, emailOffset);
-          fbb.addOffset(3, snapIdOffset);
-          fbb.addInt64(4, object.age);
-          fbb.addOffset(5, genderOffset);
-          fbb.addOffset(6, imageUrlOffset);
+          fbb.addOffset(3, nameOffset);
+          fbb.addOffset(4, snapIdOffset);
+          fbb.addInt64(5, object.age);
+          fbb.addOffset(6, genderOffset);
+          fbb.addOffset(7, imageUrlsOffset);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -135,26 +152,29 @@ ModelDefinition getObjectBoxModel() {
           final rootOffset = buffer.derefObject(0);
           final idParam =
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
-          final nameParam = const fb.StringReader(asciiOptimization: true)
+          final uIdParam = const fb.StringReader(asciiOptimization: true)
               .vTableGet(buffer, rootOffset, 6, '');
+          final nameParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 10, '');
           final emailParam = const fb.StringReader(asciiOptimization: true)
               .vTableGet(buffer, rootOffset, 8, '');
           final snapIdParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGet(buffer, rootOffset, 10, '');
+              .vTableGet(buffer, rootOffset, 12, '');
           final ageParam =
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 12, 0);
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 14, 0);
           final genderParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGet(buffer, rootOffset, 14, '');
-          final imageUrlParam = const fb.StringReader(asciiOptimization: true)
               .vTableGet(buffer, rootOffset, 16, '');
-          final object = User(
+          final imageUrlsParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 18, '');
+          final object = AppUser(
               id: idParam,
+              uId: uIdParam,
               name: nameParam,
               email: emailParam,
               snapId: snapIdParam,
               age: ageParam,
               gender: genderParam,
-              imageUrl: imageUrlParam);
+              imageUrls: imageUrlsParam);
 
           return object;
         })
@@ -163,26 +183,32 @@ ModelDefinition getObjectBoxModel() {
   return ModelDefinition(model, bindings);
 }
 
-/// [User] entity fields to define ObjectBox queries.
-class User_ {
-  /// see [User.id]
-  static final id = QueryIntegerProperty<User>(_entities[0].properties[0]);
+/// [AppUser] entity fields to define ObjectBox queries.
+class AppUser_ {
+  /// see [AppUser.id]
+  static final id = QueryIntegerProperty<AppUser>(_entities[0].properties[0]);
 
-  /// see [User.name]
-  static final name = QueryStringProperty<User>(_entities[0].properties[1]);
+  /// see [AppUser.uId]
+  static final uId = QueryStringProperty<AppUser>(_entities[0].properties[1]);
 
-  /// see [User.email]
-  static final email = QueryStringProperty<User>(_entities[0].properties[2]);
+  /// see [AppUser.email]
+  static final email = QueryStringProperty<AppUser>(_entities[0].properties[2]);
 
-  /// see [User.snapId]
-  static final snapId = QueryStringProperty<User>(_entities[0].properties[3]);
+  /// see [AppUser.name]
+  static final name = QueryStringProperty<AppUser>(_entities[0].properties[3]);
 
-  /// see [User.age]
-  static final age = QueryIntegerProperty<User>(_entities[0].properties[4]);
+  /// see [AppUser.snapId]
+  static final snapId =
+      QueryStringProperty<AppUser>(_entities[0].properties[4]);
 
-  /// see [User.gender]
-  static final gender = QueryStringProperty<User>(_entities[0].properties[5]);
+  /// see [AppUser.age]
+  static final age = QueryIntegerProperty<AppUser>(_entities[0].properties[5]);
 
-  /// see [User.imageUrl]
-  static final imageUrl = QueryStringProperty<User>(_entities[0].properties[6]);
+  /// see [AppUser.gender]
+  static final gender =
+      QueryStringProperty<AppUser>(_entities[0].properties[6]);
+
+  /// see [AppUser.imageUrls]
+  static final imageUrls =
+      QueryStringProperty<AppUser>(_entities[0].properties[7]);
 }

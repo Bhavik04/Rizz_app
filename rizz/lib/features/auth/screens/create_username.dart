@@ -36,7 +36,7 @@ class _UserNameScreenState extends State<UserNameScreen> {
 
   @override
   void dispose() {
-    _usernameController.dispose();
+    // _usernameController.dispose();
     super.dispose();
   }
 

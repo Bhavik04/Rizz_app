@@ -36,7 +36,7 @@ class _ReferralScreenState extends State<ReferralScreen> {
 
   @override
   void dispose() {
-    _referController.dispose();
+    // _referController.dispose();
     super.dispose();
   }
 

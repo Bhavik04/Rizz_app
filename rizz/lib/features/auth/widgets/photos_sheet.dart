@@ -128,7 +128,7 @@ void showPhotoSheet(BuildContext context) {
     backgroundColor: const Color.fromARGB(255, 15, 15, 15),
     builder: (BuildContext context) {
       return DraggableScrollableSheet(
-        initialChildSize: 0.75,
+        initialChildSize: 0.85,
         expand: false,
         builder: (BuildContext context, ScrollController scrollController) {
           return const PhotoSheet();
