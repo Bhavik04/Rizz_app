@@ -1,4 +1,3 @@
-// GenderScreen
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
@@ -22,11 +21,9 @@ class _AcessScreenState extends State<AcessScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: HexColor('FF5C67'),
         appBar: ArrowBar(
           title: 'Please allow access',
-          textPadding:
-              EdgeInsets.only(right: GlobalVariables.deviceWidth * 0.09),
+          textPadding: EdgeInsets.only(right: GlobalVariables.deviceWidth * 0.09),
           titleColor: Colors.white,
           backgroundColor: HexColor('F33C5E'),
           onBack: () {
@@ -34,7 +31,7 @@ class _AcessScreenState extends State<AcessScreen> {
           },
         ),
         body: Container(
-          alignment: Alignment.topCenter,
+            alignment: Alignment.topCenter,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,
@@ -47,62 +44,67 @@ class _AcessScreenState extends State<AcessScreen> {
               ],
             ),
           ),
-          child: SingleChildScrollView(
-            padding: EdgeInsets.symmetric(
-              horizontal: GlobalVariables.deviceWidth * 0.1,
-            ),
-            child: Column(
-              children: [
-                Container(
-                    margin: EdgeInsets.only(
-                      top: GlobalVariables.deviceHeight * 0.07,
+          child: Stack(
+            children: [
+              SingleChildScrollView(
+                padding: EdgeInsets.symmetric(horizontal: GlobalVariables.deviceWidth * 0.1),
+                child: Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.07),
+                      width: GlobalVariables.deviceWidth * 0.55,
+                      child: Image.asset('assets/images/slaytext.png'),
                     ),
-                    width: GlobalVariables.deviceWidth * 0.55,
-                    child: Image.asset('assets/images/slaytext.png')),
-                Container(
-                  margin: EdgeInsets.only(
-                    top: GlobalVariables.deviceHeight * 0.02,
-                  ),
-                  width: GlobalVariables.deviceWidth * 0.65,
-                  child: const Text(
-                    'Slay needs to create your profile and give location based experience ',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.white),
-                  ),
+                    Container(
+                      margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.02),
+                      width: GlobalVariables.deviceWidth * 0.65,
+                      child: const Text(
+                        'Slay needs to create your profile and give location based experience ',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.08),
+                      child: CustomButton(
+                        text: 'Enable location',
+                        textColor: Colors.white,
+                        buttonColor: Colors.black,
+                        image: Image.asset('assets/images/location.png'),
+                        onTap: () {
+                          context.goNamed(PhotoScreen.routeName);
+                        },
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.01),
+                      child: CustomButton(
+                        text: 'Enable gallery',
+                        textColor: Colors.white,
+                        buttonColor: Colors.black,
+                        image: Image.asset('assets/images/gallery.png'),
+                        onTap: () {
+                          context.goNamed(PhotoScreen.routeName);
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: GlobalVariables.deviceHeight * 0.62,
+                    ),
+                  ],
                 ),
-                Container(
-                  margin: EdgeInsets.only(
-                    top: GlobalVariables.deviceHeight * 0.08,
-                  ),
-                  child: CustomButton(
-                    text: 'Enable location',
-                    textColor: Colors.white,
-                    buttonColor: Colors.black,
-                    image: Image.asset('assets/images/location.png'),
-                    onTap: () {
-                      context.goNamed(PhotoScreen.routeName);
-                    },
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(
-                    top: GlobalVariables.deviceHeight * 0.01,
-                  ),
-                  child: CustomButton(
-                    text: 'Enable gallery',
-                    textColor: Colors.white,
-                    buttonColor: Colors.black,
-                    image: Image.asset('assets/images/gallery.png'),
-                    onTap: () {
-                      context.goNamed(PhotoScreen.routeName);
-                    },
-                  ),
-                ),
-                SizedBox(
-                  height: GlobalVariables.deviceHeight * 0.62,
+              ),
+              Positioned(
+                bottom: 20,
+                left: 0,
+                right: 0,
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: GlobalVariables.deviceWidth * 0.0),
+                  color: HexColor('FF8A41'),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -117,16 +119,17 @@ class _AcessScreenState extends State<AcessScreen> {
                           'Slay cares intensily about your privacy. We will never misuse your data. ',
                           textAlign: TextAlign.left,
                           style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.normal,
-                              color: Colors.white),
+                            fontSize: 14,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ],
                   ),
-                )
-              ],
-            ),
+                ),
+              ),
+            ],
           ),
         ),
       ),

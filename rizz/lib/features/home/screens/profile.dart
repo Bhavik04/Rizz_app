@@ -6,14 +6,15 @@ import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/db/modals/user.dart';
 import 'package:rizz/db/services/database_service.dart';
-import 'package:rizz/features/auth/widgets/add_photo.dart';
 import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
+import 'package:rizz/features/auth/widgets/feedback_button.dart';
 import 'package:rizz/features/auth/widgets/photos_sheet.dart';
 import 'package:rizz/objectbox.g.dart';
 import 'package:rizz/services/auth_service.dart';
 import 'package:rizz/services/firestore_service.dart';
 import 'package:rizz/services/storage_service.dart';
+
 
 class ProfileScreen extends StatefulWidget {
   static const routeName = 'ProfileScreen';
@@ -191,13 +192,7 @@ final downloadURL = await StorageService().uploadImage(newPhoto, 1);
                 Container(
                   margin:
                       EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
-                  child: const CustomButton(
-                  
-                    text: 'Send Feedback',
-                    buttonColor: Colors.red,
-                    textColor: Colors.white,
-                    borderRadius: 10,
-                  ),
+                  child: CustomFeedbackButton(width: GlobalVariables.deviceWidth *0.89,)
                 )
               ],
             ),

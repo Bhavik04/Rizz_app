@@ -17,7 +17,6 @@ import 'package:rizz/features/auth/widgets/superchat.dart';
 import 'package:rizz/features/auth/widgets/user_info_texts.dart';
 import 'package:rizz/objectbox.g.dart';
 import 'package:rizz/services/auth_service.dart';
-import 'package:rizz/services/firestore_service.dart';
 
 class PlayScreen extends StatefulWidget {
   static const routeName = 'PlayScreen';

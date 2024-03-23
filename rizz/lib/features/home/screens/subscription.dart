@@ -87,10 +87,10 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                 ),
               ),
               Container(
-                height: GlobalVariables.deviceHeight *0.32,
+                height: GlobalVariables.deviceHeight *0.30,
                 width: GlobalVariables.deviceWidth *0.85,
                 margin:
-                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.05),
+                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.045),
                 child: PageView.builder(
                   controller: pageController,
                   scrollDirection: Axis.horizontal,
