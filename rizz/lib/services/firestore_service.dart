@@ -1,5 +1,7 @@
 import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:rizz/db/modals/user.dart';
+import 'package:rizz/services/auth_service.dart';
 
 class FirestoreService {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -11,6 +13,22 @@ class FirestoreService {
         List.generate(6, (index) => alphabet[random.nextInt(alphabet.length)])
             .join();
     return code;
+  }
+
+  void sendRating(AppUser user, int rating) {
+    final Map<String, dynamic> dataToUpdate = {};
+    dataToUpdate[user.uId] = rating.toString();
+    firestore
+        .collection('rating')
+        .doc(AuthService().currentUser!.uid)
+        .set(dataToUpdate,SetOptions(merge: true));
+  }
+
+  fetchRatings() async {
+    final DocumentSnapshot<Map<String, dynamic>> userSnapshot =
+          await firestore.collection('rating').doc(AuthService().currentUser!.uid).get();
+
+          return userSnapshot.data();
   }
 
   Future<void> createUserData(
@@ -35,9 +53,9 @@ class FirestoreService {
     if (gender != null && gender.isNotEmpty) {
       dataToUpdate['gender'] = gender;
     }
-   if (photoURLs.isNotEmpty) {
-  dataToUpdate['photoURLs'] = FieldValue.arrayUnion(photoURLs);
-}
+    if (photoURLs.isNotEmpty) {
+      dataToUpdate['photoURLs'] = FieldValue.arrayUnion(photoURLs);
+    }
 
     // Check if the user is new or existing
     final bool isNewUser = await checkIfNewUser(uid);
@@ -103,16 +121,16 @@ class FirestoreService {
     }
   }
 
-  Future<List> getAllUserImages(String currentUserUid)  async {
+  Future<List> getAllUserImages(String currentUserUid) async {
     try {
       final QuerySnapshot<Map<String, dynamic>> querySnapshot =
-           await firestore.collection('users').get();
+          await firestore.collection('users').get();
 
       return querySnapshot.docs
           .where((document) =>
               document['photoURLs'] != null && document.id != currentUserUid)
-          .map((document) => document['photoURLs'] )
-          .toList() ;
+          .map((document) => document['photoURLs'])
+          .toList();
     } catch (e) {
       print('Error getting user images: $e');
       return [];
@@ -121,5 +139,38 @@ class FirestoreService {
 
   Future<void> deleteUserData(String uid) async {
     await firestore.collection('users').doc(uid).delete();
+  }
+
+  Future<void> updateUserPhotoURLs(String uid, List<String> photoURLs) async {
+    try {
+      await firestore.collection('users').doc(uid).update({
+        'photoURLs': FieldValue.arrayUnion(photoURLs),
+      });
+      print('Photo URLs updated successfully.');
+    } catch (e) {
+      print('Error updating photo URLs: $e');
+      throw Exception('Failed to update photo URLs.');
+    }
+  }
+
+  Future<List<String>?> getUserPhotoURLs(String uid) async {
+    try {
+      final DocumentSnapshot<Map<String, dynamic>> userSnapshot =
+          await firestore.collection('users').doc(uid).get();
+
+      if (userSnapshot.exists) {
+        final data = userSnapshot.data();
+        if (data != null && data.containsKey('photoURLs')) {
+          final List<dynamic>? photoURLs = data['photoURLs'];
+          if (photoURLs != null && photoURLs.isNotEmpty) {
+            return List<String>.from(photoURLs);
+          }
+        }
+      }
+      return null; // Return null if user or photoURLs data doesn't exist
+    } catch (e) {
+      print('Error getting user photo URLs: $e');
+      return null;
+    }
   }
 }
