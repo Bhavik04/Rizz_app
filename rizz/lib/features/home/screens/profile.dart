@@ -7,14 +7,12 @@ import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/db/modals/user.dart';
 import 'package:rizz/db/services/database_service.dart';
 import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
-import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/feedback_button.dart';
 import 'package:rizz/features/auth/widgets/photos_sheet.dart';
 import 'package:rizz/objectbox.g.dart';
 import 'package:rizz/services/auth_service.dart';
 import 'package:rizz/services/firestore_service.dart';
 import 'package:rizz/services/storage_service.dart';
-
 
 class ProfileScreen extends StatefulWidget {
   static const routeName = 'ProfileScreen';
@@ -48,23 +46,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
         .first;
   }
 
-
   Future<void> fetchProfileData() async {
     // final userData = await FirestoreService().getUserData(currentUserId);
-    AppUser currentUser=await getCurrentUserDetails();
-      setState(() {
-        profileImageURL = jsonDecode(currentUser.imageUrls)[0];
-        snapchatId = currentUser.snapId;
-        username = currentUser.name;
-        age = currentUser.age;
-      });
+    AppUser currentUser = await getCurrentUserDetails();
+    setState(() {
+      profileImageURL = jsonDecode(currentUser.imageUrls)[0];
+      snapchatId = currentUser.snapId;
+      username = currentUser.name;
+      age = currentUser.age;
+    });
   }
 
   void updateProfileImage(File newPhoto) async {
     final currentUserId = AuthService().currentUser!.uid;
 
-   // Upload the new photo to Firebase Storage with container index 1
-final downloadURL = await StorageService().uploadImage(newPhoto, 1);
+    // Upload the new photo to Firebase Storage with container index 1
+    final downloadURL = await StorageService().uploadImage(newPhoto, 1);
 
     GlobalVariables.photoURLs[0] = downloadURL;
 
@@ -81,15 +78,16 @@ final downloadURL = await StorageService().uploadImage(newPhoto, 1);
     // Fetch and update the profile data
     fetchProfileData();
   }
-  
-@override
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.black,
         appBar: ArrowBar(
           title: 'Profile',
-          textPadding: EdgeInsets.only(right: GlobalVariables.deviceWidth * 0.09),
+          textPadding:
+              EdgeInsets.only(right: GlobalVariables.deviceWidth * 0.09),
           backgroundColor: Colors.black,
           onBack: () {
             Navigator.pop(context);
@@ -139,7 +137,7 @@ final downloadURL = await StorageService().uploadImage(newPhoto, 1);
                         right: 0,
                         child: GestureDetector(
                           onTap: () {
-                           showPhotoSheet(context);
+                            showPhotoSheet(context);
                           },
                           child: Container(
                             padding: const EdgeInsets.all(7),
@@ -154,7 +152,7 @@ final downloadURL = await StorageService().uploadImage(newPhoto, 1);
                     ],
                   ),
                 ),
-                 Text(
+                Text(
                   '@${snapchatId ?? 'loading...'}', // Display the Snapchat ID or 'loading...' if not available
                   style: const TextStyle(
                     fontSize: 24,
@@ -162,7 +160,7 @@ final downloadURL = await StorageService().uploadImage(newPhoto, 1);
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-               
+
                 Text(
                   '$username, ${age ?? 'loading...'}',
                   style: const TextStyle(
@@ -171,7 +169,6 @@ final downloadURL = await StorageService().uploadImage(newPhoto, 1);
                     fontWeight: FontWeight.normal,
                   ),
                 ),
-
 
                 //  const Powers(),
 
@@ -190,10 +187,11 @@ final downloadURL = await StorageService().uploadImage(newPhoto, 1);
                   ),
                 ),
                 Container(
-                  margin:
-                      EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
-                  child: CustomFeedbackButton(width: GlobalVariables.deviceWidth *0.89,)
-                )
+                    margin: EdgeInsets.only(
+                        top: GlobalVariables.deviceHeight * 0.03),
+                    child: CustomFeedbackButton(
+                      width: GlobalVariables.deviceWidth * 0.89,
+                    ))
               ],
             ),
           ),
