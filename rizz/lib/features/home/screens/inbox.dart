@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
+import 'package:rizz/common/utils.dart';
+import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
 import 'package:rizz/features/auth/widgets/new_card_widget.dart';
 import 'package:rizz/features/auth/widgets/custom_appbar.dart';
@@ -24,8 +27,9 @@ class _InboxScreenState extends State<InboxScreen> {
         children: [
           Padding(
             padding: EdgeInsets.only(
-                top: GlobalVariables.deviceHeight * 0.02,
-                left: GlobalVariables.deviceWidth * 0.05),
+              top: GlobalVariables.deviceHeight * 0.02,
+              left: GlobalVariables.deviceWidth * 0.05,
+            ),
             child: const CustomText(
               text: 'Your ratings',
               fontSize: 16,
@@ -33,8 +37,37 @@ class _InboxScreenState extends State<InboxScreen> {
               textColor: Colors.white,
             ),
           ),
-          const Expanded(
-            child: NewCardWidget(),
+          Expanded(
+            child: Stack(
+              children: [
+                ListView(
+                  children: [
+                    NewCardWidget(),
+                    NewCardWidget()
+                    // Add more NewCardWidget here if needed
+                  ],
+                ),
+                Positioned(
+                  bottom: 30.0,
+                  left: 0,
+                  right: 0,
+                  child: Column(
+                    children: [
+                      CustomButton(
+                        onTap: () {
+                          context.goNamed('SubscriptionScreen');
+                        },
+                        text: 'See who likes you',
+                        image: Image.asset('assets/images/likesyou.png'),
+                        buttonColor: HexColor('F24139'),
+                        textColor: Colors.white,
+                        width: GlobalVariables.deviceWidth * 0.8,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
