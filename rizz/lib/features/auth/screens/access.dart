@@ -23,7 +23,8 @@ class _AcessScreenState extends State<AcessScreen> {
       child: Scaffold(
         appBar: ArrowBar(
           title: 'Please allow access',
-          textPadding: EdgeInsets.only(right: GlobalVariables.deviceWidth * 0.09),
+          textPadding:
+              EdgeInsets.only(right: GlobalVariables.deviceWidth * 0.09),
           titleColor: Colors.white,
           backgroundColor: HexColor('F33C5E'),
           onBack: () {
@@ -31,7 +32,7 @@ class _AcessScreenState extends State<AcessScreen> {
           },
         ),
         body: Container(
-            alignment: Alignment.topCenter,
+          alignment: Alignment.topCenter,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,
@@ -47,16 +48,19 @@ class _AcessScreenState extends State<AcessScreen> {
           child: Stack(
             children: [
               SingleChildScrollView(
-                padding: EdgeInsets.symmetric(horizontal: GlobalVariables.deviceWidth * 0.1),
+                padding: EdgeInsets.symmetric(
+                    horizontal: GlobalVariables.deviceWidth * 0.1),
                 child: Column(
                   children: [
                     Container(
-                      margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.07),
+                      margin: EdgeInsets.only(
+                          top: GlobalVariables.deviceHeight * 0.07),
                       width: GlobalVariables.deviceWidth * 0.55,
                       child: Image.asset('assets/images/slaytext.png'),
                     ),
                     Container(
-                      margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.02),
+                      margin: EdgeInsets.only(
+                          top: GlobalVariables.deviceHeight * 0.02),
                       width: GlobalVariables.deviceWidth * 0.65,
                       child: const Text(
                         'Slay needs to create your profile and give location based experience ',
@@ -69,7 +73,8 @@ class _AcessScreenState extends State<AcessScreen> {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.08),
+                      margin: EdgeInsets.only(
+                          top: GlobalVariables.deviceHeight * 0.08),
                       child: CustomButton(
                         text: 'Enable location',
                         textColor: Colors.white,
@@ -81,7 +86,8 @@ class _AcessScreenState extends State<AcessScreen> {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.01),
+                      margin: EdgeInsets.only(
+                          top: GlobalVariables.deviceHeight * 0.01),
                       child: CustomButton(
                         text: 'Enable gallery',
                         textColor: Colors.white,
@@ -103,8 +109,9 @@ class _AcessScreenState extends State<AcessScreen> {
                 left: 0,
                 right: 0,
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: GlobalVariables.deviceWidth * 0.0),
-                  color: HexColor('FF8A41'),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: GlobalVariables.deviceWidth * 0.0),
+                  color: Colors.transparent,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,

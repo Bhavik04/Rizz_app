@@ -28,8 +28,7 @@ class _PhotoSheetState extends State<PhotoSheet> {
   Future<void> _fetchPhotoURLs() async {
     try {
       String uid = AuthService().currentUser!.uid;
-      List<String>? photoURLs =
-          await FirestoreService().getUserPhotoURLs(uid);
+      List<String>? photoURLs = await FirestoreService().getUserPhotoURLs(uid);
       setState(() {
         _photoURLs = photoURLs;
       });
@@ -52,7 +51,7 @@ class _PhotoSheetState extends State<PhotoSheet> {
               color: Colors.black,
               borderRadius: BorderRadius.circular(2),
             ),
-            margin: const EdgeInsets.symmetric(vertical: 12),
+            margin: const EdgeInsets.symmetric(vertical: 8),
           ),
           const Text(
             'Tap to add or change photo',
@@ -80,7 +79,6 @@ class _PhotoSheetState extends State<PhotoSheet> {
               ),
             ],
           ),
-          const SizedBox(height: 5),
           ElevatedButton(
             onPressed: _savePhotos,
             style: ElevatedButton.styleFrom(
@@ -111,13 +109,17 @@ class _PhotoSheetState extends State<PhotoSheet> {
         color: Colors.white12,
         borderRadius: BorderRadius.circular(12),
       ),
-      margin: const EdgeInsets.symmetric(vertical: 8),
+      margin: const EdgeInsets.symmetric(vertical: 7),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12),
         child: pickedImage != null
-            ? Image.file(pickedImage, fit: BoxFit.cover, width: 120, height: 170)
-            : (_photoURLs != null && _photoURLs!.length > index && _photoURLs![index] != null
-                ? Image.network(_photoURLs![index]!, fit: BoxFit.cover, width: 120, height: 170)
+            ? Image.file(pickedImage,
+                fit: BoxFit.cover, width: 120, height: 170)
+            : (_photoURLs != null &&
+                    _photoURLs!.length > index &&
+                    _photoURLs![index] != null
+                ? Image.network(_photoURLs![index]!,
+                    fit: BoxFit.cover, width: 120, height: 170)
                 : Icon(Icons.add, size: 50, color: GlobalVariables.themeColor)),
       ),
     );
@@ -134,8 +136,7 @@ class _PhotoSheetState extends State<PhotoSheet> {
           _image1 = newPhoto;
         else if (containerIndex == 2)
           _image2 = newPhoto;
-        else if (containerIndex == 3)
-          _image3 = newPhoto;
+        else if (containerIndex == 3) _image3 = newPhoto;
       });
     }
   }

@@ -7,7 +7,7 @@ class CustomFeedbackButton extends StatelessWidget {
   final Color textColor;
   final double borderRadius;
   final double height;
-  final double width; 
+  final double width;
 
   const CustomFeedbackButton({
     this.text = 'Send Feedback',
@@ -15,7 +15,7 @@ class CustomFeedbackButton extends StatelessWidget {
     this.textColor = Colors.white,
     this.borderRadius = 10,
     this.height = 65,
-    this.width = 350, 
+    this.width = 350,
     Key? key,
   }) : super(key: key);
 
@@ -23,7 +23,7 @@ class CustomFeedbackButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: height,
-      width: width, 
+      width: width,
       child: ElevatedButton(
         onPressed: () {
           _showFeedbackDialog(context);

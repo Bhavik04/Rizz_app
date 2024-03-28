@@ -67,7 +67,6 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
           child: Column(
             children: [
               Container(
-             
                 alignment: Alignment.center,
                 width: GlobalVariables.deviceWidth * 0.70,
                 child: Row(
@@ -87,10 +86,10 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                 ),
               ),
               Container(
-                height: GlobalVariables.deviceHeight *0.30,
-                width: GlobalVariables.deviceWidth *0.85,
+                height: GlobalVariables.deviceHeight * 0.3,
+                width: GlobalVariables.deviceWidth * 0.85,
                 margin:
-                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.045),
+                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.03),
                 child: PageView.builder(
                   controller: pageController,
                   scrollDirection: Axis.horizontal,
@@ -106,7 +105,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                       child: Column(
                         children: [
                           SizedBox(
-                            height: GlobalVariables.deviceHeight * 0.20,
+                            height: GlobalVariables.deviceHeight * 0.18,
                             child: Center(
                               child: Image.asset(imageList[index]),
                             ),
@@ -130,7 +129,9 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                   },
                 ),
               ),
-              Container(margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.0),
+              Container(
+                margin:
+                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(
@@ -152,7 +153,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
             ],
           ),
         ),
-           bottomSheet: const SubscriptionBottomSheet(),
+        bottomSheet: const SubscriptionBottomSheet(),
       ),
     );
   }

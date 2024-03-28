@@ -190,7 +190,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     margin: EdgeInsets.only(
                         top: GlobalVariables.deviceHeight * 0.03),
                     child: CustomFeedbackButton(
-                      width: GlobalVariables.deviceWidth * 0.89,
+                      width: GlobalVariables.deviceWidth * 0.85,
                     ))
               ],
             ),

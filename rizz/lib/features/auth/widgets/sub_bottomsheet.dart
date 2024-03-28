@@ -58,17 +58,15 @@ class _SubscriptionBottomSheetState extends State<SubscriptionBottomSheet> {
               ),
               Container(
                 margin:
-                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.01),
+                    EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.005),
                 child: CustomButton(
-                   onTap: () {
-                             
-                            },
+                  onTap: () {},
                   text: 'Slay God',
                   buttonColor: HexColor('F24139'),
                   textColor: Colors.white,
                   width: GlobalVariables.deviceWidth * 0.9,
-                //  height: GlobalVariables.deviceHeight * 0.09,
-                height: 70,
+                  //  height: GlobalVariables.deviceHeight * 0.09,
+                  height: 65,
                   textSize: 22,
                 ),
               ),
@@ -126,8 +124,8 @@ class _SubscriptionBottomSheetState extends State<SubscriptionBottomSheet> {
           },
           child: Container(
             width: GlobalVariables.deviceWidth * 0.27,
-          //  height: GlobalVariables.deviceHeight * 0.19,
-          height: 135,
+            //  height: GlobalVariables.deviceHeight * 0.19,
+            height: 135,
             decoration: BoxDecoration(
               color: Colors.black,
               borderRadius: BorderRadius.circular(12),
@@ -163,7 +161,7 @@ class _SubscriptionBottomSheetState extends State<SubscriptionBottomSheet> {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                   SizedBox(height: GlobalVariables.deviceHeight *0.02),
+                  SizedBox(height: GlobalVariables.deviceHeight * 0.02),
                   Text(
                     rupeesText,
                     style: const TextStyle(
