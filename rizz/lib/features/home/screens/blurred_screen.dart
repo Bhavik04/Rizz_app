@@ -1,25 +1,46 @@
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
+import 'package:rizz/db/modals/user.dart';
 import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/free_reveal.dart';
+import 'package:rizz/services/user_services.dart';
 
 class BlurredScreen extends StatefulWidget {
   static const routeName = 'BlurredScreen';
+  String uId;
+  String rating;
 
-  const BlurredScreen({super.key});
+  BlurredScreen({super.key, required this.uId, required this.rating});
 
   @override
   State<BlurredScreen> createState() => _BlurredScreenState();
 }
 
 class _BlurredScreenState extends State<BlurredScreen> {
+  late AppUser user;
+  void getUserDetails() {
+    UserServices userServices = GetIt.instance.get<UserServices>();
+    user = userServices.getUserByUid(widget.uId);
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getUserDetails();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final userImages = jsonDecode(user.imageUrls);
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.black,
@@ -35,12 +56,18 @@ class _BlurredScreenState extends State<BlurredScreen> {
                         bottomLeft: Radius.circular(20.0),
                         bottomRight: Radius.circular(20.0),
                       ),
-                      child: Image.asset(
-                        'assets/images/eww.png',
+                      child: Image.network(
+                        userImages[0],
                         width: double.infinity,
                         height: double.infinity,
                         fit: BoxFit.cover,
                       ),
+                      // child: Image.asset(
+                      //   'assets/images/eww.png',
+                      //   width: double.infinity,
+                      //   height: double.infinity,
+                      //   fit: BoxFit.cover,
+                      // ),
                     ),
                     BackdropFilter(
                       filter: ImageFilter.blur(sigmaX: 6.0, sigmaY: 6.0),
@@ -55,9 +82,9 @@ class _BlurredScreenState extends State<BlurredScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          const Text(
-                            'A 21 year old girl from New Delhi',
-                            style: TextStyle(
+                          Text(
+                            'A ${user.age} year old ${user.gender} from New Delhi',
+                            style: const TextStyle(
                               fontSize: 20.0,
                               color: Colors.white,
                               fontWeight: FontWeight.normal,

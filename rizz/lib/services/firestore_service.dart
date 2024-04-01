@@ -17,18 +17,25 @@ class FirestoreService {
 
   void sendRating(AppUser user, int rating) {
     final Map<String, dynamic> dataToUpdate = {};
-    dataToUpdate[user.uId] = rating.toString();
+    dataToUpdate[AuthService().currentUser!.uid] = rating.toString();
     firestore
         .collection('rating')
-        .doc(AuthService().currentUser!.uid)
-        .set(dataToUpdate,SetOptions(merge: true));
+        .doc(user.uId)
+        .set(dataToUpdate, SetOptions(merge: true));
+    // dataToUpdate[user.uId] = rating.toString();
+    // firestore
+    //     .collection('rating')
+    //     .doc(AuthService().currentUser!.uid)
+    //     .set(dataToUpdate,SetOptions(merge: true));
   }
 
   fetchRatings() async {
-    final DocumentSnapshot<Map<String, dynamic>> userSnapshot =
-          await firestore.collection('rating').doc(AuthService().currentUser!.uid).get();
+    final DocumentSnapshot<Map<String, dynamic>> userSnapshot = await firestore
+        .collection('rating')
+        .doc(AuthService().currentUser!.uid)
+        .get();
 
-          return userSnapshot.data();
+    return userSnapshot.data();
   }
 
   Future<void> createUserData(

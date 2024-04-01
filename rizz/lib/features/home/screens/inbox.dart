@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
+import 'package:rizz/db/services/database_service.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
 import 'package:rizz/features/auth/widgets/new_card_widget.dart';
 import 'package:rizz/features/auth/widgets/custom_appbar.dart';
+import 'package:rizz/objectbox.g.dart';
+import 'package:rizz/services/auth_service.dart';
+import 'package:rizz/services/firestore_service.dart';
 
 class InboxScreen extends StatefulWidget {
   static const routeName = 'InboxScreen';
@@ -17,6 +22,37 @@ class InboxScreen extends StatefulWidget {
 }
 
 class _InboxScreenState extends State<InboxScreen> {
+  var ratings;
+
+  void getLikedProfiles() async {
+    // DatabaseService databaseService = GetIt.instance.get<DatabaseService>();
+    // Store store = databaseService.getStore()!;
+
+    // setState(() {
+    //   allUserData = store
+    //       .box<AppUser>()
+    //       .query(AppUser_.uId.notEquals(AuthService().currentUser!.uid))
+    //       .build()
+    //       .find();
+    //   // userImageURLs = images;
+    // });
+
+    var response = await FirestoreService()
+        .firestore
+        .collection('rating')
+        .doc(AuthService().currentUser!.uid)
+        .get();
+    setState(() {
+      ratings = response.data();
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getLikedProfiles();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,12 +76,14 @@ class _InboxScreenState extends State<InboxScreen> {
           Expanded(
             child: Stack(
               children: [
-                ListView(
-                  children: [
-                    NewCardWidget(),
-                    NewCardWidget()
-                    // Add more NewCardWidget here if needed
-                  ],
+                ListView.builder(
+                  itemCount: ratings.length,
+                  itemBuilder: (context, index) {
+                    return NewCardWidget(
+                      uId: ratings.keys.toList()[index],
+                      rating: ratings[ratings.keys.toList()[index]],
+                    );
+                  },
                 ),
                 Positioned(
                   bottom: 30.0,

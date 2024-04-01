@@ -66,9 +66,11 @@ class AppRouter {
                   name: SnapchatScreen.routeName,
                   builder: (context, state) => const SnapchatScreen(),
                   routes: [
-                    GoRoute(path: "LoadingScreen",
-                    name: LoadingScreen.routeName,
-                    builder: (context, state) => const LoadingScreen(),),
+                    GoRoute(
+                      path: "LoadingScreen",
+                      name: LoadingScreen.routeName,
+                      builder: (context, state) => const LoadingScreen(),
+                    ),
                     GoRoute(
                         path: 'ReferralScreen',
                         name: ReferralScreen.routeName,
@@ -165,8 +167,11 @@ class AppRouter {
                               GoRoute(
                                 path: 'BlurredScreen',
                                 name: BlurredScreen.routeName,
-                                builder: (context, state) =>
-                                    const BlurredScreen(),
+                                builder: (context, state) => BlurredScreen(
+                                  uId: state.uri.queryParameters['uId'] ?? '',
+                                  rating:
+                                      state.uri.queryParameters['rating'] ?? '',
+                                ),
                               ),
                               GoRoute(
                                 path: 'RevealedScreen',

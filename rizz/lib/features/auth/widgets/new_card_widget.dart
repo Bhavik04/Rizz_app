@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
+import 'package:rizz/features/home/screens/blurred_screen.dart';
 
 class NewCardWidget extends StatefulWidget {
-  const NewCardWidget({Key? key}) : super(key: key);
+  final String uId;
+  final String rating;
+  const NewCardWidget({super.key, required this.uId, required this.rating});
 
   @override
   State<NewCardWidget> createState() => _NewCardWidgetState();
@@ -24,7 +27,10 @@ class _NewCardWidgetState extends State<NewCardWidget> {
         children: [
           GestureDetector(
             onTap: () {
-              context.goNamed('BlurredScreen');
+              context.goNamed(BlurredScreen.routeName, queryParameters: {
+                'uId': widget.uId,
+                'rating': widget.rating
+              });
             },
             child: Card(
               color: Colors.deepPurpleAccent,
