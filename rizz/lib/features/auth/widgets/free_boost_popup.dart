@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
@@ -37,7 +36,8 @@ class FreeBoostPopup extends StatelessWidget {
                     color: HexColor('FD630F')),
               ),
             ),
-            Container( margin: EdgeInsets.only(top: GlobalVariables.deviceHeight *0.01),
+            Container(
+              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.01),
               width: GlobalVariables.deviceWidth * 0.70,
               child: Text(
                 'Get one free boost for each invite',

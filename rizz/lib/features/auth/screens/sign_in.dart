@@ -1,10 +1,9 @@
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/features/auth/screens/create_username.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/home/screens/loading_screen.dart';
-import 'package:rizz/features/home/screens/play.dart';
 import 'package:rizz/services/auth_service.dart';
 import 'package:rizz/services/firestore_service.dart';
 
@@ -74,7 +73,6 @@ class _SignInPageState extends State<SignInPage> {
                       // For a new user, navigate to the UserNameScreen
                       context.goNamed(UserNameScreen.routeName);
                     } else {
-
                       // For an existing user, navigate to the PlayScreen
                       // context.goNamed(PlayScreen.routeName);
                       context.goNamed(LoadingScreen.routeName);

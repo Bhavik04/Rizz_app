@@ -8,7 +8,8 @@ class FilterWidget extends StatefulWidget {
   final bool isSelected;
   final Function onTap;
 
-  FilterWidget({
+  const FilterWidget({
+    super.key,
     required this.label,
     required this.value,
     required this.isSelected,

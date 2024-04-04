@@ -4,6 +4,8 @@ import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/features/auth/widgets/custom_boost_popup.dart';
 import 'package:rizz/features/auth/widgets/custom_bottomsheet.dart';
 import 'package:rizz/features/auth/widgets/free_boost_popup.dart';
+import 'package:rizz/features/home/screens/ad_swipe.dart';
+import 'package:rizz/features/home/screens/profile.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
@@ -19,7 +21,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
         children: [
           GestureDetector(
             onTap: () {
-              context.goNamed('ProfileScreen');
+              context.goNamed(ProfileScreen.routeName);
             },
             child: Image.asset(
               'assets/images/boy.png',
@@ -67,7 +69,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           GestureDetector(
             onTap: () {
-              context.goNamed('AdswipeScreen');
+              context.goNamed(AdswipeScreen.routeName);
             },
             child: Image.asset(
               'assets/images/instagram.png',

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
+import 'package:rizz/features/home/screens/subscription.dart';
 
 class CustomBoostPopup extends StatefulWidget {
   final VoidCallback onButtonTap;
@@ -48,7 +48,8 @@ class _CustomBoostPopupState extends State<CustomBoostPopup> {
                       fontWeight: FontWeight.w900,
                       color: HexColor('FD630F')),
                 )),
-            Container(margin: EdgeInsets.only(top: GlobalVariables.deviceHeight *0.01),
+            Container(
+              margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.01),
               width: GlobalVariables.deviceWidth * 0.70,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -88,7 +89,7 @@ class _CustomBoostPopupState extends State<CustomBoostPopup> {
                   text: 'Boost',
                   onTap: () {
                     Navigator.pop(context);
-                    context.goNamed('SubscriptionScreen');
+                    context.goNamed(SubscriptionScreen.routeName);
                   },
                   buttonColor: HexColor('F24139'),
                   textColor: Colors.white),
