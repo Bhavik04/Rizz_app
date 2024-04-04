@@ -8,6 +8,7 @@ import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
 import 'package:rizz/features/auth/widgets/new_card_widget.dart';
 import 'package:rizz/features/auth/widgets/custom_appbar.dart';
+import 'package:rizz/features/home/screens/subscription.dart';
 import 'package:rizz/objectbox.g.dart';
 import 'package:rizz/services/auth_service.dart';
 import 'package:rizz/services/firestore_service.dart';
@@ -93,7 +94,7 @@ class _InboxScreenState extends State<InboxScreen> {
                     children: [
                       CustomButton(
                         onTap: () {
-                          context.goNamed('SubscriptionScreen');
+                          context.goNamed(SubscriptionScreen.routeName);
                         },
                         text: 'See who likes you',
                         image: Image.asset('assets/images/likesyou.png'),

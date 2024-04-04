@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:objectbox/objectbox.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/db/modals/user.dart';
 import 'package:rizz/db/services/database_service.dart';

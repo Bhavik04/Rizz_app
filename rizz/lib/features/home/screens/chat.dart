@@ -38,21 +38,24 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: GlobalVariables.deviceHeight *0.2),
-            child: const CustomText(text: 'Oops! looks like you got no messages yet',
-            alignment: TextAlign.center,),),
+            margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.2),
+            child: const CustomText(
+              text: 'Oops! looks like you got no messages yet',
+              alignment: TextAlign.center,
+            ),
+          ),
           Container(
-            margin: EdgeInsets.only(top: GlobalVariables.deviceHeight *0.05),
+            margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.05),
             alignment: Alignment.center,
             child: CustomButton(
-               onTap: () {
-                              context.goNamed(PlayScreen.routeName);
-                            },
-            text: 'Start rating',
-            buttonColor: GlobalVariables.themeColor,
-            textColor: Colors.white,
-        
-            ),)
+              onTap: () {
+                context.goNamed(PlayScreen.routeName);
+              },
+              text: 'Start rating',
+              buttonColor: GlobalVariables.themeColor,
+              textColor: Colors.white,
+            ),
+          )
         ],
       ),
     );

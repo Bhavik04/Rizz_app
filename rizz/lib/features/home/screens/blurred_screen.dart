@@ -10,6 +10,7 @@ import 'package:rizz/db/modals/user.dart';
 import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/free_reveal.dart';
+import 'package:rizz/features/home/screens/revealed_screen.dart';
 import 'package:rizz/services/user_services.dart';
 
 class BlurredScreen extends StatefulWidget {
@@ -145,7 +146,7 @@ class _BlurredScreenState extends State<BlurredScreen> {
                           CustomButton(
                             onTap: () {
                               //FIRST SHOW FREE REVEAL SHEET TILL THE USER CLICKS ON  THE SHARE BUTTON, AFTER THAT GIVE unlimited REVEALS WITHOUT ADS for a day
-                              context.goNamed('RevealedScreen');
+                              context.goNamed(RevealedScreen.routeName);
                             },
                             text: 'Reveal Sender',
                             buttonColor: Colors.white,

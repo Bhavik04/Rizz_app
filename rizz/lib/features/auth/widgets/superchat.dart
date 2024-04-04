@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
+import 'package:rizz/features/home/screens/subscription.dart';
 
 void showSuperChat(BuildContext context) {
   showModalBottomSheet(
@@ -59,7 +60,7 @@ Widget _buildSuperChat(BuildContext context) {
               child: CustomButton(
                 onTap: () {
                   Navigator.pop(context);
-                  context.goNamed('SubscriptionScreen');
+                  context.goNamed(SubscriptionScreen.routeName);
                 },
                 text: 'God Mode',
                 buttonColor: HexColor('F24139'),

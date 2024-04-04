@@ -9,6 +9,7 @@ import 'package:rizz/db/services/database_service.dart';
 import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/feedback_button.dart';
 import 'package:rizz/features/auth/widgets/photos_sheet.dart';
+import 'package:rizz/features/home/screens/subscription.dart';
 import 'package:rizz/objectbox.g.dart';
 import 'package:rizz/services/auth_service.dart';
 import 'package:rizz/services/firestore_service.dart';
@@ -178,7 +179,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   child: GestureDetector(
                     onTap: () {
-                      context.goNamed('SubscriptionScreen');
+                      context.goNamed(SubscriptionScreen.routeName);
                     },
                     child: Image.asset(
                       'assets/images/subscription.png',

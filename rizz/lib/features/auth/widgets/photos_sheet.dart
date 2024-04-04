@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:rizz/common/global_variables.dart';
@@ -14,9 +15,7 @@ class PhotoSheet extends StatefulWidget {
 }
 
 class _PhotoSheetState extends State<PhotoSheet> {
-  File? _image1;
-  File? _image2;
-  File? _image3;
+  List<File?> _images = List.filled(3, null);
   List<String>? _photoURLs;
 
   @override
@@ -51,7 +50,7 @@ class _PhotoSheetState extends State<PhotoSheet> {
               color: Colors.black,
               borderRadius: BorderRadius.circular(2),
             ),
-            margin: const EdgeInsets.symmetric(vertical: 8),
+            margin: const EdgeInsets.symmetric(vertical: 12),
           ),
           const Text(
             'Tap to add or change photo',
@@ -61,31 +60,30 @@ class _PhotoSheetState extends State<PhotoSheet> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 5),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              GestureDetector(
-                onTap: () => _openPicUpdateSheet(1),
-                child: _buildPhotoContainer(_image1, 0),
+            children: List.generate(
+              _images.length,
+              (index) => GestureDetector(
+                onTap: () => _openPicUpdateSheet(index),
+                child: _buildPhotoContainer(_images[index], index),
               ),
-              GestureDetector(
-                onTap: () => _openPicUpdateSheet(2),
-                child: _buildPhotoContainer(_image2, 1),
-              ),
-              GestureDetector(
-                onTap: () => _openPicUpdateSheet(3),
-                child: _buildPhotoContainer(_image3, 2),
-              ),
-            ],
+            ),
           ),
           ElevatedButton(
-            onPressed: _savePhotos,
+            onPressed: () {
+              _savePhotos();
+              Navigator.pop(context);
+            },
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 40),
               backgroundColor: GlobalVariables.themeColor,
             ),
-            child: const Text('Save', style: TextStyle(color: Colors.white)),
+            child: const Text(
+              'Save',
+              style: TextStyle(color: Colors.white),
+            ),
           )
         ],
       ),
@@ -93,15 +91,6 @@ class _PhotoSheetState extends State<PhotoSheet> {
   }
 
   Widget _buildPhotoContainer(File? imageFile, int index) {
-    File? pickedImage;
-    if (index == 0) {
-      pickedImage = _image1;
-    } else if (index == 1) {
-      pickedImage = _image2;
-    } else if (index == 2) {
-      pickedImage = _image3;
-    }
-
     return Container(
       width: 120,
       height: 170,
@@ -109,12 +98,11 @@ class _PhotoSheetState extends State<PhotoSheet> {
         color: Colors.white12,
         borderRadius: BorderRadius.circular(12),
       ),
-      margin: const EdgeInsets.symmetric(vertical: 7),
+      margin: const EdgeInsets.symmetric(vertical: 8),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12),
-        child: pickedImage != null
-            ? Image.file(pickedImage,
-                fit: BoxFit.cover, width: 120, height: 170)
+        child: imageFile != null
+            ? Image.file(imageFile, fit: BoxFit.cover, width: 120, height: 170)
             : (_photoURLs != null &&
                     _photoURLs!.length > index &&
                     _photoURLs![index] != null
@@ -132,11 +120,7 @@ class _PhotoSheetState extends State<PhotoSheet> {
     if (pickedImage != null) {
       final newPhoto = File(pickedImage.path);
       setState(() {
-        if (containerIndex == 1)
-          _image1 = newPhoto;
-        else if (containerIndex == 2)
-          _image2 = newPhoto;
-        else if (containerIndex == 3) _image3 = newPhoto;
+        _images[containerIndex] = newPhoto;
       });
     }
   }
@@ -145,32 +129,20 @@ class _PhotoSheetState extends State<PhotoSheet> {
     try {
       List<String> photoURLs = [];
 
-      // Upload images to storage and update Firestore URLs
-      if (_image1 != null) {
-        final imageUrl1 = await StorageService().uploadImage(_image1!, 1);
-        photoURLs.add(imageUrl1);
-      }
-
-      if (_image2 != null) {
-        final imageUrl2 = await StorageService().uploadImage(_image2!, 2);
-        photoURLs.add(imageUrl2);
-      }
-
-      if (_image3 != null) {
-        final imageUrl3 = await StorageService().uploadImage(_image3!, 3);
-        photoURLs.add(imageUrl3);
+      for (int i = 0; i < _images.length; i++) {
+        File? image = _images[i];
+        if (image != null) {
+          final imageUrl = await StorageService().uploadImage(image, i + 1);
+          photoURLs.add(imageUrl);
+        }
       }
 
       String uid = AuthService().currentUser!.uid;
 
-      // Update Firestore with updated photo URLs
       await FirestoreService().updateUserPhotoURLs(uid, photoURLs);
 
-      // Optionally clear the images after saving
       setState(() {
-        _image1 = null;
-        _image2 = null;
-        _image3 = null;
+        _images = List.filled(3, null);
       });
     } catch (e) {
       print('Error saving photo URLs: $e');

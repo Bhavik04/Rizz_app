@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
+import 'package:rizz/features/home/screens/subscription.dart';
 
 void showSnapchatBottom(BuildContext context) {
   showModalBottomSheet(
@@ -59,7 +60,7 @@ Widget _buildSnapchatBottomSheet(BuildContext context) {
               child: CustomButton(
                 onTap: () {
                   Navigator.pop(context);
-                  context.goNamed('SubscriptionScreen');
+                  context.goNamed(SubscriptionScreen.routeName);
                 },
                 text: 'See Username',
                 buttonColor: HexColor('FFD500'),
