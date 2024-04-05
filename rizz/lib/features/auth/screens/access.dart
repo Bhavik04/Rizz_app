@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
 import 'package:rizz/features/auth/screens/create_gender.dart';
@@ -17,6 +18,9 @@ class AcessScreen extends StatefulWidget {
 }
 
 class _AcessScreenState extends State<AcessScreen> {
+  bool locationPermissionGranted = false;
+  bool galleryPermissionGranted = false;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -77,12 +81,18 @@ class _AcessScreenState extends State<AcessScreen> {
                           top: GlobalVariables.deviceHeight * 0.08),
                       child: CustomButton(
                         text: 'Enable location',
-                        textColor: Colors.white,
-                        buttonColor: Colors.black,
+                        textColor: locationPermissionGranted
+                            ? Colors.black26
+                            : Colors.white,
+                        buttonColor: locationPermissionGranted
+                            ? Colors.white70
+                            : Colors.black,
                         image: Image.asset('assets/images/location.png'),
-                        onTap: () {
-                          context.goNamed(PhotoScreen.routeName);
-                        },
+                        onTap: locationPermissionGranted
+                            ? null
+                            : () {
+                                checkPermission(Permission.location, context);
+                              },
                       ),
                     ),
                     Container(
@@ -90,12 +100,18 @@ class _AcessScreenState extends State<AcessScreen> {
                           top: GlobalVariables.deviceHeight * 0.01),
                       child: CustomButton(
                         text: 'Enable gallery',
-                        textColor: Colors.white,
-                        buttonColor: Colors.black,
+                        textColor: galleryPermissionGranted
+                            ? Colors.black26
+                            : Colors.white,
+                        buttonColor: galleryPermissionGranted
+                            ? Colors.white70
+                            : Colors.black,
                         image: Image.asset('assets/images/gallery.png'),
-                        onTap: () {
-                          context.goNamed(PhotoScreen.routeName);
-                        },
+                        onTap: galleryPermissionGranted
+                            ? null
+                            : () {
+                                checkPermission(Permission.photos, context);
+                              },
                       ),
                     ),
                     SizedBox(
@@ -123,7 +139,7 @@ class _AcessScreenState extends State<AcessScreen> {
                       SizedBox(
                         width: GlobalVariables.deviceWidth * 0.65,
                         child: const Text(
-                          'Slay cares intensily about your privacy. We will never misuse your data. ',
+                          'Slay cares intensily about your privacy. We will never misuse your data.',
                           textAlign: TextAlign.left,
                           style: TextStyle(
                             fontSize: 14,
@@ -141,5 +157,61 @@ class _AcessScreenState extends State<AcessScreen> {
         ),
       ),
     );
+  }
+
+  void navigateToPhotoScreenIfPermitted(BuildContext context) {
+    if (locationPermissionGranted && galleryPermissionGranted) {
+      context.goNamed(PhotoScreen.routeName);
+    }
+  }
+
+  Future<void> checkPermission(
+      Permission permission, BuildContext context) async {
+    final status = await permission.request();
+    if (status.isGranted) {
+      setState(() {
+        if (permission == Permission.location) {
+          locationPermissionGranted = true;
+        } else if (permission == Permission.photos) {
+          galleryPermissionGranted = true;
+        }
+      });
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Permission granted")));
+      navigateToPhotoScreenIfPermitted(
+          context); // Check if both permissions granted
+    } else if (status.isDenied) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Permission denied")));
+    } else if (status.isPermanentlyDenied) {
+      final bool goToSettings = await showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Permission Required"),
+            content: Text(
+                "This app requires access to ${permission == Permission.location ? 'location' : 'photos'}. "
+                "Would you like to open app settings to enable permission?"),
+            actions: <Widget>[
+              TextButton(
+                child: Text("Cancel"),
+                onPressed: () {
+                  Navigator.of(context).pop(false);
+                },
+              ),
+              TextButton(
+                child: Text("Settings"),
+                onPressed: () {
+                  Navigator.of(context).pop(true);
+                },
+              ),
+            ],
+          );
+        },
+      );
+      if (goToSettings) {
+        openAppSettings();
+      }
+    }
   }
 }
