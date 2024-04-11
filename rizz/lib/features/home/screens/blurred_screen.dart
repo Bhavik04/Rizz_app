@@ -33,7 +33,6 @@ class _BlurredScreenState extends State<BlurredScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getUserDetails();
   }

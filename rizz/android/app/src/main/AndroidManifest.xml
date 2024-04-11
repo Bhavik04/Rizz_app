@@ -5,6 +5,7 @@
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 <!-- gallery -->
 <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <application
         android:label="rizz"
         android:name="${applicationName}"

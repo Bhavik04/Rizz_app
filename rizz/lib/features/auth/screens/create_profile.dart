@@ -7,7 +7,6 @@ import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
 import 'package:rizz/features/home/screens/loading_screen.dart';
-import 'package:rizz/features/home/screens/play.dart';
 
 import '../../../services/auth_service.dart';
 import '../../../services/firestore_service.dart';

@@ -16,6 +16,7 @@ import 'package:rizz/features/auth/widgets/user_info_texts.dart';
 import 'package:rizz/objectbox.g.dart';
 import 'package:rizz/services/auth_service.dart';
 import 'package:rizz/services/firestore_service.dart';
+import 'package:rizz/services/notifications.dart';
 
 class PlayScreen extends StatefulWidget {
   static const routeName = 'PlayScreen';
@@ -30,11 +31,13 @@ class _PlayScreenState extends State<PlayScreen> {
   // List<dynamic> userImageURLs = [];
   List<AppUser> allUserData = [];
   double _currentValue = 0;
+  NotificationServices notificationServices = NotificationServices();
 
   @override
   void initState() {
     super.initState();
     _loadUserImages();
+    notificationServices.requestNotificationPermission();
   }
 
   // Future<List<AppUser>> _loadUserImages() async {

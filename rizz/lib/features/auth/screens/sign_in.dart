@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
-import 'package:rizz/features/auth/screens/access.dart';
 import 'package:rizz/features/auth/screens/create_username.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/home/screens/loading_screen.dart';
@@ -76,7 +75,7 @@ class _SignInPageState extends State<SignInPage> {
                     } else {
                       // For an existing user, navigate to the PlayScreen
                       // context.goNamed(PlayScreen.routeName);
-                      context.goNamed(AcessScreen.routeName);
+                      context.goNamed(UserNameScreen.routeName);
                     }
                   } else {
                     // Handle the case where sign-in was not successful

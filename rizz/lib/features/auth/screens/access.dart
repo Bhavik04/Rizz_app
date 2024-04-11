@@ -5,6 +5,7 @@ import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
 import 'package:rizz/features/auth/screens/create_gender.dart';
 import 'package:rizz/features/auth/screens/create_photo.dart';
+import 'package:rizz/features/auth/widgets/app_settings.dart';
 import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 
@@ -31,9 +32,7 @@ class _AcessScreenState extends State<AcessScreen> {
               EdgeInsets.only(right: GlobalVariables.deviceWidth * 0.09),
           titleColor: Colors.white,
           backgroundColor: HexColor('F33C5E'),
-          onBack: () {
-            context.goNamed(GenderScreen.routeName);
-          },
+          onBack: () => context.goNamed(GenderScreen.routeName),
         ),
         body: Container(
           alignment: Alignment.topCenter,
@@ -56,67 +55,15 @@ class _AcessScreenState extends State<AcessScreen> {
                     horizontal: GlobalVariables.deviceWidth * 0.1),
                 child: Column(
                   children: [
-                    Container(
-                      margin: EdgeInsets.only(
-                          top: GlobalVariables.deviceHeight * 0.07),
-                      width: GlobalVariables.deviceWidth * 0.55,
-                      child: Image.asset('assets/images/slaytext.png'),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(
-                          top: GlobalVariables.deviceHeight * 0.02),
-                      width: GlobalVariables.deviceWidth * 0.65,
-                      child: const Text(
-                        'Slay needs to create your profile and give location based experience ',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(
-                          top: GlobalVariables.deviceHeight * 0.08),
-                      child: CustomButton(
-                        text: 'Enable location',
-                        textColor: locationPermissionGranted
-                            ? Colors.black26
-                            : Colors.white,
-                        buttonColor: locationPermissionGranted
-                            ? Colors.white70
-                            : Colors.black,
-                        image: Image.asset('assets/images/location.png'),
-                        onTap: locationPermissionGranted
-                            ? null
-                            : () {
-                                checkPermission(Permission.location, context);
-                              },
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(
-                          top: GlobalVariables.deviceHeight * 0.01),
-                      child: CustomButton(
-                        text: 'Enable gallery',
-                        textColor: galleryPermissionGranted
-                            ? Colors.black26
-                            : Colors.white,
-                        buttonColor: galleryPermissionGranted
-                            ? Colors.white70
-                            : Colors.black,
-                        image: Image.asset('assets/images/gallery.png'),
-                        onTap: galleryPermissionGranted
-                            ? null
-                            : () {
-                                checkPermission(Permission.photos, context);
-                              },
-                      ),
-                    ),
-                    SizedBox(
-                      height: GlobalVariables.deviceHeight * 0.62,
-                    ),
+                    _buildImageWidget('assets/images/slaytext.png', 0.07),
+                    _buildTextWidget(
+                        'Slay needs to create your profile and give location based experience',
+                        0.02),
+                    _buildPermissionButton('Enable location',
+                        locationPermissionGranted, Permission.location),
+                    _buildPermissionButton('Enable gallery',
+                        galleryPermissionGranted, Permission.photos),
+                    SizedBox(height: GlobalVariables.deviceHeight * 0.62),
                   ],
                 ),
               ),
@@ -133,9 +80,7 @@ class _AcessScreenState extends State<AcessScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Image.asset('assets/images/tinylock.png'),
-                      const SizedBox(
-                        width: 8,
-                      ),
+                      const SizedBox(width: 8),
                       SizedBox(
                         width: GlobalVariables.deviceWidth * 0.65,
                         child: const Text(
@@ -159,14 +104,47 @@ class _AcessScreenState extends State<AcessScreen> {
     );
   }
 
-  void navigateToPhotoScreenIfPermitted(BuildContext context) {
-    if (locationPermissionGranted && galleryPermissionGranted) {
-      context.goNamed(PhotoScreen.routeName);
-    }
+  Widget _buildImageWidget(String imagePath, double marginTop) {
+    return Container(
+      margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * marginTop),
+      width: GlobalVariables.deviceWidth * 0.55,
+      child: Image.asset(imagePath),
+    );
   }
 
-  Future<void> checkPermission(
-      Permission permission, BuildContext context) async {
+  Widget _buildTextWidget(String text, double marginTop) {
+    return Container(
+      margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * marginTop),
+      width: GlobalVariables.deviceWidth * 0.65,
+      child: Text(
+        text,
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.normal,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPermissionButton(
+      String text, bool permissionGranted, Permission permission) {
+    return Container(
+      margin: EdgeInsets.only(top: GlobalVariables.deviceHeight * 0.01),
+      child: CustomButton(
+        text: text,
+        textColor: permissionGranted ? Colors.black26 : Colors.white,
+        buttonColor: permissionGranted ? Colors.white70 : Colors.black,
+        image: Image.asset(permission == Permission.location
+            ? 'assets/images/location.png'
+            : 'assets/images/gallery.png'),
+        onTap: permissionGranted ? null : () => _checkPermission(permission),
+      ),
+    );
+  }
+
+  void _checkPermission(Permission permission) async {
     final status = await permission.request();
     if (status.isGranted) {
       setState(() {
@@ -176,42 +154,26 @@ class _AcessScreenState extends State<AcessScreen> {
           galleryPermissionGranted = true;
         }
       });
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("Permission granted")));
-      navigateToPhotoScreenIfPermitted(
-          context); // Check if both permissions granted
+      _navigateToPhotoScreenPermitted();
+      print("permission enabled");
     } else if (status.isDenied) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("Permission denied")));
+      print("permission denied");
     } else if (status.isPermanentlyDenied) {
       final bool goToSettings = await showDialog(
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text("Permission Required"),
-            content: Text(
-                "This app requires access to ${permission == Permission.location ? 'location' : 'photos'}. "
-                "Would you like to open app settings to enable permission?"),
-            actions: <Widget>[
-              TextButton(
-                child: Text("Cancel"),
-                onPressed: () {
-                  Navigator.of(context).pop(false);
-                },
-              ),
-              TextButton(
-                child: Text("Settings"),
-                onPressed: () {
-                  Navigator.of(context).pop(true);
-                },
-              ),
-            ],
-          );
+          return AppSettingsPopup(permission: permission);
         },
       );
       if (goToSettings) {
         openAppSettings();
       }
+    }
+  }
+
+  void _navigateToPhotoScreenPermitted() {
+    if (locationPermissionGranted && galleryPermissionGranted) {
+      context.goNamed(PhotoScreen.routeName);
     }
   }
 }
