@@ -75,7 +75,7 @@ class _SignInPageState extends State<SignInPage> {
                     } else {
                       // For an existing user, navigate to the PlayScreen
                       // context.goNamed(PlayScreen.routeName);
-                      context.goNamed(UserNameScreen.routeName);
+                      context.goNamed(LoadingScreen.routeName);
                     }
                   } else {
                     // Handle the case where sign-in was not successful
