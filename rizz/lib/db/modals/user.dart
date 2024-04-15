@@ -11,6 +11,7 @@ class AppUser {
   int age;
   String gender;
   String imageUrls;
+  String? deviceToken;
 
   AppUser({
     this.id = 0,
@@ -21,5 +22,6 @@ class AppUser {
     required this.age,
     required this.gender,
     required this.imageUrls,
+    required this.deviceToken,
   });
 }

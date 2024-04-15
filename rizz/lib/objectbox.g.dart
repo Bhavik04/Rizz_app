@@ -22,7 +22,7 @@ final _entities = <ModelEntity>[
   ModelEntity(
       id: const IdUid(2, 6810667852309190901),
       name: 'AppUser',
-      lastPropertyId: const IdUid(8, 5336674238512703943),
+      lastPropertyId: const IdUid(9, 6578496897001385371),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
@@ -63,6 +63,11 @@ final _entities = <ModelEntity>[
         ModelProperty(
             id: const IdUid(8, 5336674238512703943),
             name: 'imageUrls',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(9, 6578496897001385371),
+            name: 'deviceToken',
             type: 9,
             flags: 0)
       ],
@@ -135,7 +140,10 @@ ModelDefinition getObjectBoxModel() {
           final snapIdOffset = fbb.writeString(object.snapId);
           final genderOffset = fbb.writeString(object.gender);
           final imageUrlsOffset = fbb.writeString(object.imageUrls);
-          fbb.startTable(9);
+          final deviceTokenOffset = object.deviceToken == null
+              ? null
+              : fbb.writeString(object.deviceToken!);
+          fbb.startTable(10);
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, uIdOffset);
           fbb.addOffset(2, emailOffset);
@@ -144,6 +152,7 @@ ModelDefinition getObjectBoxModel() {
           fbb.addInt64(5, object.age);
           fbb.addOffset(6, genderOffset);
           fbb.addOffset(7, imageUrlsOffset);
+          fbb.addOffset(8, deviceTokenOffset);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -166,6 +175,9 @@ ModelDefinition getObjectBoxModel() {
               .vTableGet(buffer, rootOffset, 16, '');
           final imageUrlsParam = const fb.StringReader(asciiOptimization: true)
               .vTableGet(buffer, rootOffset, 18, '');
+          final deviceTokenParam =
+              const fb.StringReader(asciiOptimization: true)
+                  .vTableGetNullable(buffer, rootOffset, 20);
           final object = AppUser(
               id: idParam,
               uId: uIdParam,
@@ -174,7 +186,8 @@ ModelDefinition getObjectBoxModel() {
               snapId: snapIdParam,
               age: ageParam,
               gender: genderParam,
-              imageUrls: imageUrlsParam);
+              imageUrls: imageUrlsParam,
+              deviceToken: deviceTokenParam);
 
           return object;
         })
@@ -211,4 +224,8 @@ class AppUser_ {
   /// see [AppUser.imageUrls]
   static final imageUrls =
       QueryStringProperty<AppUser>(_entities[0].properties[7]);
+
+  /// see [AppUser.deviceToken]
+  static final deviceToken =
+      QueryStringProperty<AppUser>(_entities[0].properties[8]);
 }

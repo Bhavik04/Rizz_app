@@ -72,6 +72,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       null,
       null,
       0,
+      null,
       gender: '',
       photoURLs: GlobalVariables.photoURLs,
     );

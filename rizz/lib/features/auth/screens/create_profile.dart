@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
 import 'package:rizz/common/utils.dart';
@@ -7,6 +9,7 @@ import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
 import 'package:rizz/features/home/screens/loading_screen.dart';
+import 'package:rizz/services/notifications.dart';
 
 import '../../../services/auth_service.dart';
 import '../../../services/firestore_service.dart';
@@ -21,6 +24,27 @@ class CreateProfileScreen extends StatefulWidget {
 }
 
 class _CreateProfileScreenState extends State<CreateProfileScreen> {
+  String? deviceToken;
+
+  Future<void> getDeviceToken() async {
+    NotificationServices notificationServices =
+        GetIt.instance.get<NotificationServices>();
+    notificationServices.isRefreshToken();
+    deviceToken = await notificationServices.getDeviceToken().then((value) {
+      if (kDebugMode) {
+        print('device token');
+        print(value);
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getDeviceToken();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -87,6 +111,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                           GlobalVariables.username,
                           GlobalVariables.snapchat,
                           GlobalVariables.age,
+                          deviceToken,
                           gender: GlobalVariables.gender,
                           photoURLs: GlobalVariables.photoURLs,
                         );

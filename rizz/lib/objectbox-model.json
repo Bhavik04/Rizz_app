@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "2:6810667852309190901",
-      "lastPropertyId": "8:5336674238512703943",
+      "lastPropertyId": "9:6578496897001385371",
       "name": "AppUser",
       "properties": [
         {
@@ -47,6 +47,11 @@
         {
           "id": "8:5336674238512703943",
           "name": "imageUrls",
+          "type": 9
+        },
+        {
+          "id": "9:6578496897001385371",
+          "name": "deviceToken",
           "type": 9
         }
       ],

@@ -42,7 +42,8 @@ class FirestoreService {
     String uid,
     String? username,
     String? snapchat,
-    int? age, {
+    int? age,
+    String? deviceToken, {
     String? gender = '',
     required List<String> photoURLs,
   }) async {
@@ -62,6 +63,10 @@ class FirestoreService {
     }
     if (photoURLs.isNotEmpty) {
       dataToUpdate['photoURLs'] = FieldValue.arrayUnion(photoURLs);
+    }
+
+    if (deviceToken != null) {
+      dataToUpdate['deviceToken'] = deviceToken;
     }
 
     // Check if the user is new or existing
