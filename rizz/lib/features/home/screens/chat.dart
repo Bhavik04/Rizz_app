@@ -8,8 +8,8 @@ import 'package:rizz/features/home/screens/play.dart';
 
 class ChatScreen extends StatefulWidget {
   static const routeName = 'ChatScreen';
-
-  const ChatScreen({Key? key}) : super(key: key);
+  final String id;
+  const ChatScreen({Key? key, required this.id}) : super(key: key);
 
   @override
   State<ChatScreen> createState() => _ChatScreenState();

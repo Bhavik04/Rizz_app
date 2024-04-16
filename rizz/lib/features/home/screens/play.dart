@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:rizz/common/global_variables.dart';
@@ -15,6 +16,7 @@ import 'package:rizz/features/auth/widgets/user_info_texts.dart';
 import 'package:rizz/objectbox.g.dart';
 import 'package:rizz/services/auth_service.dart';
 import 'package:rizz/services/firestore_service.dart';
+
 import 'package:rizz/services/notifications.dart';
 
 class PlayScreen extends StatefulWidget {
@@ -37,6 +39,15 @@ class _PlayScreenState extends State<PlayScreen> {
     super.initState();
     _loadUserImages();
     notificationServices.requestNotificationPermission();
+    notificationServices.setupInteractMessage(context);
+    notificationServices.firebaseInit(context);
+    notificationServices.isRefreshToken();
+    notificationServices.getDeviceToken().then((value) {
+      if (kDebugMode) {
+        print('device token');
+        print(value);
+      }
+    });
   }
 
   // Future<List<AppUser>> _loadUserImages() async {
@@ -133,6 +144,7 @@ class _PlayScreenState extends State<PlayScreen> {
                               onChanged: (value) {
                                 FirestoreService()
                                     .sendRating(user, value.toInt());
+
                                 setState(() {
                                   _currentValue = value;
                                 });

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
@@ -12,11 +14,14 @@ import 'package:rizz/features/home/screens/subscription.dart';
 import 'package:rizz/objectbox.g.dart';
 import 'package:rizz/services/auth_service.dart';
 import 'package:rizz/services/firestore_service.dart';
+import 'package:rizz/services/notifications.dart';
+import 'package:http/http.dart' as http;
 
 class InboxScreen extends StatefulWidget {
   static const routeName = 'InboxScreen';
+  final String id;
 
-  const InboxScreen({Key? key}) : super(key: key);
+  const InboxScreen({Key? key, required this.id}) : super(key: key);
 
   @override
   State<InboxScreen> createState() => _InboxScreenState();
@@ -24,6 +29,7 @@ class InboxScreen extends StatefulWidget {
 
 class _InboxScreenState extends State<InboxScreen> {
   var ratings;
+  NotificationServices notificationServices = NotificationServices();
 
   void getLikedProfiles() async {
     // DatabaseService databaseService = GetIt.instance.get<DatabaseService>();
@@ -94,7 +100,33 @@ class _InboxScreenState extends State<InboxScreen> {
                     children: [
                       CustomButton(
                         onTap: () {
-                          context.goNamed(SubscriptionScreen.routeName);
+                          // context.goNamed(SubscriptionScreen.routeName);
+                          notificationServices
+                              .getDeviceToken()
+                              .then((value) async {
+                            var data = {
+                              'to':
+                                  'fKtAAOxgTOCOjIWqdGyqs6:APA91bEeYa633wpdeUZzLKPEH9wixTCjvITRdvSzls7fppkkrQptMACWCj2bYEdqIBU2zowDka_YLgUrDnDj0HEOhxG4uCdaKRgJ-sOQEVhZk62gmFz3eOiek8r8TxKtNLQIyjvByBMT',
+                              'priority': 'high',
+                              'notification': {
+                                'title': 'Rate',
+                                'body': 'new raring',
+                              },
+                              'data': {
+                                'type': 'slay',
+                              }
+                            };
+                            await http.post(
+                                Uri.parse(
+                                    'https://fcm.googleapis.com/fcm/send'),
+                                body: jsonEncode(data),
+                                headers: {
+                                  'Content-Type':
+                                      'application/json; charset=UTF-8',
+                                  'Authorization':
+                                      'key=AAAAj42XAjM:APA91bG0mcKrbnQblice5h2NgZGaSvhIinp51zwolVm48pcmw_ICghr0rMv3uA4Teb2UTIuIOd_VoNG7mFdnLsQJmacJ5qmezJQw9WQET96qaravSS8jbhMmgfQNoFGlRsedFtqz2Sqg'
+                                });
+                          });
                         },
                         text: 'See who likes you',
                         image: Image.asset('assets/images/likesyou.png'),

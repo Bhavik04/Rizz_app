@@ -6,10 +6,38 @@ import 'package:rizz/features/auth/widgets/custom_bottomsheet.dart';
 import 'package:rizz/features/auth/widgets/free_boost_popup.dart';
 import 'package:rizz/features/home/screens/ad_swipe.dart';
 import 'package:rizz/features/home/screens/profile.dart';
+import 'package:rizz/services/auth_service.dart';
+import 'package:rizz/services/firestore_service.dart';
 
-class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
+class MainAppBar extends StatefulWidget implements PreferredSizeWidget {
+  const MainAppBar({super.key});
+
   @override
   Size get preferredSize => const Size.fromHeight(60);
+
+  @override
+  _MainAppBarState createState() => _MainAppBarState();
+}
+
+class _MainAppBarState extends State<MainAppBar> {
+  String? userImageUrl;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchCurrentUserImage();
+  }
+
+  Future<void> fetchCurrentUserImage() async {
+    final List<String>? photoURLs = await FirestoreService()
+        .getUserPhotoURLs(AuthService().currentUser!.uid);
+
+    if (photoURLs != null && photoURLs.isNotEmpty) {
+      setState(() {
+        userImageUrl = photoURLs[0];
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +51,23 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
             onTap: () {
               context.goNamed(ProfileScreen.routeName);
             },
-            child: Image.asset(
-              'assets/images/boy.png',
-              width: 35.0,
-              height: 35.0,
-            ),
+            child: userImageUrl != null
+                ? ClipOval(
+                    child: Image.network(
+                      userImageUrl!,
+                      width: 35.0,
+                      height: 35.0,
+                      fit: BoxFit.cover,
+                    ),
+                  )
+                : ClipOval(
+                    child: Image.asset(
+                      'assets/images/boy.png',
+                      width: 35.0,
+                      height: 35.0,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
           ),
           GestureDetector(
             onTap: () {

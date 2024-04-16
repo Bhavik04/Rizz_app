@@ -162,7 +162,9 @@ class AppRouter {
                         GoRoute(
                             path: "InboxScreen",
                             name: InboxScreen.routeName,
-                            builder: (context, state) => const InboxScreen(),
+                            builder: (context, state) => const InboxScreen(
+                                  id: '',
+                                ),
                             routes: [
                               GoRoute(
                                 path: 'BlurredScreen',
@@ -187,7 +189,9 @@ class AppRouter {
                         GoRoute(
                           path: "ChatScreen",
                           name: ChatScreen.routeName,
-                          builder: (context, state) => const ChatScreen(),
+                          builder: (context, state) => const ChatScreen(
+                            id: '',
+                          ),
                         ),
                       ])
                 ],
