@@ -94,10 +94,6 @@ Future<void> saveFeedback(String uid, String feedback) async {
   }
 }
 
-
-
-
-
   Future<bool> checkIfNewUser(String uid) async {
     try {
       final DocumentSnapshot<Map<String, dynamic>> userSnapshot =
