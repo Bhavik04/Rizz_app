@@ -80,6 +80,23 @@ class FirestoreService {
           .set(dataToUpdate, SetOptions(merge: true));
     }
   }
+Future<void> saveFeedback(String uid, String feedback) async {
+  try {
+    await firestore.collection('feedback').add({
+      'uid': uid,
+      'feedback': feedback,
+      'timestamp': FieldValue.serverTimestamp(),
+    });
+    print('Feedback saved successfully.');
+  } catch (e) {
+    print('Error saving feedback: $e');
+    throw Exception('Failed to save feedback.');
+  }
+}
+
+
+
+
 
   Future<bool> checkIfNewUser(String uid) async {
     try {

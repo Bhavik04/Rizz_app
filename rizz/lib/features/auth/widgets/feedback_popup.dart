@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rizz/common/global_variables.dart';
+import 'package:rizz/services/auth_service.dart'; // Import your AuthService
+import 'package:rizz/services/firestore_service.dart'; // Import your FirestoreService
 
 class FeedbackDialog extends StatelessWidget {
   final TextEditingController feedbackController;
@@ -52,11 +54,19 @@ class FeedbackDialog extends StatelessWidget {
           ),
         ),
         ElevatedButton(
-          onPressed: onSend,
+          onPressed: () {
+            String feedback = feedbackController.text;
+            if (feedback.isNotEmpty) {
+              FirestoreService().saveFeedback(AuthService().currentUser!.uid, feedback);
+              onSend(); 
+            } else {
+              print('error sending eedback');
+            }
+          },
           style: ElevatedButton.styleFrom(
             backgroundColor: GlobalVariables.themeColor, 
           ),
-          child: const Text('Send',style: TextStyle(color: Colors.white),),
+          child: const Text('Send', style: TextStyle(color: Colors.white)),
         ),
       ],
     );

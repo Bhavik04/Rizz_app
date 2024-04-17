@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rizz/features/auth/widgets/feedback_popup.dart';
+import 'package:rizz/features/auth/widgets/feedback_popup.dart'; 
 
 class CustomFeedbackButton extends StatelessWidget {
   final String text;
@@ -26,7 +26,20 @@ class CustomFeedbackButton extends StatelessWidget {
       width: width,
       child: ElevatedButton(
         onPressed: () {
-          _showFeedbackDialog(context);
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return FeedbackDialog(
+                feedbackController: TextEditingController(), 
+                onCancel: () {
+                  Navigator.of(context).pop();
+                },
+                onSend: () {
+                  Navigator.of(context).pop();
+                },
+              );
+            },
+          );
         },
         style: ElevatedButton.styleFrom(
           foregroundColor: textColor,
@@ -40,28 +53,6 @@ class CustomFeedbackButton extends StatelessWidget {
           style: const TextStyle(fontSize: 20),
         ),
       ),
-    );
-  }
-
-  void _showFeedbackDialog(BuildContext context) {
-    TextEditingController feedbackController = TextEditingController();
-
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return FeedbackDialog(
-          feedbackController: feedbackController,
-          onCancel: () {
-            Navigator.of(context).pop();
-          },
-          onSend: () {
-            // Handle sending feedback here
-            String feedback = feedbackController.text;
-            print('Sending feedback: $feedback');
-            Navigator.of(context).pop();
-          },
-        );
-      },
     );
   }
 }
