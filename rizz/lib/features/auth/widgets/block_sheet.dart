@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-void showSkipSheet(BuildContext context, {bool includeSkipUser = true}) {
+void showSkipSheet(BuildContext context, {bool includeSkipUser = true, Function? onSkip}) {
   showModalBottomSheet(
     context: context,
     isDismissible: true,
     builder: (BuildContext context) {
-      return _buildSkipSheet(context, includeSkipUser);
+      return _buildSkipSheet(context, includeSkipUser, onSkip);
     },
   );
 }
 
-Widget _buildSkipSheet(BuildContext context, bool includeSkipUser) {
+Widget _buildSkipSheet(BuildContext context, bool includeSkipUser, Function? onSkip) {
   return Container(
     color: Colors.transparent,
     child: Column(
@@ -24,7 +24,9 @@ Widget _buildSkipSheet(BuildContext context, bool includeSkipUser) {
             Colors.lightBlue,
             18,
             FontWeight.normal,
-            () {},
+            () {
+              if (onSkip != null) onSkip();
+            },
           ),
         if (includeSkipUser)
           const Divider(

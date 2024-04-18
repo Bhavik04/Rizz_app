@@ -4,6 +4,7 @@ import 'package:rizz/common/utils.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_divider.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
+import 'package:rizz/features/auth/widgets/rating_popup.dart';
 
 class AdswipeScreen extends StatefulWidget {
   static const routeName = 'AdswipeScreen';
@@ -70,7 +71,14 @@ class _AdswipeScreenState extends State<AdswipeScreen> {
                 child: CustomButton(
                   text: 'Watch',
                   //play two ads
-                  onTap: () {},
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return RatingPopupp();
+                      },
+                    );
+                  },
                   buttonColor: HexColor('F24139'),
                   textColor: Colors.white,
                 ),

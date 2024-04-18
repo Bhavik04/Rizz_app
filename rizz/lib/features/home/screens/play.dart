@@ -31,6 +31,7 @@ class PlayScreen extends StatefulWidget {
 class _PlayScreenState extends State<PlayScreen> {
   // List<dynamic> userImageURLs = [];
   List<AppUser> allUserData = [];
+   late PageController _pageController;
   double _currentValue = 0;
   NotificationServices notificationServices = NotificationServices();
 
@@ -38,6 +39,7 @@ class _PlayScreenState extends State<PlayScreen> {
   void initState() {
     super.initState();
     _loadUserImages();
+     _pageController = PageController();
     notificationServices.requestNotificationPermission();
     notificationServices.setupInteractMessage(context);
     notificationServices.firebaseInit(context);
@@ -48,6 +50,12 @@ class _PlayScreenState extends State<PlayScreen> {
         print(value);
       }
     });
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 
   // Future<List<AppUser>> _loadUserImages() async {
@@ -80,6 +88,7 @@ class _PlayScreenState extends State<PlayScreen> {
               alignment: Alignment.center,
               height: GlobalVariables.deviceHeight * 0.79,
               child: PageView.builder(
+                 controller: _pageController,
                 scrollDirection: Axis.vertical,
                 itemCount: allUserData.length,
                 itemBuilder: (context, index) {
@@ -154,10 +163,13 @@ class _PlayScreenState extends State<PlayScreen> {
                         ),
                       ),
                       ReportButton(
-                        onTap: () {
-                          showSkipSheet(context);
-                        },
-                      ),
+  onTap: () {
+    showSkipSheet(context, onSkip: () {
+     _pageController.nextPage(duration: Duration(milliseconds: 500), curve: Curves.ease);
+    });
+  },
+),
+
                     ],
                   );
 
