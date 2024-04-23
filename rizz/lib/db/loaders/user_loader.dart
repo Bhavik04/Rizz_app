@@ -8,11 +8,10 @@ import 'package:rizz/db/services/database_service.dart';
 import 'package:rizz/services/firestore_service.dart';
 
 class UserLoaderService {
-  late DatabaseService databaseService ;
+  late DatabaseService databaseService;
   load() async {
-
-    databaseService=GetIt.instance.get<DatabaseService>();
-    databaseService.init();
+    databaseService = GetIt.instance.get<DatabaseService>();
+    await databaseService.init();
     var response = await FirestoreService().firestore.collection('users').get();
     final userdata = response.docs.map((e) => toUser(e)).toList();
     Store store = databaseService.getStore()!;
@@ -21,14 +20,14 @@ class UserLoaderService {
   }
 
   AppUser toUser(QueryDocumentSnapshot<Map<String, dynamic>> data) {
-    final userData=data.data();
+    final userData = data.data();
     return AppUser(
-        name: userData?["username"]??'',
+        name: userData?["username"] ?? '',
         email: '',
-        snapId: userData["snapchat"]??'',
-        age: userData["age"]??0,
-        gender: userData["gender"]??'',
+        snapId: userData["snapchat"] ?? '',
+        age: userData["age"] ?? 0,
+        gender: userData["gender"] ?? '',
         imageUrls: jsonEncode(userData?["photoURLs"]),
-        uId: data.id??'');
+        uId: data.id ?? '');
   }
 }

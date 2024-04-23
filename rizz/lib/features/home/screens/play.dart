@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -31,7 +32,7 @@ class PlayScreen extends StatefulWidget {
 class _PlayScreenState extends State<PlayScreen> {
   // List<dynamic> userImageURLs = [];
   List<AppUser> allUserData = [];
-   late PageController _pageController;
+  late PageController _pageController;
   double _currentValue = 0;
   NotificationServices notificationServices = NotificationServices();
 
@@ -39,7 +40,7 @@ class _PlayScreenState extends State<PlayScreen> {
   void initState() {
     super.initState();
     _loadUserImages();
-     _pageController = PageController();
+    _pageController = PageController();
     notificationServices.requestNotificationPermission();
     notificationServices.setupInteractMessage(context);
     notificationServices.firebaseInit(context);
@@ -88,7 +89,7 @@ class _PlayScreenState extends State<PlayScreen> {
               alignment: Alignment.center,
               height: GlobalVariables.deviceHeight * 0.79,
               child: PageView.builder(
-                 controller: _pageController,
+                controller: _pageController,
                 scrollDirection: Axis.vertical,
                 itemCount: allUserData.length,
                 itemBuilder: (context, index) {
@@ -108,68 +109,76 @@ class _PlayScreenState extends State<PlayScreen> {
                   final userImages = jsonDecode(user.imageUrls);
                   return Stack(
                     children: [
-                      Container(
-                        margin: const EdgeInsets.all(6.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
-                          border: Border.all(
-                            color: Colors.white24,
-                            width: 1.0,
-                          ),
-                          image: DecorationImage(
-                            image: NetworkImage(userImages[0]),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    UserInfoWidget(
-                                      username: username,
-                                      age: age,
-                                    ),
-                                  ],
-                                ),
-                                CustomButtonsColumn(
-                                  onSnapchatTap: () {
-                                    showSnapchatBottom(context);
-                                  },
-                                  onSuperChatTap: () {
-                                    showSuperChat(context);
-                                  },
-                                ),
-                              ],
+                      CachedNetworkImage(
+                        imageUrl: userImages[0],
+                        imageBuilder: (context, imageProvider) => Container(
+                          margin: const EdgeInsets.all(6.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15.0),
+                            border: Border.all(
+                              color: Colors.white24,
+                              width: 1.0,
                             ),
-                            CustomSlider(
-                              value: _currentValue,
-                              onChanged: (value) {
-                                FirestoreService()
-                                    .sendRating(user, value.toInt());
+                            image: DecorationImage(
+                              image: imageProvider,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      UserInfoWidget(
+                                        username: username,
+                                        age: age,
+                                      ),
+                                    ],
+                                  ),
+                                  CustomButtonsColumn(
+                                    onSnapchatTap: () {
+                                      showSnapchatBottom(context);
+                                    },
+                                    onSuperChatTap: () {
+                                      showSuperChat(context);
+                                    },
+                                  ),
+                                ],
+                              ),
+                              CustomSlider(
+                                value: _currentValue,
+                                onChanged: (value) {
+                                  FirestoreService()
+                                      .sendRating(user, value.toInt());
 
-                                setState(() {
-                                  _currentValue = value;
-                                });
-                              },
-                            ),
-                          ],
+                                  setState(() {
+                                    _currentValue = value;
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
                         ),
+                        placeholder: (context, url) =>
+                            CircularProgressIndicator(),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
                       ),
                       ReportButton(
-  onTap: () {
-    showSkipSheet(context, onSkip: () {
-     _pageController.nextPage(duration: Duration(milliseconds: 500), curve: Curves.ease);
-    });
-  },
-),
-
+                        onTap: () {
+                          showSkipSheet(context, onSkip: () {
+                            _pageController.nextPage(
+                                duration: Duration(milliseconds: 500),
+                                curve: Curves.ease);
+                          });
+                        },
+                      ),
                     ],
                   );
 

@@ -93,9 +93,9 @@ class _BlurredScreenState extends State<BlurredScreen> {
                           SizedBox(height: GlobalVariables.deviceHeight * 0.07),
                           RichText(
                             textAlign: TextAlign.center,
-                            text: const TextSpan(
+                            text: TextSpan(
                               children: [
-                                TextSpan(
+                                const TextSpan(
                                   text: 'Rated you:',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w900,
@@ -103,8 +103,8 @@ class _BlurredScreenState extends State<BlurredScreen> {
                                   ),
                                 ),
                                 TextSpan(
-                                    text: '\n10',
-                                    style: TextStyle(
+                                    text: '\n${widget.rating}',
+                                    style: const TextStyle(
                                         fontWeight: FontWeight.w900,
                                         fontSize: 90)),
                               ],

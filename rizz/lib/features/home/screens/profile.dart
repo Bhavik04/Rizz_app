@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
@@ -104,55 +105,62 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                Container(
-                  alignment: Alignment.center,
-                  margin: EdgeInsets.fromLTRB(
-                      0, 0, 0, GlobalVariables.deviceHeight * 0.01),
-                  height: GlobalVariables.deviceWidth * 0.280,
-                  width: GlobalVariables.deviceWidth * 0.280,
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    shape: BoxShape.circle,
-                    image: profileImageURL != null
-                        ? DecorationImage(
-                            image: NetworkImage(profileImageURL!),
-                            fit: BoxFit.cover,
-                          )
-                        : null,
-                  ),
-                  child: Stack(
-                    children: [
-                      // Profile Image
-                      if (profileImageURL != null)
-                        Positioned.fill(
-                          child: ClipOval(
-                            child: Image.network(
-                              profileImageURL!,
+                CachedNetworkImage(
+                  imageUrl: profileImageURL ?? "",
+                  imageBuilder: (context, imageProvider) => Container(
+                    alignment: Alignment.center,
+                    margin: EdgeInsets.fromLTRB(
+                        0, 0, 0, GlobalVariables.deviceHeight * 0.01),
+                    height: GlobalVariables.deviceWidth * 0.280,
+                    width: GlobalVariables.deviceWidth * 0.280,
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      shape: BoxShape.circle,
+                      image: profileImageURL != null
+                          ? DecorationImage(
+                              image: imageProvider,
                               fit: BoxFit.cover,
+                            )
+                          : null,
+                    ),
+                    child: Stack(
+                      children: [
+                        // Profile Image
+                        if (profileImageURL != null)
+                          Positioned.fill(
+                            child: ClipOval(
+                              child: Image.network(
+                                profileImageURL!,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        // Edit Icon
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: GestureDetector(
+                            onTap: () {
+                              showPhotoSheet(context);
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(7),
+                              decoration: BoxDecoration(
+                                color: GlobalVariables.themeColor,
+                                shape: BoxShape.circle,
+                              ),
+                              child:
+                                  const Icon(Icons.edit, color: Colors.white),
                             ),
                           ),
                         ),
-                      // Edit Icon
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: GestureDetector(
-                          onTap: () {
-                            showPhotoSheet(context);
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.all(7),
-                            decoration: BoxDecoration(
-                              color: GlobalVariables.themeColor,
-                              shape: BoxShape.circle,
-                            ),
-                            child: const Icon(Icons.edit, color: Colors.white),
-                          ),
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
+                  placeholder: (context, url) => CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
+
                 Text(
                   '@${snapchatId ?? 'loading...'}', // Display the Snapchat ID or 'loading...' if not available
                   style: const TextStyle(
