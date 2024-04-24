@@ -52,7 +52,7 @@ class _RevealedScreenState extends State<RevealedScreen> {
                               text: const TextSpan(
                                 children: [
                                   TextSpan(
-                                    text: 'Ankush',
+                                    text: 'Ankush, 19',
                                     style: TextStyle(
                                       fontSize: 22.0,
                                       fontWeight: FontWeight.bold,
@@ -60,7 +60,7 @@ class _RevealedScreenState extends State<RevealedScreen> {
                                     ),
                                   ),
                                   TextSpan(
-                                    text: '\n19, New Delhi',
+                                    text: '\nNew Delhi, Rating: 7',
                                     style: TextStyle(
                                       fontSize: 20.0,
                                       color: Colors.white,

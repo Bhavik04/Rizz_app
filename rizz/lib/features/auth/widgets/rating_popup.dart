@@ -33,7 +33,7 @@ class _RatingPopuppState extends State<RatingPopupp> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 15),
+            padding: const EdgeInsets.symmetric(vertical: 20),
             child: RatingBar.builder(
               initialRating: _rating,
               minRating: 1,
@@ -52,10 +52,12 @@ class _RatingPopuppState extends State<RatingPopupp> {
             ),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomButton(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pop(context);
+                },
                 text: 'Close',
                 buttonColor: Colors.white,
                 textColor: Colors.black,
@@ -75,7 +77,7 @@ class _RatingPopuppState extends State<RatingPopupp> {
                 text: 'Submit',
                 buttonColor: GlobalVariables.themeColor,
                 textColor: Colors.white,
-                width: 100,
+                width: 120,
                 height: 50,
               ),
             ],

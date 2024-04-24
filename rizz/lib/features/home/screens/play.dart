@@ -17,6 +17,7 @@ import 'package:rizz/features/auth/widgets/user_info_texts.dart';
 import 'package:rizz/objectbox.g.dart';
 import 'package:rizz/services/auth_service.dart';
 import 'package:rizz/services/firestore_service.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'package:rizz/services/notifications.dart';
 
@@ -143,8 +144,20 @@ class _PlayScreenState extends State<PlayScreen> {
                                     ],
                                   ),
                                   CustomButtonsColumn(
-                                    onSnapchatTap: () {
-                                      showSnapchatBottom(context);
+                                    onSnapchatTap: () async {
+                                      //showSnapchatBottom(context);
+                                      String snapId = user.snapId ?? '';
+
+                                      // Construct the dynamic Snapchat profile URL
+                                      String snapchatProfileUrl =
+                                          'https://www.snapchat.com/add/$snapId';
+
+                                      // Launch the URL
+                                      if (await canLaunch(snapchatProfileUrl)) {
+                                        await launch(snapchatProfileUrl);
+                                      } else {
+                                        throw 'Could not launch Snapchat profile';
+                                      }
                                     },
                                     onSuperChatTap: () {
                                       showSuperChat(context);
