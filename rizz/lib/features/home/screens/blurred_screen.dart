@@ -145,7 +145,9 @@ class _BlurredScreenState extends State<BlurredScreen> {
                           CustomButton(
                             onTap: () {
                               //FIRST SHOW FREE REVEAL SHEET TILL THE USER CLICKS ON  THE SHARE BUTTON, AFTER THAT GIVE unlimited REVEALS WITHOUT ADS for a day
-                              context.goNamed(RevealedScreen.routeName);
+                              context.goNamed(RevealedScreen.routeName,
+                                  queryParameters: {"rating": widget.rating},
+                                  extra: user);
                             },
                             text: 'Reveal Sender',
                             buttonColor: Colors.white,

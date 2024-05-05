@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:rizz/common/global_variables.dart';
+import 'package:rizz/db/modals/user.dart';
 import 'package:rizz/features/auth/widgets/custom_arrowbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/dm_bottom.dart';
@@ -7,7 +10,11 @@ import 'package:rizz/features/auth/widgets/dm_bottom.dart';
 class RevealedScreen extends StatefulWidget {
   static const routeName = 'RevealedScreen';
 
-  const RevealedScreen({Key? key}) : super(key: key);
+  final AppUser user;
+  final String rating;
+
+  const RevealedScreen({Key? key, required this.user, required this.rating})
+      : super(key: key);
 
   @override
   State<RevealedScreen> createState() => _RevealedScreenState();
@@ -16,6 +23,8 @@ class RevealedScreen extends StatefulWidget {
 class _RevealedScreenState extends State<RevealedScreen> {
   @override
   Widget build(BuildContext context) {
+    final userImages = jsonDecode(widget.user.imageUrls);
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.black,
@@ -31,8 +40,8 @@ class _RevealedScreenState extends State<RevealedScreen> {
                         bottomLeft: Radius.circular(20.0),
                         bottomRight: Radius.circular(20.0),
                       ),
-                      child: Image.asset(
-                        'assets/images/eww.png',
+                      child: Image.network(
+                        userImages[0],
                         width: double.infinity,
                         height: double.infinity,
                         fit: BoxFit.cover,
@@ -49,18 +58,20 @@ class _RevealedScreenState extends State<RevealedScreen> {
                             padding: EdgeInsets.only(
                                 left: GlobalVariables.deviceWidth * 0.10),
                             child: RichText(
-                              text: const TextSpan(
+                              text: TextSpan(
                                 children: [
                                   TextSpan(
-                                    text: 'Ankush, 19',
-                                    style: TextStyle(
+                                    text:
+                                        '${widget.user.name}, ${widget.user.age}',
+                                    style: const TextStyle(
                                       fontSize: 22.0,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
                                   ),
                                   TextSpan(
-                                    text: '\nNew Delhi, Rating: 7',
+                                    text:
+                                        '\nNew Delhi, Rating: ${widget.rating}',
                                     style: TextStyle(
                                       fontSize: 20.0,
                                       color: Colors.white,

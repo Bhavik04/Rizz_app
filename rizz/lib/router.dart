@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rizz/db/modals/user.dart';
 import 'package:rizz/features/auth/screens/access.dart';
 import 'package:rizz/features/auth/screens/create_age.dart';
 import 'package:rizz/features/auth/screens/create_gender.dart';
@@ -178,8 +179,11 @@ class AppRouter {
                               GoRoute(
                                 path: 'RevealedScreen',
                                 name: RevealedScreen.routeName,
-                                builder: (context, state) =>
-                                    const RevealedScreen(),
+                                builder: (context, state) => RevealedScreen(
+                                  user: state.extra as AppUser,
+                                  rating: state.uri.queryParameters["rating"] ??
+                                      "7",
+                                ),
                               ),
                             ]),
                       ]),

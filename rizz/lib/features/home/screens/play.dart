@@ -88,7 +88,7 @@ class _PlayScreenState extends State<PlayScreen> {
           children: [
             Container(
               alignment: Alignment.center,
-              height: GlobalVariables.deviceHeight * 0.79,
+              height: GlobalVariables.deviceHeight * 0.825,
               child: PageView.builder(
                 controller: _pageController,
                 scrollDirection: Axis.vertical,
@@ -180,14 +180,15 @@ class _PlayScreenState extends State<PlayScreen> {
                           ),
                         ),
                         placeholder: (context, url) =>
-                            CircularProgressIndicator(),
-                        errorWidget: (context, url, error) => Icon(Icons.error),
+                            const CircularProgressIndicator(),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
                       ),
                       ReportButton(
                         onTap: () {
                           showSkipSheet(context, onSkip: () {
                             _pageController.nextPage(
-                                duration: Duration(milliseconds: 500),
+                                duration: const Duration(milliseconds: 500),
                                 curve: Curves.ease);
                           });
                         },
