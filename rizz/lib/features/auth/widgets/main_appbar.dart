@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
+import 'package:rizz/features/auth/screens/splash_screen.dart';
 import 'package:rizz/features/auth/widgets/custom_boost_popup.dart';
 import 'package:rizz/features/auth/widgets/custom_bottomsheet.dart';
 import 'package:rizz/features/auth/widgets/free_boost_popup.dart';
@@ -109,7 +110,8 @@ class _MainAppBarState extends State<MainAppBar> {
           ),
           GestureDetector(
             onTap: () {
-              context.goNamed(AdswipeScreen.routeName);
+              //context.goNamed(AdswipeScreen.routeName);
+               context.goNamed(SplashScreen.routeName);
             },
             child: Image.asset(
               'assets/images/instagram.png',

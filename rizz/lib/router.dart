@@ -10,6 +10,7 @@ import 'package:rizz/features/auth/screens/create_referral.dart';
 import 'package:rizz/features/auth/screens/create_username.dart';
 import 'package:rizz/features/auth/screens/create_snapchat.dart';
 import 'package:rizz/features/auth/screens/sign_in.dart';
+import 'package:rizz/features/auth/screens/splash_screen.dart';
 import 'package:rizz/features/bottom_bar.dart';
 import 'package:rizz/features/home/screens/ad_swipe.dart';
 import 'package:rizz/features/home/screens/blurred_screen.dart';
@@ -142,6 +143,11 @@ class AppRouter {
                             path: 'AdswipeScreen',
                             name: AdswipeScreen.routeName,
                             builder: (context, state) => const AdswipeScreen(),
+                          ),
+                          GoRoute(
+                            path: 'SplashScreen',
+                            name: SplashScreen.routeName,
+                            builder: (context, state) => const SplashScreen(),
                           ),
                         ],
                         // routes: [
