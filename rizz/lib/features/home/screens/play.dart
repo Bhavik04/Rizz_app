@@ -84,128 +84,96 @@ class _PlayScreenState extends State<PlayScreen> {
       child: Scaffold(
         backgroundColor: Colors.black,
         appBar: MainAppBar(),
-        body: Column(
-          children: [
-            Container(
-              alignment: Alignment.center,
-              height: GlobalVariables.deviceHeight * 0.825,
-              child: PageView.builder(
-                controller: _pageController,
-                scrollDirection: Axis.vertical,
-                itemCount: allUserData.length,
-                itemBuilder: (context, index) {
-                  AppUser user = allUserData[index];
-                  // return FutureBuilder<List<AppUser>>(
-                  //   future: _loadUserImages(),
-                  //   builder: (context, snapshot) {
-                  //     if (snapshot.connectionState == ConnectionState.waiting) {
-                  //       return const CircularProgressIndicator();
-                  //     } else if (snapshot.hasError) {
-                  //       return Text('Error: ${snapshot.error}');
-                  //     } else if (snapshot.hasData) {
-                  //       // final username = snapshot.data?['username'] ?? '';
-                  //       // final age = snapshot.data?['age'] ?? 0;
-                  final username = user.name ?? '';
-                  final age = user.age ?? 0;
-                  final userImages = jsonDecode(user.imageUrls);
-                  return Stack(
-                    children: [
-                      CachedNetworkImage(
-                        imageUrl: userImages[0],
-                        imageBuilder: (context, imageProvider) => Container(
-                          margin: const EdgeInsets.all(6.0),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15.0),
-                            border: Border.all(
-                              color: Colors.white24,
-                              width: 1.0,
-                            ),
-                            image: DecorationImage(
-                              image: imageProvider,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      UserInfoWidget(
-                                        username: username,
-                                        age: age,
-                                      ),
-                                    ],
-                                  ),
-                                  CustomButtonsColumn(
-                                    onSnapchatTap: () async {
-                                      //showSnapchatBottom(context);
-                                      String snapId = user.snapId ?? '';
-
-                                      // Construct the dynamic Snapchat profile URL
-                                      String snapchatProfileUrl =
-                                          'https://www.snapchat.com/add/$snapId';
-
-                                      // Launch the URL
-                                      if (await canLaunch(snapchatProfileUrl)) {
-                                        await launch(snapchatProfileUrl);
-                                      } else {
-                                        throw 'Could not launch Snapchat profile';
-                                      }
-                                    },
-                                    onSuperChatTap: () {
-                                      showSuperChat(context);
-                                    },
-                                  ),
-                                ],
-                              ),
-                              CustomSlider(
-                                value: _currentValue,
-                                onChanged: (value) {
-                                  FirestoreService()
-                                      .sendRating(user, value.toInt());
-
-                                  setState(() {
-                                    _currentValue = value;
-                                  });
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                        placeholder: (context, url) =>
-                            const CircularProgressIndicator(),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
-                      ),
-                      ReportButton(
-                        onTap: () {
-                          showSkipSheet(context, onSkip: () {
-                            _pageController.nextPage(
-                                duration: const Duration(milliseconds: 500),
-                                curve: Curves.ease);
-                          });
-                        },
-                      ),
-                    ],
-                  );
-
-                  //     } else {
-                  //       return const Text('No user data available');
-                  //     }
-                  //   },
-                  // );
-                },
+        body: PageView.builder(
+  controller: _pageController,
+  scrollDirection: Axis.vertical,
+  itemCount: allUserData.length,
+  itemBuilder: (context, index) {
+    AppUser user = allUserData[index];
+    final username = user.name ?? '';
+    final age = user.age ?? 0;
+    final userImages = jsonDecode(user.imageUrls);
+    return Stack(
+      children: [
+        CachedNetworkImage(
+          imageUrl: userImages[0],
+          imageBuilder: (context, imageProvider) => Container(
+            margin: const EdgeInsets.only(top: 8,bottom: 8),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15.0),
+              border: Border.all(
+                color: Colors.white24,
+                width: 1.0,
+              ),
+              image: DecorationImage(
+                image: imageProvider,
+                fit: BoxFit.cover,
               ),
             ),
-          ],
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        UserInfoWidget(
+                          username: username,
+                          age: age,
+                        ),
+                      ],
+                    ),
+                    CustomButtonsColumn(
+                      onSnapchatTap: () async {
+                        String snapId = user.snapId ?? '';
+                        String snapchatProfileUrl =
+                            'https://www.snapchat.com/add/$snapId';
+                        if (await canLaunch(snapchatProfileUrl)) {
+                          await launch(snapchatProfileUrl);
+                        } else {
+                          throw 'Could not launch Snapchat profile';
+                        }
+                      },
+                      onSuperChatTap: () {
+                        showSuperChat(context);
+                      },
+                    ),
+                  ],
+                ),
+                CustomSlider(
+                  value: _currentValue,
+                  onChanged: (value) {
+                    FirestoreService().sendRating(user, value.toInt());
+                    setState(() {
+                      _currentValue = value;
+                    });
+                  },
+                ),
+              ],
+            ),
+          ),
+          placeholder: (context, url) =>
+              const CircularProgressIndicator(),
+          errorWidget: (context, url, error) =>
+              const Icon(Icons.error),
         ),
+        ReportButton(
+          onTap: () {
+            showSkipSheet(context, onSkip: () {
+              _pageController.nextPage(
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.ease);
+            });
+          },
+        ),
+      ],
+    );
+  },
+),
+
       ),
     );
   }
