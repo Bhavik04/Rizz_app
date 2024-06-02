@@ -56,20 +56,12 @@ dependencies:
   http: ^1.1.0
   flutter_rating_bar: ^4.0.1
   in_app_review: ^2.0.9
+  flutter_chat_ui: ^1.6.13
   
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  flutter_launcher_icons: "^0.13.1"
-
-flutter_launcher_icons:
-  android: "ic_launcher"
-  ios: true
-  image_path: "assets/images/icon.png"
-  min_sdk_android: 21 
-  remove_alpha_ios: true
   
 
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -81,6 +73,18 @@ flutter_launcher_icons:
   build_runner: ^2.0.0
   objectbox_generator: any
   injectable_generator: any
+
+
+
+
+  flutter_launcher_icons: "^0.13.1"
+
+flutter_launcher_icons:
+  android: "ic_launcher"
+  ios: true
+  image_path: "assets/images/icon.png"
+  min_sdk_android: 21 
+  remove_alpha_ios: true
 
 
 # For information on the generic Dart part of this file, see the

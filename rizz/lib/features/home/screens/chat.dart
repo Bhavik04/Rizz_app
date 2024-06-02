@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rizz/common/global_variables.dart';
+import 'package:rizz/db/modals/user.dart';
 import 'package:rizz/features/auth/widgets/custom_appbar.dart';
 import 'package:rizz/features/auth/widgets/custom_button.dart';
 import 'package:rizz/features/auth/widgets/custom_text.dart';
+import 'package:rizz/features/home/screens/chat_page.dart';
 import 'package:rizz/features/home/screens/play.dart';
+import 'package:rizz/services/chat_service.dart';
 
 class ChatScreen extends StatefulWidget {
   static const routeName = 'ChatScreen';
@@ -16,14 +20,26 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  void showCustomBottomSheet(BuildContext context) {}
+  List<AppUser> chatRooms=[];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    ChatService chatService = GetIt.instance.get<ChatService>();
+    chatRooms=chatService.getChatRooms();
+    setState(() {
+      
+    });
+  }
+  // void showCustomBottomSheet(BuildContext context) {}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: const CustomAppBar(),
-      body: Column(
+      body:chatRooms.isEmpty? Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
@@ -57,7 +73,22 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
           )
         ],
-      ),
+      ):
+      Text("data"),
+      // ListView.builder(
+      //   shrinkWrap: true,
+      //                   itemCount: chatRooms.length,
+      //                   itemBuilder: (context, index) {
+      //                     return ChatTile(chatRooms[index]);
+      //                   },
+      //                 ),
+    );
+  }
+
+   Widget ChatTile(AppUser user){
+    return GestureDetector(
+      child: Text(user.name),
+    onTap: (){context.goNamed(ChatPage.routeName);},
     );
   }
 }

@@ -15,6 +15,7 @@ import 'package:rizz/features/bottom_bar.dart';
 import 'package:rizz/features/home/screens/ad_swipe.dart';
 import 'package:rizz/features/home/screens/blurred_screen.dart';
 import 'package:rizz/features/home/screens/chat.dart';
+import 'package:rizz/features/home/screens/chat_page.dart';
 import 'package:rizz/features/home/screens/inbox.dart';
 import 'package:rizz/features/home/screens/loading_screen.dart';
 import 'package:rizz/features/home/screens/play.dart';
@@ -197,12 +198,18 @@ class AppRouter {
                       navigatorKey: shellNavigatorKeyC,
                       routes: [
                         GoRoute(
-                          path: "ChatScreen",
-                          name: ChatScreen.routeName,
-                          builder: (context, state) => const ChatScreen(
-                            id: '',
-                          ),
-                        ),
+                            path: "ChatScreen",
+                            name: ChatScreen.routeName,
+                            builder: (context, state) => const ChatScreen(
+                                  id: '',
+                                ),
+                            routes: [
+                              GoRoute(
+                                path: "ChatPage",
+                                name: ChatPage.routeName,
+                                builder: (context, state) => ChatPage(),
+                              )
+                            ]),
                       ])
                 ],
                 builder: (context, state, navigationShell) =>
