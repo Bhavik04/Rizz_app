@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "616555807283-1d19r9jbl8vlqq5n8q6ep3o03a9lf56b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rizz",
+            "certificate_hash": "777b1dc773860cfde459d336925d94c389956e8f"
+          }
+        },
+        {
           "client_id": "616555807283-ftd37ki2muqfnpg46nnh1f0qjuik1617.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

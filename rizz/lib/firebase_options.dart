@@ -63,8 +63,9 @@ class DefaultFirebaseOptions {
     messagingSenderId: '616555807283',
     projectId: 'rizz-dev-ccb51',
     storageBucket: 'rizz-dev-ccb51.appspot.com',
-    androidClientId: '616555807283-ftd37ki2muqfnpg46nnh1f0qjuik1617.apps.googleusercontent.com',
+    androidClientId: '616555807283-1d19r9jbl8vlqq5n8q6ep3o03a9lf56b.apps.googleusercontent.com',
     iosClientId: '616555807283-rj9n78cjept6e25jet9jgm3bmfdccuu2.apps.googleusercontent.com',
     iosBundleId: 'com.example.rizz',
   );
+
 }
